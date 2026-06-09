@@ -1,0 +1,352 @@
+'use client';
+
+import { useEffect, useState, use, useCallback } from 'react';
+import Link from 'next/link';
+import { Loader2, Users, BookOpen, FileText, Calendar, BarChart3, Eye, ExternalLink } from 'lucide-react';
+import Card, { CardHeader, CardTitle, CardContent } from '@/components/ui/Card';
+import Button from '@/components/ui/Button';
+import { courseService } from '@/services/courseService';
+import { courseMaterialService, type CourseMaterial } from '@/services/courseMaterialService';
+import { useSocket } from '@/hooks/useSocket';
+import { socketService } from '@/services/socketService';
+import { useToast } from '@/components/ui/ToastContainer';
+import ScheduleLiveClassModal from '@/components/ScheduleLiveClassModal';
+import SecureFileViewer from '@/components/SecureFileViewer';
+import type { Course } from '@/types';
+
+export default function InstructorCourseDetailPage({ params }: { params: Promise<{ id: string }> }) {
+  const { id } = use(params);
+  const courseId = Number(id);
+
+  const [course, setCourse] = useState<Course | null>(null);
+  const [enrollments, setEnrollments] = useState<any[]>([]);
+  const [materials, setMaterials] = useState<CourseMaterial[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [enrollmentsLoading, setEnrollmentsLoading] = useState(true);
+  const [materialsLoading, setMaterialsLoading] = useState(true);
+  const [showScheduleModal, setShowScheduleModal] = useState(false);
+  const [viewingMaterial, setViewingMaterial] = useState<CourseMaterial | null>(null);
+
+  // Get user ID from localStorage or auth context
+  const [userId, setUserId] = useState<number | undefined>();
+  
+  useEffect(() => {
+    const token = localStorage.getItem('token');
+    if (token) {
+      try {
+        const payload = JSON.parse(atob(token.split('.')[1]));
+        setUserId(payload.userId);
+      } catch (error) {
+        console.error('Failed to parse token:', error);
+      }
+    }
+  }, []);
+
+  // Initialize Socket.IO connection
+  const { onCourseMaterialUploaded, offCourseMaterialUploaded } = useSocket(userId);
+  const { addToast } = useToast();
+
+  const fetchMaterials = useCallback(async () => {
+    try {
+      setMaterialsLoading(true);
+      const response = await courseMaterialService.getCourseMaterials(courseId);
+      setMaterials(response.materials || []);
+    } catch (error) {
+      console.error('Failed to fetch course materials:', error);
+      setMaterials([]);
+    } finally {
+      setMaterialsLoading(false);
+    }
+  }, [courseId]);
+
+  useEffect(() => {
+    const fetchCourse = async () => {
+      try {
+        setLoading(true);
+        const response = await courseService.getCourseById(courseId);
+        setCourse(response.course || null);
+      } catch (error) {
+        console.error('Failed to fetch course:', error);
+        setCourse(null);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchCourse();
+  }, [courseId]);
+
+  useEffect(() => {
+    const fetchEnrollments = async () => {
+      try {
+        setEnrollmentsLoading(true);
+        // This would need to be implemented in the backend
+        // const response = await enrollmentService.getCourseEnrollments(courseId);
+        // setEnrollments(response.enrollments || []);
+        setEnrollments([]); // Placeholder
+      } catch (error) {
+        console.error('Failed to fetch enrollments:', error);
+        setEnrollments([]);
+      } finally {
+        setEnrollmentsLoading(false);
+      }
+    };
+    fetchEnrollments();
+  }, [courseId]);
+
+  useEffect(() => {
+    fetchMaterials();
+    
+    // Set up polling as fallback for real-time updates
+    const pollInterval = setInterval(() => {
+      // Only poll if socket is not connected
+      if (!socketService.isSocketConnected()) {
+        fetchMaterials();
+      }
+    }, 30000); // Poll every 30 seconds
+
+    return () => {
+      clearInterval(pollInterval);
+    };
+  }, [fetchMaterials]);
+
+  // Set up real-time material upload listener
+  useEffect(() => {
+    const handleMaterialUploaded = (data: any) => {
+      // Only update if it's for this course
+      if (data.courseId === courseId) {
+        console.log('New material uploaded:', data.material);
+        
+        // Add the new material to the list
+        setMaterials(prevMaterials => [data.material, ...prevMaterials]);
+        
+        // Show a notification
+        addToast({
+          type: 'success',
+          title: 'New Material Added',
+          message: `"${data.material.title}" has been uploaded to this course`,
+          duration: 6000
+        });
+      }
+    };
+
+    onCourseMaterialUploaded(handleMaterialUploaded);
+
+    return () => {
+      offCourseMaterialUploaded(handleMaterialUploaded);
+    };
+  }, [courseId, onCourseMaterialUploaded, offCourseMaterialUploaded, addToast]);
+
+  if (loading) {
+    return (
+      <div className="p-4 md:p-8 max-w-[1200px] mx-auto">
+        <div className="flex items-center justify-center py-12">
+          <Loader2 className="size-8 animate-spin text-[#1E88E5]" />
+        </div>
+      </div>
+    );
+  }
+
+  if (!course) {
+    return (
+      <div className="p-4 md:p-8 max-w-[1200px] mx-auto">
+        <Card>
+          <CardContent>
+            <div className="text-center py-8">
+              <BookOpen className="size-12 text-[#E0E0E0] mx-auto mb-3" />
+              <p className="text-sm text-[#78909C]">Course not found.</p>
+              <Link href="/instructor/courses" className="inline-block mt-4">
+                <Button variant="outline">Back to My Courses</Button>
+              </Link>
+            </div>
+          </CardContent>
+        </Card>
+      </div>
+    );
+  }
+
+  const instructorNames = course.instructors?.map(i => i.name).join(', ') || course.instructor_name || 'No instructor';
+  const enrollmentCount = course.enrollment_count || 0;
+  const completionRate = enrollments.length > 0 
+    ? (enrollments.filter(e => e.progress === 100).length / enrollments.length) * 100 
+    : 0;
+
+  const handleViewMaterial = (material: CourseMaterial) => {
+    setViewingMaterial(material);
+  };
+
+  return (
+    <div className="p-4 md:p-8 max-w-[1200px] mx-auto space-y-6">
+      {/* Header */}
+      <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4">
+        <div className="flex-1">
+          <div className="flex items-center gap-3 mb-2">
+            <h1 className="text-xl md:text-2xl font-bold text-[#1E3A5F]">{course.title}</h1>
+            <span className={`px-2 py-1 text-xs font-medium rounded-full ${
+              course.status === 'published' ? 'bg-[#C5E1A5] text-[#1E88E5]' :
+              'bg-[#FAFAFA] text-[#78909C]'
+            }`}>
+              {course.status.charAt(0).toUpperCase() + course.status.slice(1)}
+            </span>
+          </div>
+          <p className="text-sm text-[#78909C]">
+            {instructorNames} • {course.duration_value} {course.duration_unit} • {course.level}
+          </p>
+        </div>
+        
+        <div className="flex items-center gap-3">
+          <Link href={`/instructor/courses/${courseId}/analytics`}>
+            <Button variant="outline" size="sm" className="flex items-center gap-2">
+              <BarChart3 className="size-4" />
+              Analytics
+            </Button>
+          </Link>
+                <Link href={`/instructor/courses/${courseId}/students`} className="text-sm text-[#1E88E5] hover:underline">
+                  View All Students ({enrollments.length})
+                </Link>
+              </div>
+            </CardHeader>
+            <CardContent>
+              {enrollmentsLoading ? (
+                <div className="flex items-center justify-center py-8">
+                  <Loader2 className="size-6 animate-spin text-[#1E88E5]" />
+                </div>
+              ) : enrollments.length === 0 ? (
+                <div className="text-center py-8">
+                  <Users className="size-12 text-[#E0E0E0] mx-auto mb-3" />
+                  <p className="text-sm text-[#78909C]">No students enrolled yet</p>
+                </div>
+              ) : (
+                <div className="space-y-3">
+                  {enrollments.slice(0, 5).map((enrollment) => (
+                    <div key={enrollment.id} className="flex items-center justify-between p-3 bg-[#FAFAFA] rounded-lg">
+                      <div className="flex items-center gap-3">
+                        <div className="size-10 bg-[#1E88E5]/10 rounded-full flex items-center justify-center">
+                          <Users className="size-5 text-[#1E88E5]" />
+                        </div>
+                        <div>
+                          <h4 className="font-medium text-[#1E3A5F]">{enrollment.student_name}</h4>
+                          <p className="text-sm text-[#78909C]">Enrolled {new Date(enrollment.enrolled_at).toLocaleDateString()}</p>
+                        </div>
+                      </div>
+                      <div className="text-right">
+                        <div className="text-sm font-medium text-[#1E3A5F]">{Math.round(enrollment.progress)}%</div>
+                        <div className="text-xs text-[#78909C]">Progress</div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              )}
+            </CardContent>
+          </Card>
+        </div>
+
+        {/* Sidebar */}
+        <div className="space-y-6">
+<<<<<<< Updated upstream
+          {/* Quick Actions */}
+          <Card>
+            <CardHeader>
+              <CardTitle>Quick Actions</CardTitle>
+            </CardHeader>
+            <CardContent className="space-y-3">
+              <Link href={`/instructor/courses/${courseId}/sections`}>
+                <div className="flex items-center gap-3 p-3 border border-[#E2E8F0] rounded-lg hover:border-[#1B8A44] transition-colors cursor-pointer">
+                  <div className="p-2 bg-[#1B8A44]/10 rounded-lg">
+                    <BookOpen className="size-4 text-[#1B8A44]" />
+                  </div>
+                  <div className="flex-1">
+                    <h4 className="font-medium text-[#1E293B]">View Content</h4>
+                    <p className="text-sm text-[#64748B]">Browse sections and lessons</p>
+                  </div>
+                </div>
+              </Link>
+
+              <Link href={`/instructor/assignments?course_id=${courseId}`}>
+                <div className="flex items-center gap-3 p-3 border border-[#E2E8F0] rounded-lg hover:border-[#1B8A44] transition-colors cursor-pointer">
+                  <div className="p-2 bg-[#1B8A44]/10 rounded-lg">
+                    <FileText className="size-4 text-[#1B8A44]" />
+                  </div>
+                  <div className="flex-1">
+                    <h4 className="font-medium text-[#1E293B]">Assignments</h4>
+                    <p className="text-sm text-[#64748B]">Create and grade assignments</p>
+                  </div>
+                </div>
+              </Link>
+
+              <Link href={`/instructor/live-classes?course_id=${courseId}`}>
+                <div className="flex items-center gap-3 p-3 border border-[#E2E8F0] rounded-lg hover:border-[#1B8A44] transition-colors cursor-pointer">
+                  <div className="p-2 bg-[#1B8A44]/10 rounded-lg">
+                    <Calendar className="size-4 text-[#1B8A44]" />
+                  </div>
+                  <div className="flex-1">
+                    <h4 className="font-medium text-[#1E293B]">Live Classes</h4>
+                    <p className="text-sm text-[#64748B]">Schedule live sessions</p>
+                  </div>
+                </div>
+              </Link>
+
+              <Link href={`/instructor/courses/${courseId}/analytics`}>
+                <div className="flex items-center gap-3 p-3 border border-[#E2E8F0] rounded-lg hover:border-[#1B8A44] transition-colors cursor-pointer">
+                  <div className="p-2 bg-[#1B8A44]/10 rounded-lg">
+                    <BarChart3 className="size-4 text-[#1B8A44]" />
+                  </div>
+                  <div className="flex-1">
+                    <h4 className="font-medium text-[#1E293B]">Analytics</h4>
+                    <p className="text-sm text-[#64748B]">View detailed insights</p>
+                  </div>
+                </div>
+              </Link>
+            </CardContent>
+          </Card>
+
+          {/* Course Settings */}
+          <Card>
+            <CardHeader>
+              <CardTitle>Course Settings</CardTitle>
+            </CardHeader>
+            <CardContent className="space-y-4">
+              <div className="flex items-center justify-between">
+                <span className="text-sm font-medium text-[#1E293B]">Status</span>
+                <span className={`px-2 py-1 text-xs font-medium rounded-full ${
+                  course.status === 'published' ? 'bg-[#DCFCE7] text-[#1B8A44]' :
+                  course.status === 'draft' ? 'bg-[#E2E8F0] text-[#475569]' :
+                  'bg-[#F1F5F9] text-[#64748B]'
+                }`}>
+                  {course.status.charAt(0).toUpperCase() + course.status.slice(1)}
+                </span>
+              </div>
+              
+              <div className="flex items-center justify-between">
+                <span className="text-sm font-medium text-[#1E293B]">Price</span>
+                <span className="text-sm text-[#64748B]">
+                  {course.price === 0 ? 'Free' : `₹${course.price.toLocaleString()}`}
+                </span>
+              </div>
+              
+              <div className="flex items-center justify-between">
+                <span className="text-sm font-medium text-[#1E293B]">Category</span>
+                <span className="text-sm text-[#64748B]">{course.category_name || 'Uncategorized'}</span>
+              </div>
+              
+              <div className="flex items-center justify-between">
+                <span className="text-sm font-medium text-[#1E293B]">Language</span>
+                <span className="text-sm text-[#64748B]">{course.language}</span>
+              </div>
+            </CardContent>
+          </Card>
+=======
+>>>>>>> Stashed changes
+        </div>
+      </div>
+
+      {/* Secure File Viewer Modal */}
+      {viewingMaterial && (
+        <SecureFileViewer
+          materialId={viewingMaterial.id}
+          fileName={viewingMaterial.file_name}
+          onClose={() => setViewingMaterial(null)}
+        />
+      )}
+    </div>
+  );
+}
