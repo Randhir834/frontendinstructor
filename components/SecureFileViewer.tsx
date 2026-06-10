@@ -8,12 +8,14 @@ interface SecureFileViewerProps {
   materialId: number;
   fileName: string;
   onClose: () => void;
+  onSecurityViolation?: (type: 'screenshot' | 'download') => Promise<void>;
 }
 
 export default function SecureFileViewer({
   materialId,
   fileName,
-  onClose
+  onClose,
+  onSecurityViolation
 }: SecureFileViewerProps) {
   const [secureUrl, setSecureUrl] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
