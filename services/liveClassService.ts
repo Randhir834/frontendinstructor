@@ -31,6 +31,12 @@ export const liveClassService = {
     return response.data;
   },
 
+  // Get courses with their live classes
+  async getCoursesWithLiveClasses() {
+    const response = await api.get('/live-classes/courses');
+    return response.data;
+  },
+
   // Get live classes by course
   async getLiveClassesByCourse(courseId: number) {
     const response = await api.get(`/live-classes?course_id=${courseId}`);
