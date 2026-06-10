@@ -33,6 +33,7 @@ export interface Course {
   instructor_name?: string;
   instructors?: { id: number; name: string; avatar_url?: string }[];
   enrollment_count?: number;
+  enrolled_students?: number;
   total_lessons?: number;
   created_at: string;
   updated_at: string;
