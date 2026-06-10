@@ -7,7 +7,9 @@ import Button from './Button';
 import type { Course } from '@/types';
 
 interface CourseCardProps {
-  course: Course;
+  course: Course & {
+    is_enrolled?: boolean;
+  };
   userRole: 'admin' | 'instructor' | 'student';
   onDelete?: (id: number) => void;
   onEdit?: (id: number) => void;
@@ -25,13 +27,16 @@ export default function CourseCard({
   showActions = true,
   linkPrefix = ''
 }: CourseCardProps) {
-  const levelColors = {
+  const levelColors: Record<string, string> = {
     beginner: 'bg-[#EFF6FF] text-[#1E40AF]',
     intermediate: 'bg-[#FEF3C7] text-[#D97706]',
     advanced: 'bg-[#FEE2E2] text-[#EC407A]',
   };
 
-  const formatPrice = (price: number) => {
+  const defaultLevelColor = 'bg-[#F3F4F6] text-[#6B7280]';
+
+  const formatPrice = (price: number | undefined) => {
+    if (price === undefined || price === null) return 'Free';
     return price === 0 ? 'Free' : `₹${price.toLocaleString()}`;
   };
 
@@ -67,20 +72,6 @@ export default function CourseCard({
           </div>
         )}
 
-        {/* Progress Bar for Students */}
-        {userRole === 'student' && course.is_enrolled && course.progress !== undefined && (
-          <div className="absolute bottom-0 left-0 right-0 bg-white/90 p-2">
-            <div className="flex items-center gap-2 text-xs">
-              <div className="flex-1 bg-[#E0E0E0] rounded-full h-2">
-                <div 
-                  className="bg-[#1E88E5] h-2 rounded-full transition-all duration-300"
-                  style={{ width: `${course.progress}%` }}
-                />
-              </div>
-              <span className="text-[#78909C] font-medium">{Math.round(course.progress || 0)}%</span>
-            </div>
-          </div>
-        )}
       </div>
 
       <CardContent className="p-4">
@@ -91,8 +82,8 @@ export default function CourseCard({
               <h3 className="font-semibold text-[#1E3A5F] line-clamp-2 group-hover:text-[#1E88E5] transition-colors">
                 {course.title}
               </h3>
-              <span className={`px-2 py-1 text-xs font-medium rounded-full whitespace-nowrap ${levelColors[course.level]}`}>
-                {course.level.charAt(0).toUpperCase() + course.level.slice(1)}
+              <span className={`px-2 py-1 text-xs font-medium rounded-full whitespace-nowrap ${course.level ? levelColors[course.level] || defaultLevelColor : defaultLevelColor}`}>
+                {course.level ? course.level.charAt(0).toUpperCase() + course.level.slice(1) : 'N/A'}
               </span>
             </div>
             

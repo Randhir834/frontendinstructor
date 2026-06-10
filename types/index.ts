@@ -67,7 +67,6 @@ export interface Enrollment {
   student_email: string;
   avatar_url?: string;
   status: 'active' | 'completed' | 'dropped';
-  progress: number;
   enrolled_at: string;
 }
 

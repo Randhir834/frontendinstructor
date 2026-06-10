@@ -4,8 +4,8 @@ import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
 import {
-  Bell, Mail, BookOpen, ClipboardList,
-  BarChart3, HelpCircle, User, Loader2,
+  BookOpen, ClipboardList,
+  BarChart3, User, Loader2,
   Menu, X, GraduationCap, LogOut, Calendar
 } from 'lucide-react';
 import { userService, UserProfile } from '@/services/userService';
@@ -21,7 +21,6 @@ const menuItems = [
   { icon: GraduationCap, label: 'Students', href: '/instructor/students' },
   { icon: BarChart3, label: 'Progress', href: '/instructor/progress' },
   { icon: User, label: 'My Profile', href: '/instructor/profile' },
-  { icon: HelpCircle, label: 'Help & Support', href: '/instructor/help' },
 ];
 
 interface InstructorDashboardLayoutProps {

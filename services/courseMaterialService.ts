@@ -14,7 +14,7 @@ export interface CourseMaterial {
 
 class CourseMaterialService {
   /**
-   * Get all materials for a course (instructor view - read only)
+   * Get all materials for a course
    */
   async getCourseMaterials(courseId: number): Promise<{ materials: CourseMaterial[] }> {
     const response = await api.get(`/courses/${courseId}/materials`);
@@ -42,13 +42,30 @@ class CourseMaterialService {
   }
 
   /**
-   * Get file type from MIME type
+   * Report a screenshot attempt
    */
-  getFileType(mimeType: string): 'pdf' | 'ppt' | 'image' | 'document' {
-    if (mimeType === 'application/pdf') return 'pdf';
-    if (mimeType.includes('presentation') || mimeType.includes('powerpoint')) return 'ppt';
-    if (mimeType.startsWith('image/')) return 'image';
-    return 'document';
+  async reportScreenshotAttempt(materialId: number): Promise<void> {
+    await api.post('/materials/report/screenshot', { materialId });
+  }
+
+  /**
+   * Report a download attempt
+   */
+  async reportDownloadAttempt(materialId: number): Promise<void> {
+    await api.post('/materials/report/download', { materialId });
+  }
+
+  /**
+   * Get file icon based on file type
+   */
+  getFileIcon(fileType: string): string {
+    const iconMap: Record<string, string> = {
+      'pdf': '📄',
+      'ppt': '📊',
+      'image': '🖼️',
+      'document': '📝'
+    };
+    return iconMap[fileType] || '📎';
   }
 
   /**
@@ -73,24 +90,6 @@ class CourseMaterialService {
       hour: '2-digit',
       minute: '2-digit'
     });
-  }
-
-  /**
-   * Get file icon based on file type
-   */
-  getFileIcon(fileType: string): string {
-    switch (fileType) {
-      case 'pdf':
-        return '📄';
-      case 'ppt':
-        return '📊';
-      case 'image':
-        return '🖼️';
-      case 'document':
-        return '📝';
-      default:
-        return '📁';
-    }
   }
 }
 

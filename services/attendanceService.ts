@@ -5,7 +5,6 @@ export interface AttendanceStudent {
   name: string;
   email: string;
   enrolled_at: string;
-  progress: number;
 }
 
 export interface AttendanceRecord {
