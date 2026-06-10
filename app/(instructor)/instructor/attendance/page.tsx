@@ -123,13 +123,15 @@ export default function AttendancePage() {
                       <Calendar className="size-4" />
                       <span>{course.duration_value} {course.duration_unit}</span>
                     </div>
-                    <span className={`px-2 py-1 text-xs font-medium rounded-full ${
-                      course.level === 'beginner' ? 'bg-[#EFF6FF] text-[#1E40AF]' :
-                      course.level === 'intermediate' ? 'bg-[#FEF3C7] text-[#D97706]' :
-                      'bg-[#FEE2E2] text-[#EC407A]'
-                    }`}>
-                      {course.level.charAt(0).toUpperCase() + course.level.slice(1)}
-                    </span>
+                    {course.level && (
+                      <span className={`px-2 py-1 text-xs font-medium rounded-full ${
+                        course.level === 'beginner' ? 'bg-[#EFF6FF] text-[#1E40AF]' :
+                        course.level === 'intermediate' ? 'bg-[#FEF3C7] text-[#D97706]' :
+                        'bg-[#FEE2E2] text-[#EC407A]'
+                      }`}>
+                        {course.level.charAt(0).toUpperCase() + course.level.slice(1)}
+                      </span>
+                    )}
                   </div>
 
                   {/* Actions */}
