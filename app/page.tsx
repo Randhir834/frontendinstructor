@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { ArrowRight, CheckCircle, BookOpen, Users, Trophy, Star, Menu, X, Quote, Zap, Target, GraduationCap } from 'lucide-react';
+import { ArrowRight, CheckCircle, BookOpen, Users, Trophy, Star, Menu, X, Zap, Target, GraduationCap, Rocket, BarChart3, Video, Award, MessageCircle, Shield, TrendingUp, Clock, Mail, Phone, MapPin, Globe, CheckCircle2, ChevronRight, Sparkles, Heart, Brain, UserCheck, PlayCircle, Calendar } from 'lucide-react';
 import { instructorRegistrationService } from '@/services/instructorRegistrationService';
 
 export default function Home() {
@@ -49,28 +49,36 @@ export default function Home() {
       {/* Header */}
       <header className={`w-full py-4 pr-6 md:pr-12 pl-2 md:pl-4 flex justify-between items-center bg-white/95 backdrop-blur-md shadow-sm sticky top-0 z-50 transition-all duration-300 ${scrollY > 50 ? 'shadow-lg py-3' : ''}`}>
         <div className="flex items-center">
-          <Link href="/" className="relative flex items-center justify-start shrink-0 transition-all duration-300 h-12 sm:h-14 md:h-16 w-auto hover:scale-105">
+          <Link href="/" className="relative flex items-center justify-start shrink-0 transition-all duration-300 h-12 sm:h-14 md:h-16 w-auto hover:scale-105 group">
             <img
-              src="/images/navbarlogo.png"
+              src="/images/playfit-logo.jpg"
               alt="PlayFit LMS"
-              className="w-auto h-full object-contain max-w-full max-h-full"
+              className="w-auto h-full object-contain max-w-full max-h-full transform group-hover:rotate-2 transition-transform"
             />
           </Link>
         </div>
         
         <div className="flex items-center gap-8">
-          <nav className="hidden md:flex items-center gap-8 font-medium text-dark-600">
-            <a href="#features" className="hover:text-primary-600 transition-colors relative group">
+          <nav className="hidden md:flex items-center gap-8 font-semibold text-dark-700">
+            <a href="#features" className="hover:text-primary-600 transition-all relative group py-2">
               Features
-              <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary-600 transition-all group-hover:w-full"></span>
+              <span className="absolute -bottom-0.5 left-0 w-0 h-0.5 bg-gradient-to-r from-primary-600 to-secondary-500 transition-all duration-300 group-hover:w-full rounded-full"></span>
             </a>
-            <a href="#benefits" className="hover:text-primary-600 transition-colors relative group">
+            <a href="#benefits" className="hover:text-primary-600 transition-all relative group py-2">
               Benefits
-              <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary-600 transition-all group-hover:w-full"></span>
+              <span className="absolute -bottom-0.5 left-0 w-0 h-0.5 bg-gradient-to-r from-primary-600 to-secondary-500 transition-all duration-300 group-hover:w-full rounded-full"></span>
             </a>
-            <a href="#register" className="hover:text-primary-600 transition-colors relative group">
+            <a href="#testimonials" className="hover:text-primary-600 transition-all relative group py-2">
+              Testimonials
+              <span className="absolute -bottom-0.5 left-0 w-0 h-0.5 bg-gradient-to-r from-primary-600 to-secondary-500 transition-all duration-300 group-hover:w-full rounded-full"></span>
+            </a>
+            <a href="#faq" className="hover:text-primary-600 transition-all relative group py-2">
+              FAQ
+              <span className="absolute -bottom-0.5 left-0 w-0 h-0.5 bg-gradient-to-r from-primary-600 to-secondary-500 transition-all duration-300 group-hover:w-full rounded-full"></span>
+            </a>
+            <a href="#register" className="hover:text-primary-600 transition-all relative group py-2">
               Register
-              <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary-600 transition-all group-hover:w-full"></span>
+              <span className="absolute -bottom-0.5 left-0 w-0 h-0.5 bg-gradient-to-r from-primary-600 to-secondary-500 transition-all duration-300 group-hover:w-full rounded-full"></span>
             </a>
           </nav>
           <Link href="/login" className="hidden md:flex bg-primary-600 hover:bg-primary-700 text-white px-6 py-2.5 rounded-full font-medium transition-all shadow-md hover:shadow-lg hover:scale-105 flex items-center gap-2">
@@ -89,13 +97,15 @@ export default function Home() {
       {/* Mobile Menu */}
       {mobileMenuOpen && (
         <div className="md:hidden fixed inset-0 z-40 bg-white/95 backdrop-blur-md animate-in slide-in-from-top duration-300">
-          <nav className="flex flex-col items-center justify-center h-full gap-8 text-xl font-medium">
-            <a href="#features" onClick={() => setMobileMenuOpen(false)} className="hover:text-primary-600 transition-colors">Features</a>
-            <a href="#benefits" onClick={() => setMobileMenuOpen(false)} className="hover:text-primary-600 transition-colors">Benefits</a>
-            <a href="#register" onClick={() => setMobileMenuOpen(false)} className="hover:text-primary-600 transition-colors">Register</a>
-            <Link href="/login" onClick={() => setMobileMenuOpen(false)} className="bg-primary-600 hover:bg-primary-700 text-white px-8 py-3 rounded-full font-medium transition-all shadow-md flex items-center gap-2">
+          <nav className="flex flex-col items-center justify-center h-full gap-8 text-xl font-semibold p-6">
+            <a href="#features" onClick={() => setMobileMenuOpen(false)} className="hover:text-primary-600 transition-all hover:scale-110 active:scale-95">Features</a>
+            <a href="#benefits" onClick={() => setMobileMenuOpen(false)} className="hover:text-primary-600 transition-all hover:scale-110 active:scale-95">Benefits</a>
+            <a href="#testimonials" onClick={() => setMobileMenuOpen(false)} className="hover:text-primary-600 transition-all hover:scale-110 active:scale-95">Testimonials</a>
+            <a href="#faq" onClick={() => setMobileMenuOpen(false)} className="hover:text-primary-600 transition-all hover:scale-110 active:scale-95">FAQ</a>
+            <a href="#register" onClick={() => setMobileMenuOpen(false)} className="hover:text-primary-600 transition-all hover:scale-110 active:scale-95">Register</a>
+            <Link href="/login" onClick={() => setMobileMenuOpen(false)} className="bg-gradient-to-r from-primary-600 to-primary-700 hover:from-primary-700 hover:to-primary-800 text-white px-10 py-4 rounded-full font-semibold transition-all shadow-xl hover:shadow-2xl hover:scale-105 flex items-center gap-2 mt-6">
               Login
-              <ArrowRight className="w-4 h-4" />
+              <ArrowRight className="w-5 h-5" />
             </Link>
           </nav>
         </div>
@@ -198,33 +208,36 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Feature Highlights */}
-        <section id="features" className="py-24 px-6 bg-gradient-to-b from-white to-primary-50/30 flex flex-col items-center">
-          <div className="max-w-6xl w-full">
-            <div className="text-center mb-16">
-              <div className="inline-flex items-center gap-2 bg-primary-100 text-primary-800 px-4 py-2 rounded-full text-sm font-semibold mb-6">
-                <Zap className="w-4 h-4" />
+        {/* Feature Highlights - Enhanced to 6 cards */}
+        <section id="features" className="py-28 px-6 bg-gradient-to-b from-white to-primary-50/30 flex flex-col items-center">
+          <div className="max-w-7xl w-full">
+            <div className="text-center mb-20">
+              <div className="inline-flex items-center gap-2 bg-gradient-to-r from-primary-100 to-secondary-100 text-primary-800 px-5 py-2.5 rounded-full text-sm font-bold mb-6 shadow-lg border border-primary-200/50">
+                <Zap className="w-5 h-5" />
                 Powerful Features
               </div>
-              <h2 className="text-4xl md:text-5xl font-bold text-dark-900 mb-4">Why Teach With PlayFit?</h2>
-              <p className="text-dark-600 max-w-2xl mx-auto text-lg">Our comprehensive platform provides everything you need to create and deliver exceptional learning experiences.</p>
+              <h2 className="text-4xl md:text-5xl font-black text-dark-900 mb-6 tracking-tight">Why Teach With PlayFit?</h2>
+              <p className="text-dark-600 max-w-3xl mx-auto text-xl leading-relaxed font-medium">Our comprehensive platform provides everything you need to create and deliver exceptional learning experiences.</p>
             </div>
             
-            <div className="grid md:grid-cols-3 gap-8">
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
               {[
-                { icon: BookOpen, title: "Course Creation", desc: "Create engaging courses with our intuitive course builder. Upload materials, create quizzes, and track student progress.", color: "from-blue-500 to-blue-600" },
-                { icon: Users, title: "Student Engagement", desc: "Connect with students through live classes, discussion forums, and personalized feedback systems.", color: "from-purple-500 to-purple-600" },
-                { icon: Trophy, title: "Earn Recognition", desc: "Build your reputation as an expert instructor. Get certified and recognized for your teaching excellence.", color: "from-green-500 to-green-600" }
+                { icon: BookOpen, title: "Course Creation", desc: "Create engaging courses with our intuitive course builder. Upload materials, create quizzes, and track student progress.", color: "from-blue-500 to-blue-600", topBorder: "border-t-8 border-blue-500" },
+                { icon: Users, title: "Student Engagement", desc: "Connect with students through live classes, discussion forums, and personalized feedback systems.", color: "from-purple-500 to-purple-600", topBorder: "border-t-8 border-purple-500" },
+                { icon: Trophy, title: "Earn Recognition", desc: "Build your reputation as an expert instructor. Get certified and recognized for your teaching excellence.", color: "from-green-500 to-green-600", topBorder: "border-t-8 border-green-500" },
+                { icon: BarChart3, title: "Analytics Dashboard", desc: "Track your performance with detailed analytics. Monitor student progress, course completion rates, and earnings in real-time.", color: "from-orange-400 to-orange-600", topBorder: "border-t-8 border-orange-500" },
+                { icon: Rocket, title: "Marketing Tools", desc: "Promote your courses with built-in marketing tools. Reach thousands of students through our platform's promotional features.", color: "from-pink-400 to-pink-600", topBorder: "border-t-8 border-pink-500" },
+                { icon: Award, title: "Payment & Earnings", desc: "Earn competitive income with transparent payment tracking. Get paid twice monthly via direct deposit or PayPal.", color: "from-teal-400 to-teal-600", topBorder: "border-t-8 border-teal-500" }
               ].map((feature, i) => (
-                <div key={i} className="group bg-white rounded-3xl p-8 border border-gray-100 hover:shadow-2xl hover:border-primary-200 transition-all duration-500 transform hover:-translate-y-2">
-                  <div className={`w-16 h-16 bg-gradient-to-br ${feature.color} rounded-2xl shadow-lg flex items-center justify-center text-white mb-6 group-hover:scale-110 group-hover:rotate-3 transition-all duration-300`}>
-                    <feature.icon size={32} />
+                <div key={i} className={`group bg-white rounded-[32px] p-8 ${feature.topBorder} hover:shadow-[0_20px_60px_-15px_rgba(0,0,0,0.15)] transition-all duration-700 transform hover:-translate-y-3 hover:scale-105`}>
+                  <div className={`w-20 h-20 bg-gradient-to-br ${feature.color} rounded-2xl shadow-xl flex items-center justify-center text-white mb-6 group-hover:scale-110 group-hover:rotate-6 transition-all duration-500`}>
+                    <feature.icon size={36} />
                   </div>
-                  <h3 className="text-2xl font-bold text-dark-900 mb-3 group-hover:text-primary-600 transition-colors">{feature.title}</h3>
-                  <p className="text-dark-600 leading-relaxed">{feature.desc}</p>
-                  <div className="mt-6 pt-6 border-t border-gray-100">
-                    <a href="#register" className="text-primary-600 font-semibold flex items-center gap-2 group-hover:gap-3 transition-all">
-                      Get started <ArrowRight className="w-4 h-4" />
+                  <h3 className="text-2xl font-bold text-dark-900 mb-4 group-hover:text-primary-600 transition-colors">{feature.title}</h3>
+                  <p className="text-dark-600 leading-relaxed mb-6 font-medium">{feature.desc}</p>
+                  <div className="pt-6 border-t-2 border-gray-100 group-hover:border-primary-200 transition-colors">
+                    <a href="#register" className="text-primary-600 font-bold flex items-center gap-2 group-hover:gap-3 transition-all">
+                      Learn More <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
                     </a>
                   </div>
                 </div>
@@ -234,8 +247,8 @@ export default function Home() {
         </section>
 
         {/* Benefits Section */}
-        <section id="benefits" className="py-24 px-6 bg-white flex flex-col items-center">
-          <div className="max-w-6xl w-full">
+        <section id="benefits" className="py-28 px-6 bg-white flex flex-col items-center">
+          <div className="max-w-7xl w-full">
             <div className="text-center mb-16">
               <div className="inline-flex items-center gap-2 bg-secondary-100 text-secondary-800 px-4 py-2 rounded-full text-sm font-semibold mb-6">
                 <Star className="w-4 h-4 fill-current" />
@@ -280,6 +293,443 @@ export default function Home() {
                   </div>
                 </div>
               ))}
+            </div>
+          </div>
+        </section>
+
+        {/* How It Works - Step by Step Process */}
+        <section className="py-28 px-6 bg-gradient-to-b from-white via-blue-50/30 to-white relative overflow-hidden">
+          <div className="max-w-7xl mx-auto relative z-10">
+            <div className="text-center mb-20">
+              <div className="inline-flex items-center gap-2 bg-gradient-to-r from-primary-100 to-secondary-100 text-primary-900 px-5 py-2.5 rounded-full text-sm font-bold mb-6 shadow-lg border border-primary-200/50">
+                <Sparkles className="w-5 h-5 text-accent-yellow" />
+                Simple Process
+              </div>
+              <h2 className="text-4xl md:text-5xl font-black text-dark-900 mb-6 tracking-tight">
+                Your Teaching Journey
+                <span className="block mt-2 text-transparent bg-clip-text bg-gradient-to-r from-primary-600 to-secondary-600">
+                  In 4 Simple Steps
+                </span>
+              </h2>
+              <p className="text-dark-600 max-w-3xl mx-auto text-xl leading-relaxed font-medium">
+                From application to earning income, we've made the process simple, clear, and rewarding for every instructor.
+              </p>
+            </div>
+
+            <div className="grid md:grid-cols-4 gap-8">
+              {[
+                {
+                  step: "01",
+                  icon: UserCheck,
+                  title: "Apply & Get Approved",
+                  desc: "Submit your application with credentials. Our team reviews within 48 hours and provides onboarding support.",
+                  color: "from-blue-400 to-blue-600",
+                  bgColor: "from-blue-50 to-blue-100"
+                },
+                {
+                  step: "02",
+                  icon: BookOpen,
+                  title: "Create Your Course",
+                  desc: "Use our intuitive course builder to create engaging content. Upload videos, materials, and quizzes.",
+                  color: "from-purple-400 to-purple-600",
+                  bgColor: "from-purple-50 to-purple-100"
+                },
+                {
+                  step: "03",
+                  icon: Video,
+                  title: "Teach & Engage",
+                  desc: "Conduct live classes, interact with students, and provide personalized feedback through our platform.",
+                  color: "from-pink-400 to-pink-600",
+                  bgColor: "from-pink-50 to-pink-100"
+                },
+                {
+                  step: "04",
+                  icon: Trophy,
+                  title: "Earn & Grow",
+                  desc: "Track your earnings in real-time, receive payments twice monthly, and grow your instructor reputation.",
+                  color: "from-green-400 to-green-600",
+                  bgColor: "from-green-50 to-green-100"
+                }
+              ].map((item, i) => (
+                <div key={i} className="group relative">
+                  {/* Connecting Line */}
+                  {i < 3 && (
+                    <div className="hidden md:block absolute top-24 left-[60%] w-[80%] h-1 bg-gradient-to-r from-primary-200 to-secondary-200 z-0"></div>
+                  )}
+                  
+                  <div className={`relative bg-gradient-to-br ${item.bgColor} rounded-[32px] p-8 hover:shadow-[0_20px_60px_-15px_rgba(0,0,0,0.15)] transition-all duration-500 hover:-translate-y-2 border-2 border-white z-10`}>
+                    {/* Step Number */}
+                    <div className="absolute -top-4 -right-4 w-16 h-16 bg-white rounded-full shadow-xl flex items-center justify-center border-4 border-white">
+                      <span className={`text-2xl font-black bg-gradient-to-br ${item.color} bg-clip-text text-transparent`}>
+                        {item.step}
+                      </span>
+                    </div>
+                    
+                    {/* Icon */}
+                    <div className={`w-20 h-20 bg-gradient-to-br ${item.color} rounded-2xl shadow-xl flex items-center justify-center text-white mb-6 group-hover:scale-110 group-hover:rotate-6 transition-all duration-500`}>
+                      <item.icon size={36} />
+                    </div>
+                    
+                    {/* Content */}
+                    <h3 className="text-2xl font-bold text-dark-900 mb-3">{item.title}</h3>
+                    <p className="text-dark-600 leading-relaxed font-medium">{item.desc}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            <div className="text-center mt-16">
+              <a href="#register" className="group inline-flex items-center gap-3 bg-gradient-to-r from-primary-600 to-secondary-600 hover:from-primary-700 hover:to-secondary-700 text-white px-10 py-5 rounded-full font-bold text-lg transition-all shadow-xl hover:shadow-2xl hover:-translate-y-1">
+                <Rocket className="w-6 h-6" />
+                Start Your Journey
+                <ChevronRight className="w-6 h-6 group-hover:translate-x-1 transition-transform" />
+              </a>
+            </div>
+          </div>
+        </section>
+
+        {/* Instructor Testimonials Section */}
+        <section id="testimonials" className="py-28 px-6 bg-gradient-to-b from-white via-secondary-50/30 to-white flex flex-col items-center relative overflow-hidden">
+          <div className="max-w-7xl w-full relative z-10">
+            <div className="text-center mb-20">
+              <div className="inline-flex items-center gap-2 bg-gradient-to-r from-secondary-100 to-accent-yellow-light text-secondary-900 px-5 py-2.5 rounded-full text-sm font-bold mb-6 shadow-lg border border-secondary-200/50">
+                <Star className="w-5 h-5 fill-accent-yellow text-accent-yellow" />
+                Success Stories
+              </div>
+              <h2 className="text-4xl md:text-5xl font-black text-dark-900 mb-6 tracking-tight">
+                Loved By Instructors
+                <span className="block mt-2 text-transparent bg-clip-text bg-gradient-to-r from-secondary-600 to-primary-600">
+                  Around The World
+                </span>
+              </h2>
+              <p className="text-dark-600 max-w-3xl mx-auto text-xl leading-relaxed font-medium">
+                Join thousands of instructors who have transformed their teaching careers and impacted students globally through PlayFit.
+              </p>
+            </div>
+            
+            <div className="grid md:grid-cols-3 gap-8 mb-16">
+              {[
+                {
+                  name: "Dr. Sarah Mitchell",
+                  role: "Computer Science Instructor", 
+                  subject: "Python Programming",
+                  content: "Teaching on PlayFit has been incredibly rewarding. The platform is intuitive, students are engaged, and the support team is always there when I need help. I've taught over 500 students and the earnings are consistent and transparent.",
+                  rating: 5,
+                  avatar: "👩‍💻",
+                  color: "from-blue-400 to-blue-600",
+                  achievement: "Top Rated",
+                  stats: {
+                    courses: "8 Courses",
+                    students: "523 Students",
+                    rating: "4.9 ⭐",
+                    joined: "Since 2023"
+                  }
+                },
+                {
+                  name: "Prof. Michael Chen", 
+                  role: "Mathematics Instructor",
+                  subject: "Advanced Calculus",
+                  content: "PlayFit's course creation tools make it easy to design engaging content. The analytics dashboard helps me understand student progress, and the community of instructors is incredibly supportive. Best decision I made for my teaching career!",
+                  rating: 5,
+                  avatar: "👨‍🏫", 
+                  color: "from-purple-400 to-purple-600",
+                  achievement: "Master Educator",
+                  stats: {
+                    courses: "12 Courses",
+                    students: "892 Students",
+                    rating: "4.95 ⭐",
+                    joined: "Since 2022"
+                  }
+                },
+                {
+                  name: "Ms. Emily Rodriguez",
+                  role: "Language Arts Instructor", 
+                  subject: "Creative Writing", 
+                  content: "The flexibility to teach on my own schedule while reaching students worldwide is amazing. PlayFit handles all the technical aspects, so I can focus on what I do best - teaching. The earning potential exceeded my expectations!",
+                  rating: 5,
+                  avatar: "👩‍🎓",
+                  color: "from-pink-400 to-pink-600", 
+                  achievement: "Rising Star",
+                  stats: {
+                    courses: "6 Courses",
+                    students: "347 Students",
+                    rating: "4.92 ⭐",
+                    joined: "Since 2024"
+                  }
+                }
+              ].map((testimonial, i) => (
+                <div key={i} className="group bg-white rounded-[32px] p-8 border-2 border-gray-100 hover:border-primary-200 hover:shadow-[0_25px_60px_-15px_rgba(0,0,0,0.2)] transition-all duration-700 transform hover:-translate-y-3 relative overflow-hidden">
+                  <div className="relative z-10">
+                    {/* Instructor Avatar */}
+                    <div className="flex items-center justify-between mb-6">
+                      <div className={`w-16 h-16 bg-gradient-to-br ${testimonial.color} rounded-full flex items-center justify-center text-2xl shadow-lg group-hover:scale-110 group-hover:rotate-6 transition-all duration-500`}>
+                        {testimonial.avatar}
+                      </div>
+                      <span className="bg-gradient-to-r from-primary-500 to-secondary-500 text-white text-xs font-bold px-3 py-1.5 rounded-full shadow-lg">
+                        {testimonial.achievement}
+                      </span>
+                    </div>
+                    
+                    {/* Rating */}
+                    <div className="flex items-center gap-1 mb-4">
+                      {[...Array(testimonial.rating)].map((_, j) => (
+                        <Star key={j} className="w-5 h-5 fill-yellow-400 text-yellow-400 drop-shadow-sm" />
+                      ))}
+                    </div>
+                    
+                    {/* Content */}
+                    <p className="text-dark-700 leading-relaxed mb-8 font-medium text-lg">
+                      &ldquo;{testimonial.content}&rdquo;
+                    </p>
+                    
+                    {/* Author Info */}
+                    <div className="pt-6 border-t-2 border-gray-100 group-hover:border-primary-200 transition-colors">
+                      <h4 className="font-bold text-dark-900 text-lg mb-1">{testimonial.name}</h4>
+                      <p className="text-sm text-dark-600 font-semibold mb-1">{testimonial.role}</p>
+                      <p className="text-xs text-primary-600 font-bold mb-4">{testimonial.subject}</p>
+                      
+                      {/* Stats Grid */}
+                      <div className="grid grid-cols-2 gap-3 text-center">
+                        <div className="bg-gray-50 rounded-xl p-3">
+                          <p className="text-lg font-black text-primary-600">{testimonial.stats.courses}</p>
+                          <p className="text-xs text-dark-500 font-semibold">Created</p>
+                        </div>
+                        <div className="bg-gray-50 rounded-xl p-3">
+                          <p className="text-lg font-black text-primary-600">{testimonial.stats.students}</p>
+                          <p className="text-xs text-dark-500 font-semibold">Taught</p>
+                        </div>
+                        <div className="bg-gray-50 rounded-xl p-3">
+                          <p className="text-sm font-black text-primary-600">{testimonial.stats.rating}</p>
+                          <p className="text-xs text-dark-500 font-semibold">Rating</p>
+                        </div>
+                        <div className="bg-gray-50 rounded-xl p-3">
+                          <p className="text-sm font-black text-primary-600">{testimonial.stats.joined}</p>
+                          <p className="text-xs text-dark-500 font-semibold">Member</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+            
+            {/* Success Metrics */}
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+              {[
+                { 
+                  number: "2,500+", 
+                  label: "Active Instructors", 
+                  icon: Users,
+                  color: "from-primary-500 to-primary-600",
+                  bgColor: "from-primary-50 to-primary-100"
+                },
+                { 
+                  number: "95%", 
+                  label: "Satisfaction Rate", 
+                  icon: Heart,
+                  color: "from-secondary-500 to-secondary-600", 
+                  bgColor: "from-secondary-50 to-secondary-100"
+                },
+                { 
+                  number: "10K+", 
+                  label: "Courses Created", 
+                  icon: BookOpen,
+                  color: "from-orange-400 to-orange-600",
+                  bgColor: "from-orange-50 to-orange-100"
+                },
+                { 
+                  number: "$2.5M+", 
+                  label: "Paid to Instructors", 
+                  icon: TrendingUp,
+                  color: "from-green-400 to-green-600",
+                  bgColor: "from-green-50 to-green-100"
+                }
+              ].map((stat, i) => (
+                <div key={i} className={`group bg-gradient-to-br ${stat.bgColor} rounded-[32px] p-8 hover:shadow-[0_20px_60px_-15px_rgba(0,0,0,0.15)] transition-all duration-500 hover:scale-105 text-center`}>
+                  <div className={`w-16 h-16 bg-gradient-to-br ${stat.color} rounded-2xl shadow-xl flex items-center justify-center text-white mb-4 mx-auto group-hover:scale-110 group-hover:rotate-6 transition-all duration-500`}>
+                    <stat.icon size={32} />
+                  </div>
+                  <div className="text-4xl md:text-5xl font-black mb-2 text-dark-900 group-hover:scale-110 transition-transform">
+                    {stat.number}
+                  </div>
+                  <div className="text-sm md:text-base font-semibold text-dark-600">
+                    {stat.label}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* FAQ Section */}
+        <section id="faq" className="py-28 px-6 bg-white relative overflow-hidden">
+          <div className="max-w-4xl mx-auto relative z-10">
+            <div className="text-center mb-20">
+              <div className="inline-flex items-center gap-2 bg-gradient-to-r from-primary-100 to-secondary-100 text-primary-900 px-5 py-2.5 rounded-full text-sm font-bold mb-6 shadow-lg border border-primary-200/50">
+                <Zap className="w-5 h-5 text-primary-600" />
+                Common Questions
+              </div>
+              <h2 className="text-4xl md:text-5xl font-black text-dark-900 mb-6 tracking-tight">
+                Frequently Asked
+                <span className="block mt-2 text-transparent bg-clip-text bg-gradient-to-r from-primary-600 to-secondary-600">
+                  Questions
+                </span>
+              </h2>
+              <p className="text-dark-600 max-w-3xl mx-auto text-xl leading-relaxed font-medium">
+                Have questions about teaching on PlayFit? We've got answers to help you get started with confidence.
+              </p>
+            </div>
+
+            <div className="space-y-6">
+              {[
+                {
+                  question: "How and when do I get paid?",
+                  answer: "Instructors receive payments twice monthly via direct deposit or PayPal. You earn revenue from every course enrollment and can track your earnings in real-time through your dashboard. Payments are processed within 5 business days of each pay period. We offer transparent payment tracking with no hidden fees."
+                },
+                {
+                  question: "What are the technical requirements to teach?",
+                  answer: "You'll need a computer with a stable internet connection, a webcam, and a microphone for live classes. Our platform works on Windows, Mac, and Linux. For course creation, we support various file formats including videos (MP4, MOV), documents (PDF, DOC), and presentations (PPT). No special software required - everything is web-based."
+                },
+                {
+                  question: "How long does the approval process take?",
+                  answer: "Our team reviews applications within 48 hours. We look for subject expertise, teaching experience, and quality credentials. Once approved, you'll receive onboarding materials and can start creating your first course immediately. We provide step-by-step guidance throughout the setup process."
+                },
+                {
+                  question: "What support and training do you provide?",
+                  answer: "We offer comprehensive onboarding with video tutorials, live training sessions, and detailed documentation. Our support team is available 24/7 via chat and email. You'll also join our instructor community for peer support, best practices sharing, and networking opportunities. Monthly workshops cover advanced teaching techniques."
+                },
+                {
+                  question: "How much time do I need to commit?",
+                  answer: "Teaching on PlayFit is completely flexible! You set your own schedule and decide how many courses to create and classes to teach. Some instructors teach part-time (5-10 hours/week) while others make it a full-time career. You can start small and scale up as you grow your student base."
+                },
+                {
+                  question: "Do you help with marketing my courses?",
+                  answer: "Yes! We provide built-in marketing tools including promotional campaigns, email marketing to students, featured placement opportunities, and social media promotion. Our team helps optimize your course descriptions and titles for better discoverability. Top instructors also get additional promotional support."
+                },
+                {
+                  question: "What about intellectual property and content ownership?",
+                  answer: "You retain full ownership of your course content and intellectual property. Our agreement simply grants PlayFit a license to host and distribute your content on our platform. You're free to use your materials elsewhere. We take copyright protection seriously and have systems in place to prevent unauthorized use."
+                },
+                {
+                  question: "Can I stop teaching or remove my courses anytime?",
+                  answer: "Absolutely! There's no long-term commitment required. You can pause or remove your courses anytime through your dashboard. If you decide to leave, we'll process any pending payments and you can download your student data. Many instructors take seasonal breaks and return when ready."
+                }
+              ].map((faq, i) => (
+                <details key={i} className="group bg-white rounded-[2rem] p-8 border-2 border-gray-100 hover:border-primary-200 hover:shadow-xl transition-all duration-300">
+                  <summary className="flex items-start justify-between cursor-pointer list-none">
+                    <div className="flex items-start gap-4 flex-1">
+                      <div className="w-10 h-10 bg-gradient-to-br from-primary-500 to-secondary-500 rounded-xl flex items-center justify-center flex-shrink-0 shadow-lg group-hover:scale-110 transition-transform">
+                        <span className="text-white font-black text-lg">{i + 1}</span>
+                      </div>
+                      <h3 className="text-xl font-bold text-dark-900 group-hover:text-primary-600 transition-colors flex-1">
+                        {faq.question}
+                      </h3>
+                    </div>
+                    <ChevronRight className="w-6 h-6 text-primary-600 flex-shrink-0 ml-4 group-open:rotate-90 transition-transform" />
+                  </summary>
+                  <div className="mt-6 ml-14 text-dark-600 text-lg leading-relaxed font-medium">
+                    {faq.answer}
+                  </div>
+                </details>
+              ))}
+            </div>
+
+            <div className="mt-16 text-center bg-gradient-to-br from-primary-50 to-secondary-50 rounded-[2rem] p-8 border-2 border-primary-200">
+              <h3 className="text-2xl font-bold text-dark-900 mb-4">Still have questions?</h3>
+              <p className="text-dark-600 font-medium mb-6">Our friendly support team is here to help you!</p>
+              <div className="flex flex-wrap items-center justify-center gap-4">
+                <a href="mailto:instructors@playfit.com" className="group inline-flex items-center gap-2 bg-white hover:bg-primary-50 text-primary-700 px-6 py-3 rounded-full font-bold transition-all shadow-lg hover:shadow-xl hover:-translate-y-1">
+                  <Mail className="w-5 h-5" />
+                  Email Us
+                </a>
+                <a href="tel:+1234567890" className="group inline-flex items-center gap-2 bg-gradient-to-r from-primary-600 to-secondary-600 hover:from-primary-700 hover:to-secondary-700 text-white px-6 py-3 rounded-full font-bold transition-all shadow-lg hover:shadow-xl hover:-translate-y-1">
+                  <Phone className="w-5 h-5" />
+                  Call Us
+                </a>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Trust & Security Section */}
+        <section className="py-28 px-6 bg-gradient-to-br from-blue-50 via-white to-green-50/30 relative overflow-hidden">
+          <div className="max-w-7xl mx-auto relative z-10">
+            <div className="text-center mb-20">
+              <div className="inline-flex items-center gap-2 bg-gradient-to-r from-green-100 to-blue-100 text-green-900 px-5 py-2.5 rounded-full text-sm font-bold mb-6 shadow-lg border border-green-200/50">
+                <Shield className="w-5 h-5 text-green-600" />
+                Our Commitment
+              </div>
+              <h2 className="text-4xl md:text-5xl font-black text-dark-900 mb-6 tracking-tight">
+                Teach With
+                <span className="block mt-2 text-transparent bg-clip-text bg-gradient-to-r from-green-600 to-blue-600">
+                  Complete Confidence
+                </span>
+              </h2>
+              <p className="text-dark-600 max-w-3xl mx-auto text-xl leading-relaxed font-medium">
+                Your success and security are our top priorities. Here's our commitment to every instructor.
+              </p>
+            </div>
+
+            {/* Main Guarantee Cards */}
+            <div className="grid md:grid-cols-3 gap-8 mb-16">
+              {[
+                {
+                  icon: Shield,
+                  title: "Payment Security",
+                  desc: "Secure, on-time payments with transparent tracking. Bank-level encryption protects your financial information.",
+                  highlight: "100% Secure",
+                  color: "from-green-400 to-green-600",
+                  bgColor: "from-green-50 to-green-100"
+                },
+                {
+                  icon: Award,
+                  title: "Content Protection",
+                  desc: "Your intellectual property is protected. You retain full ownership with built-in copyright safeguards.",
+                  highlight: "IP Rights Protected",
+                  color: "from-blue-400 to-blue-600",
+                  bgColor: "from-blue-50 to-blue-100"
+                },
+                {
+                  icon: Heart,
+                  title: "Lifetime Support",
+                  desc: "24/7 access to our support team, training resources, and instructor community whenever you need help.",
+                  highlight: "Always Here",
+                  color: "from-purple-400 to-purple-600",
+                  bgColor: "from-purple-50 to-purple-100"
+                }
+              ].map((item, i) => (
+                <div key={i} className={`group bg-gradient-to-br ${item.bgColor} rounded-[32px] p-8 border-2 border-white hover:shadow-[0_25px_60px_-15px_rgba(0,0,0,0.2)] transition-all duration-500 hover:-translate-y-3 text-center`}>
+                  <div className={`w-20 h-20 bg-gradient-to-br ${item.color} rounded-2xl shadow-xl flex items-center justify-center text-white mb-6 mx-auto group-hover:scale-110 group-hover:rotate-6 transition-all duration-500`}>
+                    <item.icon size={36} />
+                  </div>
+                  <div className={`inline-flex px-4 py-2 bg-gradient-to-r ${item.color} rounded-full text-white font-bold text-sm shadow-lg mb-4`}>
+                    {item.highlight}
+                  </div>
+                  <h3 className="text-2xl font-bold text-dark-900 mb-3">{item.title}</h3>
+                  <p className="text-dark-600 leading-relaxed font-medium">{item.desc}</p>
+                </div>
+              ))}
+            </div>
+
+            {/* Trust Badges */}
+            <div className="bg-white rounded-[3rem] p-12 shadow-2xl border-2 border-gray-100">
+              <h3 className="text-3xl font-black text-dark-900 mb-12 text-center">Trusted & Certified Platform</h3>
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-8 items-center justify-items-center">
+                {[
+                  { icon: Shield, label: "SSL Secured", sublabel: "Bank-level encryption" },
+                  { icon: CheckCircle2, label: "Verified Platform", sublabel: "Trusted by 2,500+" },
+                  { icon: Award, label: "Industry Leader", sublabel: "Award-winning LMS" },
+                  { icon: Star, label: "4.8/5 Rating", sublabel: "1,200+ instructor reviews" }
+                ].map((badge, i) => (
+                  <div key={i} className="group text-center">
+                    <div className="w-20 h-20 bg-gradient-to-br from-primary-400 to-secondary-500 rounded-2xl shadow-xl flex items-center justify-center text-white mb-4 mx-auto group-hover:scale-110 group-hover:rotate-6 transition-all duration-500">
+                      <badge.icon size={36} />
+                    </div>
+                    <p className="font-bold text-dark-900 text-lg">{badge.label}</p>
+                    <p className="text-sm text-dark-600 font-medium">{badge.sublabel}</p>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
         </section>
@@ -445,55 +895,137 @@ export default function Home() {
         </section>
       </main>
 
-      {/* Footer */}
+      {/* Enhanced Comprehensive Footer */}
       <footer className="bg-black text-gray-300 py-16 px-6 border-t border-gray-800">
-        <div className="max-w-6xl mx-auto grid md:grid-cols-4 gap-12">
-          <div className="md:col-span-2">
-            <div className="flex items-center gap-2 mb-6">
-              <Link href="/" className="relative flex items-center justify-center shrink-0 transition-all duration-300 h-12 w-auto hover:scale-105">
+        <div className="max-w-7xl mx-auto">
+          {/* Main Footer Content - 5 columns */}
+          <div className="grid md:grid-cols-2 lg:grid-cols-5 gap-12 mb-12">
+            {/* Column 1: Logo & Newsletter */}
+            <div className="lg:col-span-2">
+              <Link href="/" className="flex items-center mb-6">
                 <img
-                  src="/images/navbarlogo.png"
+                  src="/images/playfit-logo.jpg"
                   alt="PlayFit LMS"
-                  className="w-full h-full object-contain max-w-full max-h-full"
+                  className="h-12 w-auto object-contain"
                 />
               </Link>
+              <p className="text-gray-400 leading-relaxed mb-6 max-w-md">
+                Empowering instructors to share knowledge and inspire students worldwide. Join our community of expert educators making a difference.
+              </p>
+              
+              {/* Newsletter Signup */}
+              <div className="mb-6">
+                <h4 className="text-white font-semibold mb-3">Stay Updated</h4>
+                <div className="flex gap-2">
+                  <input 
+                    type="email" 
+                    placeholder="Enter your email" 
+                    className="flex-1 px-4 py-2 rounded-lg bg-gray-800 border border-gray-700 text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-primary-500 text-sm"
+                  />
+                  <button className="px-6 py-2 bg-gradient-to-r from-primary-600 to-primary-700 hover:from-primary-700 hover:to-primary-800 text-white rounded-lg font-semibold transition-all text-sm">
+                    Subscribe
+                  </button>
+                </div>
+              </div>
+
+              {/* Social Media */}
+              <div className="flex gap-4">
+                <a href="#" className="w-10 h-10 bg-gray-800 hover:bg-primary-600 rounded-full flex items-center justify-center transition-all hover:scale-110">
+                  <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                </a>
+                <a href="#" className="w-10 h-10 bg-gray-800 hover:bg-primary-600 rounded-full flex items-center justify-center transition-all hover:scale-110">
+                  <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+                </a>
+                <a href="#" className="w-10 h-10 bg-gray-800 hover:bg-primary-600 rounded-full flex items-center justify-center transition-all hover:scale-110">
+                  <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+                </a>
+                <a href="#" className="w-10 h-10 bg-gray-800 hover:bg-primary-600 rounded-full flex items-center justify-center transition-all hover:scale-110">
+                  <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+                </a>
+              </div>
             </div>
-            <p className="max-w-md text-gray-400 leading-relaxed mb-6">Empowering instructors to share knowledge and inspire students worldwide. Join our community of expert educators.</p>
-            <div className="flex gap-4">
-              <a href="#" className="w-10 h-10 bg-gray-800 hover:bg-primary-600 rounded-full flex items-center justify-center transition-all hover:scale-110">
-                <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
-              </a>
-              <a href="#" className="w-10 h-10 bg-gray-800 hover:bg-primary-600 rounded-full flex items-center justify-center transition-all hover:scale-110">
-                <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
-              </a>
-              <a href="#" className="w-10 h-10 bg-gray-800 hover:bg-primary-600 rounded-full flex items-center justify-center transition-all hover:scale-110">
-                <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
-              </a>
-              <a href="#" className="w-10 h-10 bg-gray-800 hover:bg-primary-600 rounded-full flex items-center justify-center transition-all hover:scale-110">
-                <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
-              </a>
+
+            {/* Column 2: Teaching */}
+            <div>
+              <h4 className="text-white font-semibold mb-6 text-lg">Teaching</h4>
+              <ul className="space-y-3">
+                <li><a href="#features" className="text-gray-300 hover:text-white transition-colors flex items-center gap-2 group"><ArrowRight className="w-4 h-4 opacity-0 group-hover:opacity-100 transition-opacity" />Course Creation</a></li>
+                <li><a href="#benefits" className="text-gray-300 hover:text-white transition-colors flex items-center gap-2 group"><ArrowRight className="w-4 h-4 opacity-0 group-hover:opacity-100 transition-opacity" />Live Classes</a></li>
+                <li><a href="#" className="text-gray-300 hover:text-white transition-colors flex items-center gap-2 group"><ArrowRight className="w-4 h-4 opacity-0 group-hover:opacity-100 transition-opacity" />Student Management</a></li>
+                <li><a href="#" className="text-gray-300 hover:text-white transition-colors flex items-center gap-2 group"><ArrowRight className="w-4 h-4 opacity-0 group-hover:opacity-100 transition-opacity" />Analytics</a></li>
+                <li><a href="#" className="text-gray-300 hover:text-white transition-colors flex items-center gap-2 group"><ArrowRight className="w-4 h-4 opacity-0 group-hover:opacity-100 transition-opacity" />Resources</a></li>
+                <li><a href="#" className="text-gray-300 hover:text-white transition-colors flex items-center gap-2 group"><ArrowRight className="w-4 h-4 opacity-0 group-hover:opacity-100 transition-opacity" />Best Practices</a></li>
+              </ul>
+            </div>
+
+            {/* Column 3: Platform */}
+            <div>
+              <h4 className="text-white font-semibold mb-6 text-lg">Platform</h4>
+              <ul className="space-y-3">
+                <li><a href="#features" className="text-gray-300 hover:text-white transition-colors flex items-center gap-2 group"><ArrowRight className="w-4 h-4 opacity-0 group-hover:opacity-100 transition-opacity" />Features</a></li>
+                <li><a href="#benefits" className="text-gray-300 hover:text-white transition-colors flex items-center gap-2 group"><ArrowRight className="w-4 h-4 opacity-0 group-hover:opacity-100 transition-opacity" />Benefits</a></li>
+                <li><a href="#testimonials" className="text-gray-300 hover:text-white transition-colors flex items-center gap-2 group"><ArrowRight className="w-4 h-4 opacity-0 group-hover:opacity-100 transition-opacity" />Success Stories</a></li>
+                <li><a href="#faq" className="text-gray-300 hover:text-white transition-colors flex items-center gap-2 group"><ArrowRight className="w-4 h-4 opacity-0 group-hover:opacity-100 transition-opacity" />FAQ</a></li>
+                <li><a href="#register" className="text-gray-300 hover:text-white transition-colors flex items-center gap-2 group"><ArrowRight className="w-4 h-4 opacity-0 group-hover:opacity-100 transition-opacity" />Register</a></li>
+                <li><a href="/login" className="text-gray-300 hover:text-white transition-colors flex items-center gap-2 group"><ArrowRight className="w-4 h-4 opacity-0 group-hover:opacity-100 transition-opacity" />Login</a></li>
+              </ul>
+            </div>
+
+            {/* Column 4: Company */}
+            <div>
+              <h4 className="text-white font-semibold mb-6 text-lg">Company</h4>
+              <ul className="space-y-3">
+                <li><a href="#" className="text-gray-300 hover:text-white transition-colors flex items-center gap-2 group"><ArrowRight className="w-4 h-4 opacity-0 group-hover:opacity-100 transition-opacity" />About Us</a></li>
+                <li><a href="#" className="text-gray-300 hover:text-white transition-colors flex items-center gap-2 group"><ArrowRight className="w-4 h-4 opacity-0 group-hover:opacity-100 transition-opacity" />Careers</a></li>
+                <li><a href="#" className="text-gray-300 hover:text-white transition-colors flex items-center gap-2 group"><ArrowRight className="w-4 h-4 opacity-0 group-hover:opacity-100 transition-opacity" />Blog</a></li>
+                <li><a href="#" className="text-gray-300 hover:text-white transition-colors flex items-center gap-2 group"><ArrowRight className="w-4 h-4 opacity-0 group-hover:opacity-100 transition-opacity" />Press</a></li>
+                <li><a href="#" className="text-gray-300 hover:text-white transition-colors flex items-center gap-2 group"><ArrowRight className="w-4 h-4 opacity-0 group-hover:opacity-100 transition-opacity" />Contact</a></li>
+                <li><a href="#" className="text-gray-300 hover:text-white transition-colors flex items-center gap-2 group"><ArrowRight className="w-4 h-4 opacity-0 group-hover:opacity-100 transition-opacity" />Community</a></li>
+              </ul>
             </div>
           </div>
-          <div>
-            <h4 className="text-white font-semibold mb-6 text-lg">Platform</h4>
-            <ul className="space-y-3">
-              <li><a href="#features" className="text-gray-300 hover:text-white transition-colors flex items-center gap-2 group"><ArrowRight className="w-4 h-4 opacity-0 group-hover:opacity-100 transition-opacity" />Features</a></li>
-              <li><a href="#benefits" className="text-gray-300 hover:text-white transition-colors flex items-center gap-2 group"><ArrowRight className="w-4 h-4 opacity-0 group-hover:opacity-100 transition-opacity" />Benefits</a></li>
-              <li><a href="#register" className="text-gray-300 hover:text-white transition-colors flex items-center gap-2 group"><ArrowRight className="w-4 h-4 opacity-0 group-hover:opacity-100 transition-opacity" />Register</a></li>
-              <li><a href="/login" className="text-gray-300 hover:text-white transition-colors flex items-center gap-2 group"><ArrowRight className="w-4 h-4 opacity-0 group-hover:opacity-100 transition-opacity" />Login</a></li>
-            </ul>
+
+          {/* Contact Info Bar */}
+          <div className="grid md:grid-cols-3 gap-6 py-8 border-y border-gray-800 mb-8">
+            <div className="flex items-center gap-4">
+              <div className="w-12 h-12 bg-gradient-to-br from-primary-500 to-secondary-500 rounded-xl flex items-center justify-center flex-shrink-0">
+                <Phone className="w-6 h-6 text-white" />
+              </div>
+              <div>
+                <p className="text-gray-400 text-sm">Call Us</p>
+                <a href="tel:+1234567890" className="text-white font-semibold hover:text-primary-400 transition-colors">+1 (800) 123-4567</a>
+              </div>
+            </div>
+            <div className="flex items-center gap-4">
+              <div className="w-12 h-12 bg-gradient-to-br from-primary-500 to-secondary-500 rounded-xl flex items-center justify-center flex-shrink-0">
+                <Mail className="w-6 h-6 text-white" />
+              </div>
+              <div>
+                <p className="text-gray-400 text-sm">Email Us</p>
+                <a href="mailto:instructors@playfit.com" className="text-white font-semibold hover:text-primary-400 transition-colors">instructors@playfit.com</a>
+              </div>
+            </div>
+            <div className="flex items-center gap-4">
+              <div className="w-12 h-12 bg-gradient-to-br from-primary-500 to-secondary-500 rounded-xl flex items-center justify-center flex-shrink-0">
+                <MapPin className="w-6 h-6 text-white" />
+              </div>
+              <div>
+                <p className="text-gray-400 text-sm">Location</p>
+                <p className="text-white font-semibold">San Francisco, CA</p>
+              </div>
+            </div>
           </div>
-          <div>
-            <h4 className="text-white font-semibold mb-6 text-lg">Legal</h4>
-            <ul className="space-y-3">
-              <li><a href="#" className="text-gray-300 hover:text-white transition-colors">Privacy Policy</a></li>
-              <li><a href="#" className="text-gray-300 hover:text-white transition-colors">Terms of Service</a></li>
-              <li><a href="#" className="text-gray-300 hover:text-white transition-colors">Cookie Policy</a></li>
-            </ul>
+
+          {/* Bottom Bar */}
+          <div className="flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-gray-400">
+            <p>&copy; 2024 PlayFit LMS. All rights reserved.</p>
+            <div className="flex gap-6">
+              <a href="#" className="hover:text-white transition-colors">Privacy Policy</a>
+              <a href="#" className="hover:text-white transition-colors">Terms of Service</a>
+              <a href="#" className="hover:text-white transition-colors">Cookie Policy</a>
+              <a href="#" className="hover:text-white transition-colors">Sitemap</a>
+            </div>
           </div>
-        </div>
-        <div className="max-w-6xl mx-auto mt-12 pt-8 border-t border-gray-800 text-center text-sm text-gray-400">
-          <p>&copy; 2024 PlayFit LMS. All rights reserved.</p>
         </div>
       </footer>
     </div>
