@@ -14,7 +14,7 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "PlayFit Instructor",
-  description: "Learning Management System by PlayFit - Instructor Portal",
+  description: "Interactive Learning Platform by PlayFit - Instructor Portal",
   appleWebApp: {
     capable: true,
     statusBarStyle: 'default',

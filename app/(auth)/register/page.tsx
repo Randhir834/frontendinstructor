@@ -42,7 +42,7 @@ export default function RegisterPage() {
         <>
           Start Teaching
           <br />
-          <span className="text-yellow-300">With PlayFit LMS</span> <span className="text-2xl">🚀</span>
+          <span className="text-yellow-300">With PlayFit</span> <span className="text-2xl">🚀</span>
         </>
       }
       leftSubtitle="Create courses, engage learners, and grow your impact—all from one instructor hub."
