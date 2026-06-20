@@ -222,10 +222,10 @@ export default function Home() {
             
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
               {[
-                { icon: BookOpen, title: "Course Creation", desc: "Create engaging courses with our intuitive course builder. Upload materials, create quizzes, and track student progress.", color: "from-blue-500 to-blue-600", topBorder: "border-t-8 border-blue-500" },
+                { icon: BookOpen, title: "Course Creation", desc: "Create engaging courses with our intuitive course builder. Upload materials, create quizzes, and manage student learning.", color: "from-blue-500 to-blue-600", topBorder: "border-t-8 border-blue-500" },
                 { icon: Users, title: "Student Engagement", desc: "Connect with students through live classes, discussion forums, and personalized feedback systems.", color: "from-purple-500 to-purple-600", topBorder: "border-t-8 border-purple-500" },
                 { icon: Trophy, title: "Earn Recognition", desc: "Build your reputation as an expert instructor. Get certified and recognized for your teaching excellence.", color: "from-green-500 to-green-600", topBorder: "border-t-8 border-green-500" },
-                { icon: BarChart3, title: "Analytics Dashboard", desc: "Track your performance with detailed analytics. Monitor student progress, course completion rates, and earnings in real-time.", color: "from-orange-400 to-orange-600", topBorder: "border-t-8 border-orange-500" },
+                { icon: BarChart3, title: "Analytics Dashboard", desc: "Track your performance with detailed analytics. Monitor course completion rates, student engagement, and earnings in real-time.", color: "from-orange-400 to-orange-600", topBorder: "border-t-8 border-orange-500" },
                 { icon: Rocket, title: "Marketing Tools", desc: "Promote your courses with built-in marketing tools. Reach thousands of students through our platform's promotional features.", color: "from-pink-400 to-pink-600", topBorder: "border-t-8 border-pink-500" },
                 { icon: Award, title: "Payment & Earnings", desc: "Earn competitive income with transparent payment tracking. Get paid twice monthly via direct deposit or PayPal.", color: "from-teal-400 to-teal-600", topBorder: "border-t-8 border-teal-500" }
               ].map((feature, i) => (
@@ -429,7 +429,7 @@ export default function Home() {
                   name: "Prof. Rajesh Kumar", 
                   role: "Mathematics Instructor",
                   subject: "Advanced Calculus",
-                  content: "PlayFit's course creation tools make it easy to design engaging content. The analytics dashboard helps me understand student progress, and the community of instructors is incredibly supportive. Best decision I made for my teaching career!",
+                  content: "PlayFit's course creation tools make it easy to design engaging content. The analytics dashboard helps me understand student engagement, and the community of instructors is incredibly supportive. Best decision I made for my teaching career!",
                   rating: 5,
                   avatar: "👨‍🏫", 
                   color: "from-purple-400 to-purple-600",

@@ -92,7 +92,7 @@ function InstructorCoursesContent() {
       <div>
         <h1 className="text-xl md:text-2xl font-bold text-[#1E3A5F]">My Courses</h1>
         <p className="text-sm text-[#78909C] mt-1">
-          Manage your courses and track student progress
+          Manage your courses and engage with students
         </p>
       </div>
 

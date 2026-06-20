@@ -234,7 +234,7 @@ export default function CourseStudentsPage({ params }: { params: Promise<{ id: s
             <CardContent className="p-4">
               <div className="text-center">
                 <div className="text-2xl font-bold text-[#D97706]">{Math.round(stats.average_progress)}%</div>
-                <div className="text-sm text-[#78909C]">Avg Progress</div>
+                <div className="text-sm text-[#78909C]">Completion Rate</div>
               </div>
             </CardContent>
           </Card>
@@ -281,7 +281,6 @@ export default function CourseStudentsPage({ params }: { params: Promise<{ id: s
                 className="px-3 py-2 border border-[#E0E0E0] rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1E88E5] focus:border-transparent"
               >
                 <option value="enrolled_at">Sort by Enrollment Date</option>
-                <option value="progress">Sort by Progress</option>
                 <option value="student_name">Sort by Name</option>
               </select>
               <Button
@@ -443,10 +442,6 @@ export default function CourseStudentsPage({ params }: { params: Promise<{ id: s
                               <Button variant="outline" size="sm" className="w-full justify-start">
                                 <Mail className="size-4 mr-2" />
                                 Send Message
-                              </Button>
-                              <Button variant="outline" size="sm" className="w-full justify-start">
-                                <BarChart3 className="size-4 mr-2" />
-                                View Progress Details
                               </Button>
                               <Button variant="outline" size="sm" className="w-full justify-start">
                                 <BookOpen className="size-4 mr-2" />

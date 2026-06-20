@@ -58,9 +58,9 @@ function SidebarLayoutContent({ children, items, title = 'PlayFit', searchPlaceh
           {(!collapsed || !mobileOpen) && (
             <div className="flex items-center gap-2 flex-1">
               <img
-                src="/images/playfit-logo.jpg"
+                src="/images/navbarlogo.png"
                 alt="PlayFit"
-                className="h-12 sm:h-16 md:h-20 w-auto object-contain"
+                className="h-12 sm:h-14 md:h-16 lg:h-20 w-auto object-contain"
               />
             </div>
           )}

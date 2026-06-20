@@ -50,10 +50,6 @@ export const REALTIME_EVENTS = {
   NOTIFICATION_READ: 'notification:read',
   NOTIFICATION_DELETED: 'notification:deleted',
 
-  // Progress events
-  PROGRESS_UPDATED: 'progress:updated',
-  LESSON_COMPLETED: 'lesson:completed',
-
   // Attendance events
   ATTENDANCE_MARKED: 'attendance:marked',
   ATTENDANCE_UPDATED: 'attendance:updated',

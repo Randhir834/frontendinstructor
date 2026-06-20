@@ -5,12 +5,13 @@ import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
 import {
   BookOpen, ClipboardList,
-  BarChart3, User, Loader2,
+  User, Loader2,
   Menu, X, GraduationCap, LogOut, Calendar
 } from 'lucide-react';
 import { userService, UserProfile } from '@/services/userService';
 import GlobalSearch from '@/components/GlobalSearch';
 import { getAvatarUrlWithCacheBust } from '@/utils/avatarUtils';
+import PageTransition from '@/components/PageTransition';
 
 const menuItems = [
   { icon: BookOpen, label: 'My Courses', href: '/instructor/courses' },
@@ -19,7 +20,6 @@ const menuItems = [
   { icon: ClipboardList, label: 'Quizzes/Tests', href: '/instructor/quizzes' },
   { icon: ClipboardList, label: 'Attendance', href: '/instructor/attendance' },
   { icon: GraduationCap, label: 'Students', href: '/instructor/students' },
-  { icon: BarChart3, label: 'Progress', href: '/instructor/progress' },
   { icon: User, label: 'My Profile', href: '/instructor/profile' },
 ];
 
@@ -115,10 +115,10 @@ export default function InstructorDashboardLayout({ children }: InstructorDashbo
         `}
       >
         {/* Logo */}
-        <div className="relative border-b border-[#E0E0E0] lg:border-none flex items-center justify-center px-2 py-3 sm:px-3 sm:py-4 lg:px-4 lg:py-5 shrink-0">
-          <div className="relative flex items-center justify-center shrink-0 transition-all duration-300 w-full h-20 sm:h-24 md:h-28 lg:h-32">
+        <div className="relative border-b border-[#E0E0E0] lg:border-none flex items-center justify-center px-3 py-4 sm:px-4 sm:py-5 lg:px-5 lg:py-6 shrink-0">
+          <div className="relative flex items-center justify-center shrink-0 transition-all duration-300 w-full h-12 sm:h-14 md:h-16 lg:h-20">
             <img
-              src="/images/playfit-logo.jpg"
+              src="/images/navbarlogo.png"
               alt="PlayFit"
               className="w-full h-full object-contain max-w-full max-h-full"
             />
@@ -145,7 +145,7 @@ export default function InstructorDashboardLayout({ children }: InstructorDashbo
                   onClick={() => setMobileOpen(false)}
                   className={`w-full flex items-center gap-2 sm:gap-3 px-2 sm:px-3 lg:px-3 py-2 sm:py-2.5 rounded-lg text-xs sm:text-sm transition-colors ${
                     isActive
-                      ? 'bg-[#F1F8E9] text-[#1E88E5] font-medium'
+                      ? 'bg-[#EFF6FF] text-[#1E88E5] font-medium'
                       : 'text-[#546E7A] hover:bg-[#FAFAFA] hover:text-[#1E88E5]'
                   }`}
                 >
@@ -229,8 +229,12 @@ export default function InstructorDashboardLayout({ children }: InstructorDashbo
           </div>
         </header>
 
-        {/* Page Content */}
-        <main className="flex-1">{children}</main>
+        {/* Page Content with Transition */}
+        <main className="flex-1 relative">
+          <PageTransition>
+            {children}
+          </PageTransition>
+        </main>
       </div>
     </div>
   );

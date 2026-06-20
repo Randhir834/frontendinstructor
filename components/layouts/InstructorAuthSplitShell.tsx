@@ -55,9 +55,9 @@ export default function InstructorAuthSplitShell({ leftTitle, leftSubtitle, cent
               </div>
               <div className="flex items-center gap-3 bg-white/95 backdrop-blur-sm rounded-2xl px-4 py-3.5 shadow-xl hover:shadow-2xl transition-all hover:scale-105">
                 <div className="w-10 h-10 shrink-0 rounded-xl bg-violet-50 flex items-center justify-center">
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#AB47BC" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#AB47BC" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
                 </div>
-                <span className="text-sm font-semibold text-dark-900 leading-tight">Track Progress</span>
+                <span className="text-sm font-semibold text-dark-900 leading-tight">Manage Students</span>
               </div>
               <div className="flex items-center gap-3 bg-white/95 backdrop-blur-sm rounded-2xl px-4 py-3.5 shadow-xl hover:shadow-2xl transition-all hover:scale-105">
                 <div className="w-10 h-10 shrink-0 rounded-xl bg-orange-50 flex items-center justify-center">
