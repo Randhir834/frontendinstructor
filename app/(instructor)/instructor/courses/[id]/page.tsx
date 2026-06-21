@@ -160,7 +160,7 @@ export default function InstructorCourseDetailPage({ params }: { params: Promise
       const tokenResponse = await courseMaterialService.getViewingToken(material.id);
       const urlResponse = await courseMaterialService.getSecureUrl(tokenResponse.token);
       
-      // Open in new tab
+      // Open in new tab - same as admin behavior
       window.open(urlResponse.secureUrl, '_blank');
     } catch (error) {
       console.error('Failed to view material:', error);
