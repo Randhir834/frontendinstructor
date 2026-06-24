@@ -105,24 +105,25 @@ export default function CourseFilters({
 
   return (
     <div className="space-y-4">
-      {/* Search Bar */}
-      <div className="relative">
-        <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-[#78909C] size-4" />
+      {/* Search Bar - Enhanced */}
+      <div className="relative group">
+        <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400 group-hover:text-blue-500 size-5 transition-colors duration-300" />
         <Input
           type="text"
           value={localFilters.search || ''}
           onChange={(e) => handleSearchChange(e.target.value)}
-          className="pl-10 pr-4"
+          placeholder="Search courses..."
+          className="pl-12 pr-4 h-12 rounded-xl border-2 border-gray-200 hover:border-blue-300 focus:border-blue-500 transition-all duration-300 shadow-sm hover:shadow-md"
         />
       </div>
 
-      {/* Quick Filters */}
+      {/* Quick Filters - Modernized */}
       <div className="flex flex-wrap items-center gap-3">
         {/* Status Filter */}
         <select
           value={localFilters.status || ''}
           onChange={(e) => handleFilterChange('status', e.target.value)}
-          className="px-3 py-2 border border-[#E0E0E0] rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-[#1E88E5] focus:border-transparent"
+          className="px-4 py-2.5 border-2 border-gray-200 rounded-xl text-sm font-medium focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 hover:border-gray-300 transition-all bg-white shadow-sm hover:shadow-md"
         >
           {statusOptions.map(option => (
             <option key={option.value} value={option.value}>
@@ -135,7 +136,7 @@ export default function CourseFilters({
         <select
           value={localFilters.level || ''}
           onChange={(e) => handleFilterChange('level', e.target.value)}
-          className="px-3 py-2 border border-[#E0E0E0] rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-[#1E88E5] focus:border-transparent"
+          className="px-4 py-2.5 border-2 border-gray-200 rounded-xl text-sm font-medium focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 hover:border-gray-300 transition-all bg-white shadow-sm hover:shadow-md"
         >
           {levelOptions.map(option => (
             <option key={option.value} value={option.value}>
@@ -148,7 +149,7 @@ export default function CourseFilters({
         <select
           value={localFilters.sort_by || 'created_at'}
           onChange={(e) => handleFilterChange('sort_by', e.target.value)}
-          className="px-3 py-2 border border-[#E0E0E0] rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-[#1E88E5] focus:border-transparent"
+          className="px-4 py-2.5 border-2 border-gray-200 rounded-xl text-sm font-medium focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 hover:border-gray-300 transition-all bg-white shadow-sm hover:shadow-md"
         >
           {sortOptions.map(option => (
             <option key={option.value} value={option.value}>
@@ -159,13 +160,13 @@ export default function CourseFilters({
 
         {/* Advanced Filters Toggle */}
         <Button
-          variant="outline"
+          variant="secondary"
           size="sm"
           onClick={() => setShowAdvancedFilters(!showAdvancedFilters)}
-          className="flex items-center gap-2"
+          className="flex items-center gap-2 font-semibold"
         >
           <SlidersHorizontal className="size-4" />
-          More Filters
+          {showAdvancedFilters ? 'Hide' : 'More'} Filters
         </Button>
 
         {/* Clear Filters */}
@@ -174,27 +175,27 @@ export default function CourseFilters({
             variant="ghost"
             size="sm"
             onClick={clearFilters}
-            className="flex items-center gap-2 text-[#78909C] hover:text-[#1E3A5F]"
+            className="flex items-center gap-2 text-red-600 hover:text-red-700 hover:bg-red-50 font-semibold"
           >
             <X className="size-4" />
-            Clear
+            Clear All
           </Button>
         )}
       </div>
 
-      {/* Advanced Filters */}
+      {/* Advanced Filters - Enhanced */}
       {showAdvancedFilters && (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 p-4 bg-[#FAFAFA] rounded-lg border border-[#E0E0E0]">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 p-6 bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50 rounded-2xl border-2 border-gray-200 shadow-inner">
           {/* Category Filter */}
           {categories.length > 0 && (
             <div>
-              <label className="block text-sm font-medium text-[#374151] mb-2">
+              <label className="block text-sm font-bold text-gray-700 mb-2">
                 Category
               </label>
               <select
                 value={localFilters.category_id || ''}
                 onChange={(e) => handleFilterChange('category_id', e.target.value)}
-                className="w-full px-3 py-2 border border-[#E0E0E0] rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-[#1E88E5] focus:border-transparent"
+                className="w-full px-4 py-2.5 border-2 border-gray-200 rounded-xl text-sm font-medium focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 hover:border-gray-300 transition-all bg-white"
               >
                 <option value="">All Categories</option>
                 {categories.map(category => (
@@ -208,13 +209,13 @@ export default function CourseFilters({
 
           {/* Price Range Filter */}
           <div>
-            <label className="block text-sm font-medium text-[#374151] mb-2">
+            <label className="block text-sm font-bold text-gray-700 mb-2">
               Price Range
             </label>
             <select
               value={localFilters.price_range || ''}
               onChange={(e) => handleFilterChange('price_range', e.target.value)}
-              className="w-full px-3 py-2 border border-[#E0E0E0] rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-[#1E88E5] focus:border-transparent"
+              className="w-full px-4 py-2.5 border-2 border-gray-200 rounded-xl text-sm font-medium focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 hover:border-gray-300 transition-all bg-white"
             >
               {priceOptions.map(option => (
                 <option key={option.value} value={option.value}>
@@ -227,13 +228,13 @@ export default function CourseFilters({
           {/* Instructor Filter (Admin only) */}
           {userRole === 'admin' && instructors.length > 0 && (
             <div>
-              <label className="block text-sm font-medium text-[#374151] mb-2">
+              <label className="block text-sm font-bold text-gray-700 mb-2">
                 Instructor
               </label>
               <select
                 value={localFilters.instructor_id || ''}
                 onChange={(e) => handleFilterChange('instructor_id', e.target.value)}
-                className="w-full px-3 py-2 border border-[#E0E0E0] rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-[#1E88E5] focus:border-transparent"
+                className="w-full px-4 py-2.5 border-2 border-gray-200 rounded-xl text-sm font-medium focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 hover:border-gray-300 transition-all bg-white"
               >
                 <option value="">All Instructors</option>
                 {instructors.map(instructor => (
@@ -247,13 +248,13 @@ export default function CourseFilters({
 
           {/* Sort Order */}
           <div>
-            <label className="block text-sm font-medium text-[#374151] mb-2">
+            <label className="block text-sm font-bold text-gray-700 mb-2">
               Sort Order
             </label>
             <select
               value={localFilters.sort_order || 'desc'}
               onChange={(e) => handleFilterChange('sort_order', e.target.value as 'asc' | 'desc')}
-              className="w-full px-3 py-2 border border-[#E0E0E0] rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-[#1E88E5] focus:border-transparent"
+              className="w-full px-4 py-2.5 border-2 border-gray-200 rounded-xl text-sm font-medium focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 hover:border-gray-300 transition-all bg-white"
             >
               <option value="desc">Descending</option>
               <option value="asc">Ascending</option>

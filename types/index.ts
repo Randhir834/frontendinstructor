@@ -43,27 +43,7 @@ export interface Course {
   enrollment_count?: number;
   enrolled_students?: number;
   total_lessons?: number;
-  created_at: string;
-  updated_at: string;
-}
-
-export interface LiveClass {
-  id: number;
-  course_id: number;
-  course_title?: string;
-  course_description?: string;
-  thumbnail_url?: string;
-  title: string;
-  description?: string;
-  meet_link: string;
-  scheduled_at: string;
-  duration_minutes: number;
-  status: 'scheduled' | 'ongoing' | 'completed' | 'cancelled';
-  created_by?: number;
-  instructor_name?: string;
-  instructor_email?: string;
-  enrolled_count?: number;
-  students?: User[];
+  google_meet_link?: string;
   created_at: string;
   updated_at: string;
 }
@@ -77,6 +57,63 @@ export interface Enrollment {
   avatar_url?: string;
   status: 'active' | 'completed' | 'dropped';
   enrolled_at: string;
+}
+
+export interface InstructorStudent {
+  student_id: number;
+  student_name: string;
+  student_email: string;
+  student_phone?: string;
+  date_of_birth?: string;
+  grade?: string;
+  school?: string;
+  avatar_url?: string;
+  total_courses_enrolled: number;
+  courses: {
+    course_id: number;
+    course_title: string;
+    enrollment_id: number;
+    enrollment_status: string;
+    enrolled_at: string;
+    completed_at?: string;
+  }[];
+}
+
+export interface StudentDetailCourse {
+  course_id: number;
+  course_title: string;
+  google_meet_link?: string;
+  total_lessons: number;
+  enrollment_status: string;
+  enrolled_at: string;
+  total_slots_booked: number;
+  classes_completed: number;
+  classes_remaining: number;
+  slots: {
+    id: number;
+    day_of_week: number;
+    hour: number;
+    status: string;
+    registration_date: string;
+  }[];
+}
+
+export interface StudentDetail {
+  student_id: number;
+  student_name: string;
+  student_email: string;
+  student_phone?: string;
+  grade?: string;
+  school?: string;
+  avatar_url?: string;
+  courses: StudentDetailCourse[];
+}
+
+export interface InstructorStudentStats {
+  total_students: number;
+  new_students_week: number;
+  new_students_month: number;
+  total_courses: number;
 }
 
 export interface Assignment {
@@ -97,4 +134,35 @@ export interface Quiz {
   duration_minutes?: number;
   passing_score?: number;
   created_at: string;
+}
+
+export interface LiveClass {
+  id: number;
+  course_id: number;
+  lesson_id?: number;
+  section_id?: number;
+  title: string;
+  description?: string;
+  meet_link: string;
+  scheduled_at: string;
+  duration_minutes: number;
+  status: 'scheduled' | 'completed' | 'cancelled';
+  created_by: number;
+  created_by_name?: string;
+  instructor_name?: string;
+  course_title?: string;
+  created_at: string;
+  updated_at: string;
+}
+
+export interface StudentEnrolledCourse {
+  course_id: number;
+  course_title: string;
+  course_description?: string;
+  google_meet_link?: string;
+  enrollment_id: number;
+  enrollment_status: string;
+  enrolled_at: string;
+  total_lessons: number;
+  completed_lessons: number;
 }

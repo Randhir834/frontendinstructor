@@ -14,20 +14,11 @@ interface GlobalSearchProps {
 const getSearchContext = (pathname: string) => {
   const courseMatch = pathname.match(/\/courses\/(\d+)/);
   const studentMatch = pathname.match(/\/students/);
-  const assignmentMatch = pathname.match(/\/assignments/);
-  const quizMatch = pathname.match(/\/quizzes/);
-  const liveClassMatch = pathname.match(/\/live-classes/);
   
   if (courseMatch) {
     return { type: 'course', id: parseInt(courseMatch[1]) };
   } else if (studentMatch) {
     return { type: 'student', id: null };
-  } else if (assignmentMatch) {
-    return { type: 'assignment', id: null };
-  } else if (quizMatch) {
-    return { type: 'quiz', id: null };
-  } else if (liveClassMatch) {
-    return { type: 'live_class', id: null };
   }
   
   return { type: null, id: null };
@@ -112,12 +103,6 @@ export default function GlobalSearch({ initialQuery = '', className = '' }: Glob
       case 'section':
         router.push(`/instructor/courses/${results?.results.sections.find(s => s.id === id)?.course_id}`);
         break;
-      case 'assignment':
-        router.push(`/instructor/assignments`);
-        break;
-      case 'quiz':
-        router.push(`/instructor/quizzes`);
-        break;
       case 'live_class':
         router.push(`/instructor/live-classes`);
         break;
@@ -143,10 +128,6 @@ export default function GlobalSearch({ initialQuery = '', className = '' }: Glob
         return <Video className="text-[#3B82F6]" size={18} />;
       case 'section':
         return <Folder className="text-[#8B5CF6]" size={18} />;
-      case 'assignment':
-        return <FileText className="text-[#F59E0B]" size={18} />;
-      case 'quiz':
-        return <FileText className="text-[#EF4444]" size={18} />;
       case 'live_class':
         return <Video className="text-[#EC4899]" size={18} />;
       case 'user':
@@ -165,8 +146,6 @@ export default function GlobalSearch({ initialQuery = '', className = '' }: Glob
       course: 'Course',
       lesson: 'Lesson',
       section: 'Section',
-      assignment: 'Assignment',
-      quiz: 'Quiz',
       live_class: 'Live Class',
       user: 'Student',
       category: 'Category',
@@ -251,10 +230,6 @@ export default function GlobalSearch({ initialQuery = '', className = '' }: Glob
       return 'Search in this course...';
     } else if (context.type === 'student') {
       return 'Search students...';
-    } else if (context.type === 'assignment') {
-      return 'Search assignments...';
-    } else if (context.type === 'quiz') {
-      return 'Search quizzes...';
     } else if (context.type === 'live_class') {
       return 'Search live classes...';
     }
@@ -336,36 +311,6 @@ export default function GlobalSearch({ initialQuery = '', className = '' }: Glob
                   </p>
                 </div>
                 {results.results.lessons.map((item) => renderResultItem(item, 'lesson'))}
-              </div>
-            )}
-            {results.results.assignments.length > 0 && (
-              <div>
-                <div className="px-4 py-2 bg-[#F8FAFC] border-b border-[#E2E8F0]">
-                  <p className="text-xs font-semibold text-[#64748B] uppercase tracking-wide">
-                    Assignments
-                  </p>
-                </div>
-                {results.results.assignments.map((item) => renderResultItem(item, 'assignment'))}
-              </div>
-            )}
-            {results.results.quizzes.length > 0 && (
-              <div>
-                <div className="px-4 py-2 bg-[#F8FAFC] border-b border-[#E2E8F0]">
-                  <p className="text-xs font-semibold text-[#64748B] uppercase tracking-wide">
-                    Quizzes
-                  </p>
-                </div>
-                {results.results.quizzes.map((item) => renderResultItem(item, 'quiz'))}
-              </div>
-            )}
-            {results.results.liveClasses.length > 0 && (
-              <div>
-                <div className="px-4 py-2 bg-[#F8FAFC] border-b border-[#E2E8F0]">
-                  <p className="text-xs font-semibold text-[#64748B] uppercase tracking-wide">
-                    Live Classes
-                  </p>
-                </div>
-                {results.results.liveClasses.map((item) => renderResultItem(item, 'live_class'))}
               </div>
             )}
             {results.results.users && results.results.users.length > 0 && (

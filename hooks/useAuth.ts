@@ -25,15 +25,19 @@ export function useAuth() {
     setLoading(false);
   }, []);
 
-  const login = useCallback((userData: User, token: string) => {
+  const login = useCallback((userData: User, token: string, sessionToken?: string) => {
     localStorage.setItem('token', token);
     localStorage.setItem('user', JSON.stringify(userData));
+    if (sessionToken) {
+      localStorage.setItem('sessionToken', sessionToken);
+    }
     setUser(userData);
   }, []);
 
   const logout = useCallback(() => {
     localStorage.removeItem('token');
     localStorage.removeItem('user');
+    localStorage.removeItem('sessionToken');
     setUser(null);
   }, []);
 

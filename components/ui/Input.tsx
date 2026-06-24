@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { cn } from '@/utils/cn';
+import { Eye, EyeOff } from 'lucide-react';
 
 interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
   label?: string;
@@ -14,20 +15,20 @@ export default function Input({ label, error, className, id, type, ...props }: I
   const inputType = isPasswordField && showPassword ? 'text' : type;
 
   return (
-    <div className="space-y-1">
+    <div className="space-y-2">
       {label && (
-        <label htmlFor={id} className="block text-sm font-medium text-text-primary">
+        <label htmlFor={id} className="block text-sm font-bold text-gray-700">
           {label}
         </label>
       )}
-      <div className="relative">
+      <div className="relative group">
         <input
           id={id}
           type={inputType}
           className={cn(
-            'w-full px-3 py-2 rounded-lg border text-sm text-text-primary placeholder:text-text-placeholder transition-colors focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500',
-            error ? 'border-error' : 'border-border',
-            isPasswordField ? 'pr-10' : '',
+            'w-full px-4 py-2.5 rounded-xl border-2 text-sm text-gray-800 placeholder:text-gray-400 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500',
+            error ? 'border-red-300 bg-red-50' : 'border-gray-200 bg-white hover:border-gray-300',
+            isPasswordField ? 'pr-12' : '',
             className
           )}
           {...props}
@@ -36,25 +37,24 @@ export default function Input({ label, error, className, id, type, ...props }: I
           <button
             type="button"
             onClick={() => setShowPassword(!showPassword)}
-            className="absolute right-3 top-1/2 -translate-y-1/2 text-text-muted hover:text-text-secondary"
+            className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600 transition-colors p-1 rounded-lg hover:bg-gray-100"
           >
             {showPassword ? (
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                <path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/>
-                <circle cx="12" cy="12" r="3"/>
-              </svg>
+              <EyeOff className="w-5 h-5" />
             ) : (
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                <path d="M9.88 9.88a3 3 0 1 0 4.24 4.24"/>
-                <path d="M10.73 5.08A10.43 10.43 0 0 1 12 5c7 0 10 7 10 7a13.16 13.16 0 0 1-1.67 2.68"/>
-                <path d="M6.61 6.61A13.526 13.526 0 0 0 2 12s3 7 10 7c.78 0 1.53-.09 2.24-.26"/>
-                <path d="M2 2l20 20"/>
-              </svg>
+              <Eye className="w-5 h-5" />
             )}
           </button>
         )}
       </div>
-      {error && <p className="text-sm text-error">{error}</p>}
+      {error && (
+        <p className="text-sm text-red-600 flex items-center gap-1.5 font-medium">
+          <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+            <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clipRule="evenodd" />
+          </svg>
+          {error}
+        </p>
+      )}
     </div>
   );
 }

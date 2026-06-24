@@ -10,6 +10,7 @@ export interface CourseMaterial {
   mime_type: string;
   uploaded_by_name: string;
   created_at: string;
+  folder_path?: string; // NEW: folder structure from upload
 }
 
 class CourseMaterialService {

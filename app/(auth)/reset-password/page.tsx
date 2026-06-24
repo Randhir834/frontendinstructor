@@ -4,14 +4,15 @@ import { Suspense, useState } from 'react';
 import Link from 'next/link';
 import { useSearchParams } from 'next/navigation';
 import InstructorAuthSplitShell from '@/components/layouts/InstructorAuthSplitShell';
-import Input from '@/components/ui/Input';
 import { authService } from '@/services/authService';
 
 function ResetPasswordForm() {
   const searchParams = useSearchParams();
   const token = searchParams?.get('token') || '';
   const [password, setPassword] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
   const [confirm, setConfirm] = useState('');
+  const [showConfirm, setShowConfirm] = useState(false);
   const [error, setError] = useState('');
   const [done, setDone] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -28,7 +29,7 @@ function ResetPasswordForm() {
       return;
     }
     if (!token) {
-      setError('Missing reset token. Use the link from the server log or your email.');
+      setError('Missing reset token. Open the link from your email or server log.');
       return;
     }
     setLoading(true);
@@ -46,63 +47,153 @@ function ResetPasswordForm() {
 
   return (
     <>
-      <h2 className="text-2xl font-bold text-text-primary text-center mb-2">Set a New Password</h2>
-      <p className="text-center text-sm text-text-muted mb-8">Choose a strong password for your instructor account.</p>
+      <div className="text-center mb-8">
+        <h2 className="text-2xl sm:text-3xl font-bold bg-gradient-to-r from-green-600 via-emerald-600 to-cyan-600 bg-clip-text text-transparent mb-2">
+          Set a New Password
+        </h2>
+        <p className="text-sm text-gray-600">
+          Choose a strong password for your instructor account.
+        </p>
+      </div>
 
       {done ? (
-        <div className="text-center space-y-6">
-          <div className="mx-auto w-14 h-14 rounded-full bg-primary-100 flex items-center justify-center">
-            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#1E88E5" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-              <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
-              <polyline points="22 4 12 14.01 9 11.01" />
-            </svg>
+          <div className="space-y-6 text-center">
+            <div className="mx-auto w-16 h-16 rounded-2xl bg-gradient-to-br from-green-100 to-emerald-100 flex items-center justify-center shadow-lg animate-in zoom-in">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#10B981" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
+                <polyline points="22 4 12 14.01 9 11.01" />
+              </svg>
+            </div>
+            <div className="space-y-3 bg-gradient-to-r from-green-50 to-emerald-50 p-6 rounded-2xl border border-green-200">
+              <p className="text-sm font-semibold text-gray-800">Password Reset Successful!</p>
+              <p className="text-sm text-gray-700">Your password has been updated. You can now sign in with your new password.</p>
+            </div>
+            <Link 
+              href="/login" 
+              className="inline-flex w-full py-3.5 rounded-xl bg-gradient-to-r from-green-500 via-emerald-500 to-cyan-500 text-white font-semibold text-sm hover:from-green-600 hover:via-emerald-600 hover:to-cyan-600 active:from-green-700 active:via-emerald-700 active:to-cyan-700 transition-all items-center justify-center gap-2 shadow-lg hover:shadow-xl hover:-translate-y-0.5"
+            >
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+              Continue to Sign In
+            </Link>
           </div>
-          <div className="space-y-2">
-            <p className="text-sm text-text-primary font-medium">Password Reset Successful!</p>
-            <p className="text-sm text-text-secondary">Your password has been updated. You can now sign in with your new password.</p>
-          </div>
-          <Link href="/login" className="inline-flex w-full py-3 rounded-xl bg-primary-500 text-white font-medium text-sm hover:bg-primary-600 active:bg-primary-700 transition-colors items-center justify-center gap-2 shadow-sm">
-            Continue to Sign In
-          </Link>
-        </div>
-      ) : (
-        <form onSubmit={handleSubmit} className="space-y-5">
-          {error && <div className="p-3 rounded-lg bg-hover text-error text-sm text-center">{error}</div>}
-          <Input
-            label="New password"
-            id="password"
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-            minLength={8}
-            autoComplete="new-password"
-          />
-          <Input
-            label="Confirm password"
-            id="confirm"
-            type="password"
-            value={confirm}
-            onChange={(e) => setConfirm(e.target.value)}
-            required
-            minLength={8}
-            autoComplete="new-password"
-          />
-          <button
-            type="submit"
-            disabled={loading}
-            className="w-full py-3 rounded-xl bg-primary-500 text-white font-medium text-sm hover:bg-primary-600 active:bg-primary-700 disabled:opacity-60 disabled:cursor-not-allowed transition-colors flex items-center justify-center gap-2 shadow-sm"
-          >
-            {loading ? 'Saving...' : 'Update password'}
-          </button>
-        </form>
-      )}
+        ) : (
+          <form onSubmit={handleSubmit} className="space-y-5">
+            {error && (
+              <div className="relative">
+                <div className="h-1 bg-gradient-to-r from-red-500 to-pink-500 absolute top-0 left-0 right-0 rounded-t-xl"></div>
+                <div className="p-4 rounded-xl bg-red-50 border border-red-200 text-red-700 text-sm text-center pt-5">
+                  {error}
+                </div>
+              </div>
+            )}
+            
+            <div className="space-y-2">
+              <label htmlFor="password" className="block text-sm font-semibold text-gray-700">
+                New password
+              </label>
+              <div className="relative group">
+                <div className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 group-focus-within:text-green-500 transition-colors">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                </div>
+                <input
+                  id="password"
+                  type={showPassword ? 'text' : 'password'}
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  required
+                  minLength={8}
+                  autoComplete="new-password"
+                  className="w-full pl-12 pr-12 py-3.5 rounded-xl border border-gray-200 text-sm text-gray-800 focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-green-500 bg-white shadow-sm transition-all"
+                />
+                <button
+                  type="button"
+                  onClick={() => setShowPassword(!showPassword)}
+                  className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600 transition-colors"
+                >
+                  {showPassword ? (
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                      <path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/>
+                      <circle cx="12" cy="12" r="3"/>
+                    </svg>
+                  ) : (
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                      <path d="M9.88 9.88a3 3 0 1 0 4.24 4.24"/>
+                      <path d="M10.73 5.08A10.43 10.43 0 0 1 12 5c7 0 10 7 10 7a13.16 13.16 0 0 1-1.67 2.68"/>
+                      <path d="M6.61 6.61A13.526 13.526 0 0 0 2 12s3 7 10 7c.78 0 1.53-.09 2.24-.26"/>
+                      <path d="M2 2l20 20"/>
+                    </svg>
+                  )}
+                </button>
+              </div>
+            </div>
 
-      <p className="mt-6 text-center text-sm text-text-muted">
-        <Link href="/login" className="text-primary-500 hover:text-primary-600 font-semibold">
-          Back to sign in
-        </Link>
-      </p>
+            <div className="space-y-2">
+              <label htmlFor="confirm" className="block text-sm font-semibold text-gray-700">
+                Confirm password
+              </label>
+              <div className="relative group">
+                <div className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 group-focus-within:text-green-500 transition-colors">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                </div>
+                <input
+                  id="confirm"
+                  type={showConfirm ? 'text' : 'password'}
+                  value={confirm}
+                  onChange={(e) => setConfirm(e.target.value)}
+                  required
+                  minLength={8}
+                  autoComplete="new-password"
+                  className="w-full pl-12 pr-12 py-3.5 rounded-xl border border-gray-200 text-sm text-gray-800 focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-green-500 bg-white shadow-sm transition-all"
+                />
+                <button
+                  type="button"
+                  onClick={() => setShowConfirm(!showConfirm)}
+                  className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600 transition-colors"
+                >
+                  {showConfirm ? (
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                      <path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/>
+                      <circle cx="12" cy="12" r="3"/>
+                    </svg>
+                  ) : (
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                      <path d="M9.88 9.88a3 3 0 1 0 4.24 4.24"/>
+                      <path d="M10.73 5.08A10.43 10.43 0 0 1 12 5c7 0 10 7 10 7a13.16 13.16 0 0 1-1.67 2.68"/>
+                      <path d="M6.61 6.61A13.526 13.526 0 0 0 2 12s3 7 10 7c.78 0 1.53-.09 2.24-.26"/>
+                      <path d="M2 2l20 20"/>
+                    </svg>
+                  )}
+                </button>
+              </div>
+            </div>
+
+            <button
+              type="submit"
+              disabled={loading}
+              className="w-full py-3.5 rounded-xl bg-gradient-to-r from-green-500 via-emerald-500 to-cyan-500 text-white font-semibold text-sm hover:from-green-600 hover:via-emerald-600 hover:to-cyan-600 active:from-green-700 active:via-emerald-700 active:to-cyan-700 disabled:opacity-60 disabled:cursor-not-allowed transition-all flex items-center justify-center gap-2 shadow-lg hover:shadow-xl hover:-translate-y-0.5"
+            >
+              {loading ? (
+                <>
+                  <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+                  Saving...
+                </>
+              ) : (
+                <>
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg>
+                  Update password
+                </>
+              )}
+            </button>
+          </form>
+        )}
+
+        <p className="mt-6 text-center text-sm text-gray-600">
+          <Link href="/login" className="font-bold bg-gradient-to-r from-green-600 to-cyan-600 bg-clip-text text-transparent hover:from-green-700 hover:to-cyan-700">
+            Back to sign in
+          </Link>
+        </p>
+      </div>
+    </div>
     </>
   );
 }
@@ -112,14 +203,19 @@ export default function ResetPasswordPage() {
     <InstructorAuthSplitShell
       leftTitle={
         <>
-          Secure Your
+          <span className="bg-gradient-to-r from-green-200 via-emerald-200 to-cyan-200 bg-clip-text text-transparent">
+            Secure Your
+          </span>
           <br />
-          <span className="text-yellow-300">Instructor Access</span> <span className="text-2xl">🔒</span>
+          <span className="bg-gradient-to-r from-yellow-300 via-orange-300 to-yellow-300 bg-clip-text text-transparent">
+            Account
+          </span>{' '}
+          <span className="text-3xl animate-float">🔒</span>
         </>
       }
-      leftSubtitle="Reset your password to protect your courses and student data."
+      leftSubtitle="Pick a new password to keep your courses and student data safe."
     >
-      <Suspense fallback={<p className="text-center text-sm text-text-muted">Loading…</p>}>
+      <Suspense fallback={<p className="text-center text-sm text-gray-600">Loading…</p>}>
         <ResetPasswordForm />
       </Suspense>
     </InstructorAuthSplitShell>

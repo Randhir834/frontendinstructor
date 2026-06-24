@@ -24,20 +24,6 @@ export const REALTIME_EVENTS = {
   ENROLLMENT_UPDATED: 'enrollment:updated',
   ENROLLMENT_DELETED: 'enrollment:deleted',
 
-  // Assignment events
-  ASSIGNMENT_CREATED: 'assignment:created',
-  ASSIGNMENT_UPDATED: 'assignment:updated',
-  ASSIGNMENT_DELETED: 'assignment:deleted',
-  ASSIGNMENT_SUBMITTED: 'assignment:submitted',
-  ASSIGNMENT_GRADED: 'assignment:graded',
-
-  // Quiz events
-  QUIZ_CREATED: 'quiz:created',
-  QUIZ_UPDATED: 'quiz:updated',
-  QUIZ_DELETED: 'quiz:deleted',
-  QUIZ_SUBMITTED: 'quiz:submitted',
-  QUIZ_GRADED: 'quiz:graded',
-
   // Live class events
   LIVE_CLASS_CREATED: 'live_class:created',
   LIVE_CLASS_UPDATED: 'live_class:updated',
@@ -50,16 +36,9 @@ export const REALTIME_EVENTS = {
   NOTIFICATION_READ: 'notification:read',
   NOTIFICATION_DELETED: 'notification:deleted',
 
-  // Attendance events
-  ATTENDANCE_MARKED: 'attendance:marked',
-  ATTENDANCE_UPDATED: 'attendance:updated',
-
   // Payment events
   PAYMENT_CREATED: 'payment:created',
   PAYMENT_UPDATED: 'payment:updated',
-
-  // Certificate events
-  CERTIFICATE_GENERATED: 'certificate:generated',
 
   // Category events
   CATEGORY_CREATED: 'category:created',

@@ -20,7 +20,7 @@ export default function InstructorAuthSplitShell({ leftTitle, leftSubtitle, cent
         <p className="text-sm text-white/90 font-medium">Instructor Portal</p>
       </div>
 
-      {/* Left side - Image and Content (Desktop Only) */}
+      {/* Left side - Image and Content */}
       <div className="relative w-full md:w-[55%] hidden md:flex flex-col bg-[#C5C5C5] min-h-screen overflow-y-auto">
         {/* Background Image */}
         <div className="absolute inset-0 w-full h-full overflow-hidden">
@@ -54,28 +54,28 @@ export default function InstructorAuthSplitShell({ leftTitle, leftSubtitle, cent
                 <span className="text-sm font-semibold text-dark-900 leading-tight">Manage Courses</span>
               </div>
               <div className="flex items-center gap-3 bg-white/95 backdrop-blur-sm rounded-2xl px-4 py-3.5 shadow-xl hover:shadow-2xl transition-all hover:scale-105">
-                <div className="w-10 h-10 shrink-0 rounded-xl bg-violet-50 flex items-center justify-center">
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#AB47BC" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                <div className="w-10 h-10 shrink-0 rounded-xl bg-orange-50 flex items-center justify-center">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#FFA726" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
                 </div>
                 <span className="text-sm font-semibold text-dark-900 leading-tight">Manage Students</span>
               </div>
               <div className="flex items-center gap-3 bg-white/95 backdrop-blur-sm rounded-2xl px-4 py-3.5 shadow-xl hover:shadow-2xl transition-all hover:scale-105">
-                <div className="w-10 h-10 shrink-0 rounded-xl bg-orange-50 flex items-center justify-center">
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#FFA726" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M23 7l-7 5 7 5V7z"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg>
+                <div className="w-10 h-10 shrink-0 rounded-xl bg-blue-50 flex items-center justify-center">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1E88E5" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M23 7l-7 5 7 5V7z"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg>
                 </div>
                 <span className="text-sm font-semibold text-dark-900 leading-tight">Live Classes</span>
               </div>
               <div className="flex items-center gap-3 bg-white/95 backdrop-blur-sm rounded-2xl px-4 py-3.5 shadow-xl hover:shadow-2xl transition-all hover:scale-105">
-                <div className="w-10 h-10 shrink-0 rounded-xl bg-blue-50 flex items-center justify-center">
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1E88E5" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+                <div className="w-10 h-10 shrink-0 rounded-xl bg-violet-50 flex items-center justify-center">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#AB47BC" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
                 </div>
                 <span className="text-sm font-semibold text-dark-900 leading-tight">Upload Materials</span>
               </div>
               <div className="flex items-center gap-3 bg-white/95 backdrop-blur-sm rounded-2xl px-4 py-3.5 shadow-xl hover:shadow-2xl transition-all hover:scale-105">
-                <div className="w-10 h-10 shrink-0 rounded-xl bg-emerald-50 flex items-center justify-center">
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#059669" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+                <div className="w-10 h-10 shrink-0 rounded-xl bg-pink-50 flex items-center justify-center">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#EC4899" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
                 </div>
-                <span className="text-sm font-semibold text-dark-900 leading-tight">View Earnings</span>
+                <span className="text-sm font-semibold text-dark-900 leading-tight">Track Earnings</span>
               </div>
             </div>
           </div>

@@ -87,27 +87,42 @@ function InstructorCoursesContent() {
   };
 
   return (
-    <div className="p-4 md:p-8 max-w-[1400px] mx-auto space-y-6">
-      {/* Header */}
-      <div>
-        <h1 className="text-xl md:text-2xl font-bold text-[#1E3A5F]">My Courses</h1>
-        <p className="text-sm text-[#78909C] mt-1">
+    <div className="p-4 sm:p-6 md:p-8 max-w-[1400px] mx-auto space-y-6">
+      {/* Header with Gradient */}
+      <div className="mb-8">
+        <div className="flex items-center gap-3 mb-2">
+          <div className="p-3 bg-gradient-to-br from-blue-500 to-purple-500 rounded-2xl shadow-lg">
+            <BookOpen className="w-6 h-6 text-white" />
+          </div>
+          <div>
+            <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold bg-gradient-to-r from-gray-800 to-gray-600 bg-clip-text text-transparent">
+              My Courses
+            </h1>
+          </div>
+        </div>
+        <p className="text-sm sm:text-base text-gray-600 ml-16">
           Manage your courses and engage with students
         </p>
       </div>
 
       {/* Course Grid */}
       {loading ? (
-        <div className="flex items-center justify-center py-12">
-          <Loader2 className="size-8 animate-spin text-[#1E88E5]" />
+        <div className="flex flex-col items-center justify-center py-16">
+          <div className="relative">
+            <div className="w-16 h-16 rounded-full bg-gradient-to-r from-blue-500 to-purple-500 animate-pulse"></div>
+            <Loader2 className="absolute inset-0 m-auto size-8 animate-spin text-white" />
+          </div>
+          <p className="mt-4 text-gray-600 font-medium">Loading your courses...</p>
         </div>
       ) : courses.length === 0 ? (
-        <Card>
-          <CardContent>
-            <div className="text-center py-12">
-              <BookOpen className="size-12 text-[#E0E0E0] mx-auto mb-4" />
-              <h3 className="text-lg font-medium text-[#1E3A5F] mb-2">No courses found</h3>
-              <p className="text-sm text-[#78909C] mb-6">
+        <Card className="border-2 border-dashed border-gray-300">
+          <CardContent className="p-8 sm:p-12">
+            <div className="text-center">
+              <div className="inline-flex p-6 bg-gradient-to-br from-blue-100 via-purple-100 to-pink-100 rounded-full mb-6">
+                <BookOpen className="size-16 text-purple-500" />
+              </div>
+              <h3 className="text-xl font-bold text-gray-800 mb-3">No courses found</h3>
+              <p className="text-base text-gray-600 mb-6 max-w-md mx-auto">
                 {filters.search || Object.values(filters).some(v => v && v !== 'created_at' && v !== 'desc')
                   ? 'Try adjusting your filters or search terms.'
                   : 'You haven\'t been assigned to any courses yet. Contact your administrator to get started.'

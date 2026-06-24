@@ -19,6 +19,13 @@ export interface UserProfile {
   updated_at?: string;
 }
 
+export interface InstructorStats {
+  totalStudents: number;
+  coursesTeaching: number;
+  averageRating: number;
+  totalHours: number;
+}
+
 export const userService = {
   getProfile: async (): Promise<UserProfile> => {
     const response = await api.get('/users/profile');
@@ -49,6 +56,11 @@ export const userService = {
   deleteProfilePhoto: async (): Promise<{ user: UserProfile }> => {
     const response = await api.delete('/users/profile-photo');
     return response.data;
+  },
+
+  getInstructorStats: async (): Promise<InstructorStats> => {
+    const response = await api.get('/users/instructor/stats');
+    return response.data.stats;
   },
 
   logout: () => {
