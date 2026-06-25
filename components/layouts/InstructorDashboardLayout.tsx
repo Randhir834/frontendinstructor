@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
 import {
   BookOpen,
-  User, Loader2,
+  User,
   Menu, X, GraduationCap, LogOut, Sparkles
 } from 'lucide-react';
 import { userService, UserProfile } from '@/services/userService';

@@ -48,7 +48,7 @@ export default function LoginPage() {
       }
       
       login(data.user, data.token, data.sessionToken);
-      router.push('/dashboard');
+      router.push('/instructor/courses');
     } catch (err: unknown) {
       logTechnicalError('Instructor Login', err);
       const message = getUserFriendlyError(err);
