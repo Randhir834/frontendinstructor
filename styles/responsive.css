@@ -1,4 +1,30 @@
-/* Responsive Utility Classes for Instructor Frontend */
+/* Responsive Utility Classes for Student Frontend */
+
+/* Mobile-First Approach - Extra Small Devices */
+@media (max-width: 374px) {
+  html {
+    font-size: 14px;
+  }
+  
+  .container {
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+}
+
+/* Touch Target Optimization */
+@media (max-width: 768px) {
+  button, a[role="button"], input[type="button"], input[type="submit"] {
+    min-height: 44px;
+    min-width: 44px;
+    padding: 10px 16px;
+  }
+  
+  input, select, textarea {
+    min-height: 44px;
+    font-size: 16px; /* Prevents iOS zoom on focus */
+  }
+}
 
 /* Container Queries */
 @container (min-width: 320px) {
@@ -280,24 +306,16 @@
 /* Responsive Modal */
 .modal-responsive {
   position: relative;
-  margin: 0.5rem;
-  max-height: calc(100vh - 1rem);
+  margin: 1rem;
+  max-height: calc(100vh - 2rem);
   border-radius: 0.75rem;
-  overflow-y: auto;
 }
 
 @media (min-width: 640px) {
   .modal-responsive {
-    margin: 1.5rem;
-    max-height: calc(100vh - 3rem);
-    border-radius: 1rem;
-  }
-}
-
-@media (min-width: 768px) {
-  .modal-responsive {
     margin: 2rem;
     max-height: calc(100vh - 4rem);
+    border-radius: 1rem;
   }
 }
 
@@ -306,7 +324,7 @@
     position: relative;
     margin: 0;
     width: 90%;
-    max-width: 700px;
+    max-width: 600px;
     height: auto;
     max-height: 90vh;
   }
@@ -325,25 +343,6 @@
 @media (min-width: 1024px) {
   .table-responsive table {
     min-width: 100%;
-  }
-}
-
-/* Mobile Card View for Tables */
-.table-card-view {
-  display: block;
-}
-
-.table-card-view .table-card {
-  background: white;
-  border: 1px solid #e2e8f0;
-  border-radius: 0.75rem;
-  padding: 1rem;
-  margin-bottom: 0.75rem;
-}
-
-@media (min-width: 1024px) {
-  .table-card-view {
-    display: none;
   }
 }
 
@@ -417,17 +416,5 @@
   
   .page-break {
     page-break-before: always;
-  }
-}
-
-/* Reduced Motion Support */
-@media (prefers-reduced-motion: reduce) {
-  *,
-  *::before,
-  *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-    scroll-behavior: auto !important;
   }
 }
