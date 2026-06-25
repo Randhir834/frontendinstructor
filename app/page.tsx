@@ -191,17 +191,17 @@ export default function Home() {
       </header>
 
       {/* Hero Section - Premium Clean Colorful Design */}
-      <section className="relative bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50 overflow-hidden min-h-screen flex items-center">
+      <section className="relative bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50 overflow-x-hidden min-h-screen flex items-center">
         {/* Vibrant Background Elements */}
-        <div className="absolute inset-0">
+        <div className="absolute inset-0 overflow-hidden">
           <div className="absolute top-0 right-0 w-64 h-64 sm:w-80 sm:h-80 md:w-96 md:h-96 bg-gradient-to-br from-blue-400/20 to-purple-400/20 rounded-full blur-3xl animate-pulse"></div>
           <div className="absolute bottom-0 left-0 w-64 h-64 sm:w-80 sm:h-80 md:w-96 md:h-96 bg-gradient-to-br from-pink-400/20 to-orange-400/20 rounded-full blur-3xl animate-pulse animation-delay-2000"></div>
         </div>
 
-        <div className="relative w-full max-w-7xl mx-auto px-3 xs:px-4 sm:px-6 lg:px-8 py-12 xs:py-16 sm:py-20 md:py-24 lg:py-28 xl:py-32">
-          <div className="grid lg:grid-cols-[45%_55%] gap-8 sm:gap-10 md:gap-12 lg:gap-14 xl:gap-16 items-center">
-            {/* Left Content - 45% */}
-            <div className="space-y-5 xs:space-y-6 sm:space-y-7 md:space-y-8">
+        <div className="relative w-full max-w-[1800px] mx-auto px-3 xs:px-4 sm:px-6 lg:px-8 xl:px-10 2xl:px-12 py-12 xs:py-16 sm:py-20 md:py-24 lg:py-28 xl:py-32">
+          <div className="grid lg:grid-cols-2 gap-8 sm:gap-10 md:gap-12 lg:gap-8 xl:gap-12 2xl:gap-16 items-center max-w-full">
+            {/* Left Content */}
+            <div className="space-y-5 xs:space-y-6 sm:space-y-7 md:space-y-8 max-w-2xl lg:max-w-none">
               {/* Trust Badge */}
               <div className="inline-flex items-center gap-2 px-3 xs:px-4 py-1.5 xs:py-2 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full shadow-lg shadow-blue-500/25">
                 <Star className="w-3 xs:w-4 h-3 xs:h-4 text-yellow-300 fill-yellow-300" />
@@ -258,58 +258,68 @@ export default function Home() {
               </div>
             </div>
 
-            {/* Right Content - 55% */}
-            <div className="grid grid-cols-2 gap-3 xs:gap-4 sm:gap-5 md:gap-5 lg:gap-6">
-              {/* Feature Card 1 - Live Classes */}
-              <div className="group bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl sm:rounded-2xl p-4 xs:p-5 sm:p-6 shadow-xl shadow-blue-500/25 hover:shadow-2xl hover:shadow-blue-500/40 transition-all duration-300 hover:scale-[1.02]">
+            {/* Right Content - Feature Cards Grid */}
+            <div className="w-full max-w-3xl mx-auto lg:mx-0 lg:max-w-none">
+              <div className="grid grid-cols-2 gap-3 xs:gap-4 sm:gap-5 md:gap-5 lg:gap-4 xl:gap-5 2xl:gap-6 auto-rows-fr">
+                {/* Feature Card 1 - Live Classes */}
+                <div className="group bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl sm:rounded-2xl p-4 xs:p-5 sm:p-6 md:p-6 lg:p-5 xl:p-6 2xl:p-7 shadow-xl shadow-blue-500/25 hover:shadow-2xl hover:shadow-blue-500/40 transition-all duration-300 hover:scale-[1.02] flex flex-col h-full min-h-[180px] sm:min-h-[200px] md:min-h-[220px] lg:min-h-[200px] xl:min-h-[220px]">
                 <div className="w-10 h-10 xs:w-12 xs:h-12 sm:w-14 sm:h-14 bg-white/20 backdrop-blur-sm rounded-lg xs:rounded-xl flex items-center justify-center mb-3 xs:mb-4 group-hover:bg-white/30 group-hover:scale-110 transition-all">
                   <Users className="w-5 h-5 xs:w-6 xs:h-6 sm:w-7 sm:h-7 text-white" />
                 </div>
                 <h3 className="text-base xs:text-lg sm:text-xl font-bold text-white mb-1.5 xs:mb-2">Live Classes</h3>
-                <p className="text-xs xs:text-sm text-blue-100 mb-3 xs:mb-4">Interactive sessions with expert instructors</p>
-                <div className="inline-flex items-center gap-1 xs:gap-1.5 px-2 xs:px-3 py-1 xs:py-1.5 bg-white/20 backdrop-blur-sm rounded-full border border-white/30">
-                  <div className="w-1.5 xs:w-2 h-1.5 xs:h-2 bg-white rounded-full animate-pulse"></div>
-                  <span className="text-[10px] xs:text-xs font-bold text-white">Live Now</span>
+                <p className="text-xs xs:text-sm text-blue-100 mb-3 xs:mb-4 flex-grow">Interactive sessions with expert instructors</p>
+                <div className="flex">
+                  <div className="inline-flex items-center gap-1 xs:gap-1.5 px-2 xs:px-3 py-1 xs:py-1.5 bg-white/20 backdrop-blur-sm rounded-full border border-white/30">
+                    <div className="w-1.5 xs:w-2 h-1.5 xs:h-2 bg-white rounded-full animate-pulse"></div>
+                    <span className="text-[10px] xs:text-xs font-bold text-white whitespace-nowrap">Live Now</span>
+                  </div>
                 </div>
               </div>
 
               {/* Feature Card 2 - AI Learning */}
-              <div className="group bg-gradient-to-br from-purple-500 to-purple-600 rounded-xl sm:rounded-2xl p-4 xs:p-5 sm:p-6 shadow-xl shadow-purple-500/25 hover:shadow-2xl hover:shadow-purple-500/40 transition-all duration-300 hover:scale-[1.02]">
+              <div className="group bg-gradient-to-br from-purple-500 to-purple-600 rounded-xl sm:rounded-2xl p-4 xs:p-5 sm:p-6 md:p-6 lg:p-5 xl:p-6 2xl:p-7 shadow-xl shadow-purple-500/25 hover:shadow-2xl hover:shadow-purple-500/40 transition-all duration-300 hover:scale-[1.02] flex flex-col h-full min-h-[180px] sm:min-h-[200px] md:min-h-[220px] lg:min-h-[200px] xl:min-h-[220px]">
                 <div className="w-10 h-10 xs:w-12 xs:h-12 sm:w-14 sm:h-14 bg-white/20 backdrop-blur-sm rounded-lg xs:rounded-xl flex items-center justify-center mb-3 xs:mb-4 group-hover:bg-white/30 group-hover:scale-110 transition-all">
                   <Sparkles className="w-5 h-5 xs:w-6 xs:h-6 sm:w-7 sm:h-7 text-white" />
                 </div>
                 <h3 className="text-base xs:text-lg sm:text-xl font-bold text-white mb-1.5 xs:mb-2">AI Learning</h3>
-                <p className="text-xs xs:text-sm text-purple-100 mb-3 xs:mb-4">Personalized recommendations for every student</p>
-                <div className="inline-flex items-center gap-1 xs:gap-1.5 px-2 xs:px-3 py-1 xs:py-1.5 bg-white/20 backdrop-blur-sm rounded-full border border-white/30">
-                  <Sparkles className="w-2.5 xs:w-3 h-2.5 xs:h-3 text-white" />
-                  <span className="text-[10px] xs:text-xs font-bold text-white">Smart</span>
+                <p className="text-xs xs:text-sm text-purple-100 mb-3 xs:mb-4 flex-grow">Personalized recommendations for every student</p>
+                <div className="flex">
+                  <div className="inline-flex items-center gap-1 xs:gap-1.5 px-2 xs:px-3 py-1 xs:py-1.5 bg-white/20 backdrop-blur-sm rounded-full border border-white/30">
+                    <Sparkles className="w-2.5 xs:w-3 h-2.5 xs:h-3 text-white" />
+                    <span className="text-[10px] xs:text-xs font-bold text-white whitespace-nowrap">Smart</span>
+                  </div>
                 </div>
               </div>
 
               {/* Feature Card 3 - Practice Tests */}
-              <div className="group bg-gradient-to-br from-pink-500 to-pink-600 rounded-xl sm:rounded-2xl p-4 xs:p-5 sm:p-6 shadow-xl shadow-pink-500/25 hover:shadow-2xl hover:shadow-pink-500/40 transition-all duration-300 hover:scale-[1.02]">
+              <div className="group bg-gradient-to-br from-pink-500 to-pink-600 rounded-xl sm:rounded-2xl p-4 xs:p-5 sm:p-6 md:p-6 lg:p-5 xl:p-6 2xl:p-7 shadow-xl shadow-pink-500/25 hover:shadow-2xl hover:shadow-pink-500/40 transition-all duration-300 hover:scale-[1.02] flex flex-col h-full min-h-[180px] sm:min-h-[200px] md:min-h-[220px] lg:min-h-[200px] xl:min-h-[220px]">
                 <div className="w-10 h-10 xs:w-12 xs:h-12 sm:w-14 sm:h-14 bg-white/20 backdrop-blur-sm rounded-lg xs:rounded-xl flex items-center justify-center mb-3 xs:mb-4 group-hover:bg-white/30 group-hover:scale-110 transition-all">
                   <BookOpen className="w-5 h-5 xs:w-6 xs:h-6 sm:w-7 sm:h-7 text-white" />
                 </div>
                 <h3 className="text-base xs:text-lg sm:text-xl font-bold text-white mb-1.5 xs:mb-2">Practice Tests</h3>
-                <p className="text-xs xs:text-sm text-pink-100 mb-3 xs:mb-4">Master skills with interactive exercises</p>
-                <div className="inline-flex items-center gap-1 xs:gap-1.5 px-2 xs:px-3 py-1 xs:py-1.5 bg-white/20 backdrop-blur-sm rounded-full border border-white/30">
-                  <Target className="w-2.5 xs:w-3 h-2.5 xs:h-3 text-white" />
-                  <span className="text-[10px] xs:text-xs font-bold text-white">Interactive</span>
+                <p className="text-xs xs:text-sm text-pink-100 mb-3 xs:mb-4 flex-grow">Master skills with interactive exercises</p>
+                <div className="flex">
+                  <div className="inline-flex items-center gap-1 xs:gap-1.5 px-2 xs:px-3 py-1 xs:py-1.5 bg-white/20 backdrop-blur-sm rounded-full border border-white/30">
+                    <Target className="w-2.5 xs:w-3 h-2.5 xs:h-3 text-white" />
+                    <span className="text-[10px] xs:text-xs font-bold text-white whitespace-nowrap">Interactive</span>
+                  </div>
                 </div>
               </div>
 
               {/* Feature Card 4 - Progress Tracker */}
-              <div className="group bg-gradient-to-br from-orange-500 to-orange-600 rounded-xl sm:rounded-2xl p-4 xs:p-5 sm:p-6 shadow-xl shadow-orange-500/25 hover:shadow-2xl hover:shadow-orange-500/40 transition-all duration-300 hover:scale-[1.02]">
+              <div className="group bg-gradient-to-br from-orange-500 to-orange-600 rounded-xl sm:rounded-2xl p-4 xs:p-5 sm:p-6 md:p-6 lg:p-5 xl:p-6 2xl:p-7 shadow-xl shadow-orange-500/25 hover:shadow-2xl hover:shadow-orange-500/40 transition-all duration-300 hover:scale-[1.02] flex flex-col h-full min-h-[180px] sm:min-h-[200px] md:min-h-[220px] lg:min-h-[200px] xl:min-h-[220px]">
                 <div className="w-10 h-10 xs:w-12 xs:h-12 sm:w-14 sm:h-14 bg-white/20 backdrop-blur-sm rounded-lg xs:rounded-xl flex items-center justify-center mb-3 xs:mb-4 group-hover:bg-white/30 group-hover:scale-110 transition-all">
                   <TrendingUp className="w-5 h-5 xs:w-6 xs:h-6 sm:w-7 sm:h-7 text-white" />
                 </div>
                 <h3 className="text-base xs:text-lg sm:text-xl font-bold text-white mb-1.5 xs:mb-2">Progress Tracker</h3>
-                <p className="text-xs xs:text-sm text-orange-100 mb-3 xs:mb-4">Monitor growth with detailed analytics</p>
-                <div className="inline-flex items-center gap-1 xs:gap-1.5 px-2 xs:px-3 py-1 xs:py-1.5 bg-white/20 backdrop-blur-sm rounded-full border border-white/30">
-                  <Trophy className="w-2.5 xs:w-3 h-2.5 xs:h-3 text-white" />
-                  <span className="text-[10px] xs:text-xs font-bold text-white">Track Growth</span>
+                <p className="text-xs xs:text-sm text-orange-100 mb-3 xs:mb-4 flex-grow">Monitor growth with detailed analytics</p>
+                <div className="flex">
+                  <div className="inline-flex items-center gap-1 xs:gap-1.5 px-2 xs:px-3 py-1 xs:py-1.5 bg-white/20 backdrop-blur-sm rounded-full border border-white/30">
+                    <Trophy className="w-2.5 xs:w-3 h-2.5 xs:h-3 text-white" />
+                    <span className="text-[10px] xs:text-xs font-bold text-white whitespace-nowrap">Track Growth</span>
+                  </div>
                 </div>
+              </div>
               </div>
             </div>
           </div>

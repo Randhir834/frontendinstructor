@@ -148,6 +148,12 @@
   --breakpoint-lg: 1024px;
   --breakpoint-xl: 1280px;
   --breakpoint-2xl: 1536px;
+  
+  /* Common laptop viewport widths */
+  --breakpoint-laptop-sm: 1366px;
+  --breakpoint-laptop-md: 1440px;
+  --breakpoint-laptop-lg: 1536px;
+  --breakpoint-laptop-xl: 1920px;
 }
 
 /* Custom responsive utilities */
@@ -290,6 +296,47 @@
     transform: translateZ(0);
     -webkit-backface-visibility: hidden;
     backface-visibility: hidden;
+  }
+}
+
+/* Responsive viewport optimization for common laptop screen sizes */
+@media (min-width: 1024px) and (max-width: 1366px) {
+  /* Small laptop optimization (1366px) */
+  .hero-grid {
+    grid-template-columns: 42% 58%;
+  }
+}
+
+@media (min-width: 1367px) and (max-width: 1440px) {
+  /* Medium laptop optimization (1440px) */
+  .hero-grid {
+    grid-template-columns: 45% 55%;
+  }
+}
+
+@media (min-width: 1441px) and (max-width: 1536px) {
+  /* Large laptop optimization (1536px) */
+  .hero-grid {
+    grid-template-columns: 47% 53%;
+  }
+}
+
+@media (min-width: 1537px) {
+  /* Extra large displays (1920px+) */
+  .hero-grid {
+    grid-template-columns: 1fr 1fr;
+    max-width: 1800px;
+  }
+}
+
+/* Ensure no horizontal overflow at any viewport */
+@media (min-width: 1024px) {
+  body, html {
+    overflow-x: hidden;
+  }
+  
+  section {
+    overflow-x: clip;
   }
 }
 
