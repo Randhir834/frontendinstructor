@@ -19,7 +19,16 @@ export default function LoginPage() {
 
   // Clear any stale tokens on mount (logout redirect)
   useEffect(() => {
+    // Check if user just logged out - if so, redirect to homepage immediately
     if (typeof window !== 'undefined') {
+      const logoutInitiated = sessionStorage.getItem('logout_initiated');
+      if (logoutInitiated === 'true') {
+        sessionStorage.removeItem('logout_initiated');
+        // Immediately redirect to homepage without showing login page
+        window.location.replace('/');
+        return;
+      }
+      
       const urlParams = new URLSearchParams(window.location.search);
       if (urlParams.has('logout') || urlParams.has('session_expired')) {
         localStorage.removeItem('token');
