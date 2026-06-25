@@ -14,7 +14,7 @@ const api = axios.create({
 
 api.interceptors.request.use(
   (config) => {
-    console.log('[API] Making request to:', config.baseURL + config.url);
+    console.log('[API] Making request to:', (config.baseURL || '') + (config.url || ''));
     if (typeof window !== 'undefined') {
       // Don't add Authorization header for public auth endpoints
       const publicEndpoints = ['/auth/login', '/auth/register', '/auth/forgot-password', '/auth/reset-password', '/auth/refresh-token'];

@@ -4,6 +4,8 @@ export interface SearchResults {
   courses: any[];
   lessons: any[];
   sections: any[];
+  assignments: any[];
+  quizzes: any[];
   liveClasses: any[];
   categories: any[];
   users: any[];
