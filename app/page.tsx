@@ -13,6 +13,22 @@ export default function Home() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const gridRef = useRef<HTMLDivElement>(null);
 
+  const scrollToSection = (e: React.MouseEvent<HTMLAnchorElement>, sectionId: string) => {
+    e.preventDefault();
+    setMobileMenuOpen(false); // Close mobile menu if open
+    const element = document.getElementById(sectionId);
+    if (element) {
+      const offset = 80; // Adjust for fixed header
+      const elementPosition = element.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.pageYOffset - offset;
+      
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: 'smooth'
+      });
+    }
+  };
+
   // Community grid animation logic
   useEffect(() => {
     const animateRandomBoxes = () => {
@@ -142,18 +158,30 @@ export default function Home() {
             </Link>
             
             <nav className="hidden md:flex items-center gap-2 lg:gap-3 xl:gap-5">
-              <Link href="#features" className="text-xs lg:text-sm xl:text-base font-bold text-gray-700 hover:text-purple-600 transition-all hover:scale-105 whitespace-nowrap relative group px-1 lg:px-2">
+              <a 
+                href="#features" 
+                onClick={(e) => scrollToSection(e, 'features')}
+                className="text-xs lg:text-sm xl:text-base font-bold text-gray-700 hover:text-purple-600 transition-all hover:scale-105 whitespace-nowrap relative group px-1 lg:px-2 cursor-pointer"
+              >
                 Features
                 <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-purple-600 to-pink-600 group-hover:w-full transition-all"></span>
-              </Link>
-              <Link href="#benefits" className="text-xs lg:text-sm xl:text-base font-bold text-gray-700 hover:text-purple-600 transition-all hover:scale-105 whitespace-nowrap relative group px-1 lg:px-2">
+              </a>
+              <a 
+                href="#benefits" 
+                onClick={(e) => scrollToSection(e, 'benefits')}
+                className="text-xs lg:text-sm xl:text-base font-bold text-gray-700 hover:text-purple-600 transition-all hover:scale-105 whitespace-nowrap relative group px-1 lg:px-2 cursor-pointer"
+              >
                 Benefits
                 <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-purple-600 to-pink-600 group-hover:w-full transition-all"></span>
-              </Link>
-              <Link href="#register" className="text-xs lg:text-sm xl:text-base font-bold text-gray-700 hover:text-purple-600 transition-all hover:scale-105 whitespace-nowrap relative group px-1 lg:px-2">
+              </a>
+              <a 
+                href="#register" 
+                onClick={(e) => scrollToSection(e, 'register')}
+                className="text-xs lg:text-sm xl:text-base font-bold text-gray-700 hover:text-purple-600 transition-all hover:scale-105 whitespace-nowrap relative group px-1 lg:px-2 cursor-pointer"
+              >
                 Apply Now
                 <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-purple-600 to-pink-600 group-hover:w-full transition-all"></span>
-              </Link>
+              </a>
               <Link href="/login" className="ml-1 lg:ml-2 xl:ml-3 px-3 md:px-4 lg:px-5 xl:px-6 py-1.5 md:py-2 lg:py-2.5 bg-gradient-to-r from-purple-600 via-pink-600 to-orange-500 hover:from-purple-700 hover:via-pink-700 hover:to-orange-600 text-white text-xs lg:text-sm xl:text-base font-bold rounded-full transition-all hover:scale-105 hover:shadow-xl whitespace-nowrap shadow-purple-500/40">
                 Login
               </Link>
@@ -173,15 +201,27 @@ export default function Home() {
         {mobileMenuOpen && (
           <div className="md:hidden border-t border-purple-200 bg-white/95 backdrop-blur-md shadow-lg animate-in slide-in-from-top duration-300">
             <nav className="px-3 sm:px-4 py-3 space-y-2 max-w-md mx-auto">
-              <Link href="#features" onClick={() => setMobileMenuOpen(false)} className="block py-3 px-4 text-sm font-bold text-gray-700 hover:text-purple-600 hover:bg-purple-50 rounded-lg transition-all touch-target active:scale-95">
+              <a 
+                href="#features" 
+                onClick={(e) => scrollToSection(e, 'features')}
+                className="block py-3 px-4 text-sm font-bold text-gray-700 hover:text-purple-600 hover:bg-purple-50 rounded-lg transition-all touch-target active:scale-95 cursor-pointer"
+              >
                 Features
-              </Link>
-              <Link href="#benefits" onClick={() => setMobileMenuOpen(false)} className="block py-3 px-4 text-sm font-bold text-gray-700 hover:text-purple-600 hover:bg-purple-50 rounded-lg transition-all touch-target active:scale-95">
+              </a>
+              <a 
+                href="#benefits" 
+                onClick={(e) => scrollToSection(e, 'benefits')}
+                className="block py-3 px-4 text-sm font-bold text-gray-700 hover:text-purple-600 hover:bg-purple-50 rounded-lg transition-all touch-target active:scale-95 cursor-pointer"
+              >
                 Benefits
-              </Link>
-              <Link href="#register" onClick={() => setMobileMenuOpen(false)} className="block py-3 px-4 text-sm font-bold text-gray-700 hover:text-purple-600 hover:bg-purple-50 rounded-lg transition-all touch-target active:scale-95">
+              </a>
+              <a 
+                href="#register" 
+                onClick={(e) => scrollToSection(e, 'register')}
+                className="block py-3 px-4 text-sm font-bold text-gray-700 hover:text-purple-600 hover:bg-purple-50 rounded-lg transition-all touch-target active:scale-95 cursor-pointer"
+              >
                 Apply Now
-              </Link>
+              </a>
               <Link href="/login" onClick={() => setMobileMenuOpen(false)} className="block px-4 py-3 bg-gradient-to-r from-purple-600 via-pink-600 to-orange-500 text-white text-sm font-bold rounded-lg text-center hover:from-purple-700 hover:via-pink-700 hover:to-orange-600 transition-all mt-2 touch-target shadow-lg shadow-purple-500/40 active:scale-95">
                 Login
               </Link>
@@ -493,13 +533,8 @@ export default function Home() {
                 
                 {/* Premium Card */}
                 <div className="relative bg-gradient-to-br from-white/5 to-white/10 backdrop-blur-xl rounded-3xl p-8 lg:p-10 border border-white/10 hover:border-white/20 transition-all duration-500 group-hover:translate-y-[-8px] shadow-2xl h-full min-h-[400px] flex flex-col">
-                  {/* Premium Step Badge */}
-                  <div className={`absolute -top-6 -left-6 w-20 h-20 bg-gradient-to-br ${item.color} rounded-2xl flex items-center justify-center shadow-2xl transform group-hover:scale-110 group-hover:rotate-12 transition-all duration-500 border-4 border-gray-900`}>
-                    <span className="text-2xl font-black text-white">{item.step}</span>
-                  </div>
-
                   {/* Icon Container */}
-                  <div className="mt-8 mb-6">
+                  <div className="mb-6">
                     <div className={`inline-flex w-20 h-20 items-center justify-center rounded-2xl bg-gradient-to-br ${item.color} shadow-xl transform group-hover:scale-110 transition-all duration-500`}>
                       <div className="text-white">
                         {item.icon}
@@ -625,7 +660,7 @@ export default function Home() {
       </section>
 
       {/* Features Section - Mobile Optimized */}
-      <section className="py-8 sm:py-10 md:py-12 lg:py-16 bg-white">
+      <section id="features" className="py-8 sm:py-10 md:py-12 lg:py-16 bg-white scroll-mt-16">
         <div className="w-full px-3 sm:px-4 md:px-6 lg:px-8">
           <div className="max-w-7xl mx-auto">
             <div className="grid lg:grid-cols-2 gap-6 sm:gap-8 md:gap-10 lg:gap-12 items-center">
@@ -937,9 +972,6 @@ export default function Home() {
                 }
               ].map((testimonial, i) => (
                 <div key={i} className="group bg-white rounded-3xl p-8 shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border-2 border-white hover:border-purple-200">
-                  {/* Quote Mark */}
-                  <div className="text-6xl text-purple-200 leading-none mb-4">"</div>
-                  
                   {/* Quote Text */}
                   <p className="text-gray-700 leading-relaxed mb-6 text-base">
                     {testimonial.quote}
@@ -989,7 +1021,7 @@ export default function Home() {
       </section>
 
       {/* Why Parents Trust Us - Benefits Section */}
-      <section className="py-16 sm:py-20 md:py-24 bg-white">
+      <section id="benefits" className="py-16 sm:py-20 md:py-24 bg-white scroll-mt-16">
         <div className="w-full px-3 sm:px-4 md:px-6 lg:px-8">
           <div className="max-w-7xl mx-auto">
             <div className="text-center mb-12 md:mb-16">
@@ -1059,7 +1091,7 @@ export default function Home() {
       </section>
 
       {/* CTA Section - Enhanced Book Free Trial */}
-      <section id="trial" className="py-16 sm:py-20 md:py-24 lg:py-28 bg-gradient-to-br from-blue-600 via-purple-600 to-pink-600 relative overflow-hidden safe-bottom">
+      <section id="register" className="py-16 sm:py-20 md:py-24 lg:py-28 bg-gradient-to-br from-blue-600 via-purple-600 to-pink-600 relative overflow-hidden safe-bottom scroll-mt-16">
         {/* Animated Background */}
         <div className="absolute inset-0">
           <div className="absolute top-0 left-0 w-96 h-96 bg-white/10 rounded-full blur-3xl animate-pulse"></div>

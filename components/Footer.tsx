@@ -6,6 +6,21 @@ import { Mail, Phone, MapPin, Heart } from 'lucide-react';
 export default function Footer() {
   const currentYear = new Date().getFullYear();
 
+  const scrollToSection = (e: React.MouseEvent<HTMLAnchorElement>, sectionId: string) => {
+    e.preventDefault();
+    const element = document.getElementById(sectionId);
+    if (element) {
+      const offset = 80; // Adjust for fixed header
+      const elementPosition = element.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.pageYOffset - offset;
+      
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: 'smooth'
+      });
+    }
+  };
+
   return (
     <footer className="bg-gradient-to-br from-gray-900 via-slate-900 to-gray-900 text-white relative overflow-hidden">
       {/* Decorative Background Elements */}
@@ -39,19 +54,31 @@ export default function Footer() {
               <h4 className="text-white font-bold mb-4 text-base">Quick Links</h4>
               <ul className="space-y-3">
                 <li>
-                  <a href="#features" className="text-gray-400 hover:text-white transition-colors text-sm flex items-center gap-2 group">
+                  <a 
+                    href="#features" 
+                    onClick={(e) => scrollToSection(e, 'features')}
+                    className="text-gray-400 hover:text-white transition-colors text-sm flex items-center gap-2 group cursor-pointer"
+                  >
                     <span className="w-1.5 h-1.5 rounded-full bg-purple-500 group-hover:bg-pink-500 transition-colors"></span>
                     Explore Courses
                   </a>
                 </li>
                 <li>
-                  <a href="#benefits" className="text-gray-400 hover:text-white transition-colors text-sm flex items-center gap-2 group">
+                  <a 
+                    href="#benefits" 
+                    onClick={(e) => scrollToSection(e, 'benefits')}
+                    className="text-gray-400 hover:text-white transition-colors text-sm flex items-center gap-2 group cursor-pointer"
+                  >
                     <span className="w-1.5 h-1.5 rounded-full bg-purple-500 group-hover:bg-pink-500 transition-colors"></span>
                     About Us
                   </a>
                 </li>
                 <li>
-                  <a href="#register" className="text-gray-400 hover:text-white transition-colors text-sm flex items-center gap-2 group">
+                  <a 
+                    href="#register" 
+                    onClick={(e) => scrollToSection(e, 'register')}
+                    className="text-gray-400 hover:text-white transition-colors text-sm flex items-center gap-2 group cursor-pointer"
+                  >
                     <span className="w-1.5 h-1.5 rounded-full bg-purple-500 group-hover:bg-pink-500 transition-colors"></span>
                     Free Trial
                   </a>
@@ -76,31 +103,51 @@ export default function Footer() {
               <h4 className="text-white font-bold mb-4 text-base">Popular Courses</h4>
               <ul className="space-y-3">
                 <li>
-                  <a href="#register" className="text-gray-400 hover:text-white transition-colors text-sm flex items-center gap-2 group">
+                  <a 
+                    href="#register" 
+                    onClick={(e) => scrollToSection(e, 'register')}
+                    className="text-gray-400 hover:text-white transition-colors text-sm flex items-center gap-2 group cursor-pointer"
+                  >
                     <span className="w-1.5 h-1.5 rounded-full bg-blue-500 group-hover:bg-purple-500 transition-colors"></span>
                     Art & Drawing
                   </a>
                 </li>
                 <li>
-                  <a href="#register" className="text-gray-400 hover:text-white transition-colors text-sm flex items-center gap-2 group">
+                  <a 
+                    href="#register" 
+                    onClick={(e) => scrollToSection(e, 'register')}
+                    className="text-gray-400 hover:text-white transition-colors text-sm flex items-center gap-2 group cursor-pointer"
+                  >
                     <span className="w-1.5 h-1.5 rounded-full bg-blue-500 group-hover:bg-purple-500 transition-colors"></span>
                     Chess Mastery
                   </a>
                 </li>
                 <li>
-                  <a href="#register" className="text-gray-400 hover:text-white transition-colors text-sm flex items-center gap-2 group">
+                  <a 
+                    href="#register" 
+                    onClick={(e) => scrollToSection(e, 'register')}
+                    className="text-gray-400 hover:text-white transition-colors text-sm flex items-center gap-2 group cursor-pointer"
+                  >
                     <span className="w-1.5 h-1.5 rounded-full bg-blue-500 group-hover:bg-purple-500 transition-colors"></span>
                     Piano Lessons
                   </a>
                 </li>
                 <li>
-                  <a href="#register" className="text-gray-400 hover:text-white transition-colors text-sm flex items-center gap-2 group">
+                  <a 
+                    href="#register" 
+                    onClick={(e) => scrollToSection(e, 'register')}
+                    className="text-gray-400 hover:text-white transition-colors text-sm flex items-center gap-2 group cursor-pointer"
+                  >
                     <span className="w-1.5 h-1.5 rounded-full bg-blue-500 group-hover:bg-purple-500 transition-colors"></span>
                     Public Speaking
                   </a>
                 </li>
                 <li>
-                  <a href="#register" className="text-gray-400 hover:text-white transition-colors text-sm flex items-center gap-2 group">
+                  <a 
+                    href="#register" 
+                    onClick={(e) => scrollToSection(e, 'register')}
+                    className="text-gray-400 hover:text-white transition-colors text-sm flex items-center gap-2 group cursor-pointer"
+                  >
                     <span className="w-1.5 h-1.5 rounded-full bg-blue-500 group-hover:bg-purple-500 transition-colors"></span>
                     View All Courses
                   </a>
