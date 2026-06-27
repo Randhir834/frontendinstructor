@@ -1072,14 +1072,14 @@ export default function Home() {
                   color: "from-pink-500 to-rose-500"
                 }
               ].map((benefit, i) => (
-                <div key={i} className="group relative">
+                <div key={i} className="group relative h-full">
                   <div className={`absolute inset-0 bg-gradient-to-r ${benefit.color} opacity-0 group-hover:opacity-5 rounded-3xl transition-opacity`}></div>
-                  <div className="relative bg-white border-2 border-gray-100 rounded-3xl p-8 hover:border-gray-200 transition-all hover:shadow-lg">
+                  <div className="relative h-full bg-white border-2 border-gray-100 rounded-3xl p-8 hover:border-gray-200 transition-all hover:shadow-lg flex flex-col">
                     <div className={`w-16 h-16 bg-gradient-to-br ${benefit.color} rounded-2xl flex items-center justify-center text-white mb-6 group-hover:scale-110 transition-transform shadow-lg`}>
                       {benefit.icon}
                     </div>
                     <h3 className="text-xl font-bold text-gray-900 mb-3">{benefit.title}</h3>
-                    <p className="text-gray-600 leading-relaxed">{benefit.description}</p>
+                    <p className="text-gray-600 leading-relaxed flex-grow">{benefit.description}</p>
                   </div>
                 </div>
               ))}
