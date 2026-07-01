@@ -213,7 +213,7 @@ export default function ResetPasswordPage() {
       }
       leftSubtitle="Pick a new password to keep your courses and student data safe."
     >
-      <Suspense fallback={<p className="text-center text-sm text-gray-600">Loading…</p>}>
+      <Suspense fallback={null}>
         <ResetPasswordForm />
       </Suspense>
     </InstructorAuthSplitShell>

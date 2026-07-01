@@ -594,17 +594,17 @@ export default function Home() {
 
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6 md:gap-7 lg:gap-8">
               {[
-                { title: "Art & Drawing", age: "Teach Ages 5-15", gradient: "from-rose-500 to-pink-600", icon: "🎨", bgPattern: "from-rose-50 via-pink-50 to-rose-100", description: "Inspire creativity on canvas" },
-                { title: "Chess", age: "Teach Ages 6-16", gradient: "from-slate-700 to-gray-900", icon: "♟️", bgPattern: "from-slate-50 via-gray-50 to-slate-100", description: "Guide strategic thinking" },
-                { title: "Piano", age: "Teach Ages 5-15", gradient: "from-violet-500 to-purple-600", icon: "🎹", bgPattern: "from-violet-50 via-purple-50 to-violet-100", description: "Teach musical excellence" },
-                { title: "Phonics", age: "Teach Ages 4-8", gradient: "from-sky-500 to-blue-600", icon: "🅰️", bgPattern: "from-sky-50 via-blue-50 to-sky-100", description: "Build reading foundations" },
-                { title: "Public Speaking", age: "Teach Ages 7-17", gradient: "from-emerald-500 to-green-600", icon: "🎤", bgPattern: "from-emerald-50 via-green-50 to-emerald-100", description: "Develop confident speakers" },
-                { title: "Abacus", age: "Teach Ages 5-12", gradient: "from-amber-500 to-orange-600", icon: "🧮", bgPattern: "from-amber-50 via-orange-50 to-amber-100", description: "Teach mental math mastery" },
-                { title: "Reader's Club", age: "Teach Ages 6-14", gradient: "from-orange-500 to-red-600", icon: "📚", bgPattern: "from-orange-50 via-red-50 to-orange-100", description: "Cultivate reading passion" },
-                { title: "Toastmaster", age: "Teach Ages 10-17", gradient: "from-teal-500 to-cyan-600", icon: "🗣️", bgPattern: "from-teal-50 via-cyan-50 to-teal-100", description: "Coach future leaders" },
-                { title: "Sholak", age: "Teach Ages 7-15", gradient: "from-indigo-500 to-purple-600", icon: "🎯", bgPattern: "from-indigo-50 via-purple-50 to-indigo-100", description: "Share ancient wisdom" },
-                { title: "Computers", age: "Teach Ages 8-16", gradient: "from-blue-500 to-cyan-600", icon: "💻", bgPattern: "from-blue-50 via-cyan-50 to-blue-100", description: "Shape future coders" },
-                { title: "Rubiks Cube", age: "Teach Ages 6-14", gradient: "from-fuchsia-500 to-pink-600", icon: "🧩", bgPattern: "from-fuchsia-50 via-pink-50 to-fuchsia-100", description: "Train problem solvers" }
+                { title: "Art & Drawing", gradient: "from-rose-500 to-pink-600", icon: "🎨", bgPattern: "from-rose-50 via-pink-50 to-rose-100", description: "Inspire creativity on canvas" },
+                { title: "Chess", gradient: "from-slate-700 to-gray-900", icon: "♟️", bgPattern: "from-slate-50 via-gray-50 to-slate-100", description: "Guide strategic thinking" },
+                { title: "Piano", gradient: "from-violet-500 to-purple-600", icon: "🎹", bgPattern: "from-violet-50 via-purple-50 to-violet-100", description: "Teach musical excellence" },
+                { title: "Phonics", gradient: "from-sky-500 to-blue-600", icon: "🅰️", bgPattern: "from-sky-50 via-blue-50 to-sky-100", description: "Build reading foundations" },
+                { title: "Public Speaking", gradient: "from-emerald-500 to-green-600", icon: "🎤", bgPattern: "from-emerald-50 via-green-50 to-emerald-100", description: "Develop confident speakers" },
+                { title: "Abacus", gradient: "from-amber-500 to-orange-600", icon: "🧮", bgPattern: "from-amber-50 via-orange-50 to-amber-100", description: "Teach mental math mastery" },
+                { title: "Reader's Club", gradient: "from-orange-500 to-red-600", icon: "📚", bgPattern: "from-orange-50 via-red-50 to-orange-100", description: "Cultivate reading passion" },
+                { title: "Toastmaster", gradient: "from-teal-500 to-cyan-600", icon: "🗣️", bgPattern: "from-teal-50 via-cyan-50 to-teal-100", description: "Coach future leaders" },
+                { title: "Sholak", gradient: "from-indigo-500 to-purple-600", icon: "🎯", bgPattern: "from-indigo-50 via-purple-50 to-indigo-100", description: "Share ancient wisdom" },
+                { title: "Computers", gradient: "from-blue-500 to-cyan-600", icon: "💻", bgPattern: "from-blue-50 via-cyan-50 to-blue-100", description: "Shape future coders" },
+                { title: "Rubiks Cube", gradient: "from-fuchsia-500 to-pink-600", icon: "🧩", bgPattern: "from-fuchsia-50 via-pink-50 to-fuchsia-100", description: "Train problem solvers" }
               ].map((course, i) => (
                 <div key={i} className={`group relative bg-gradient-to-br ${course.bgPattern} rounded-3xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-500 hover:-translate-y-3 border-2 border-white hover:border-white/50`}>
                   {/* Animated Gradient Overlay */}
@@ -628,10 +628,6 @@ export default function Home() {
                       <div>
                         <h3 className="font-bold text-gray-900 mb-3 text-xl md:text-2xl leading-tight group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:${course.gradient} transition-all">{course.title}</h3>
                         <p className="text-sm text-gray-600 mb-3">{course.description}</p>
-                        <div className={`inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r ${course.gradient} text-white text-sm font-bold rounded-full shadow-lg`}>
-                          <Users className="w-4 h-4" />
-                          {course.age}
-                        </div>
                       </div>
                       
                       <button className="group/btn inline-flex items-center gap-2 text-sm font-bold text-gray-700 hover:text-gray-900 transition-colors">
@@ -912,7 +908,6 @@ export default function Home() {
               {[
                 { 
                   name: "Prof. Ananya Sharma", 
-                  age: "Art Instructor", 
                   location: "Mumbai", 
                   course: "Top Rated Teacher", 
                   quote: "Teaching on Playfit has been incredibly rewarding! The platform is intuitive, students are engaged, and I love the flexibility to teach on my schedule.",
@@ -922,7 +917,6 @@ export default function Home() {
                 },
                 { 
                   name: "Rohan Patel", 
-                  age: "Chess Master", 
                   location: "Delhi", 
                   course: "Expert Instructor", 
                   quote: "I've taught 200+ students so far! The earning potential is great, and seeing my students win tournaments makes it all worthwhile.",
@@ -932,7 +926,6 @@ export default function Home() {
                 },
                 { 
                   name: "Dr. Priya Reddy", 
-                  age: "Piano Teacher", 
                   location: "Bangalore", 
                   course: "Music Specialist", 
                   quote: "The quality of students and support from Playfit team is exceptional. I can focus on teaching while they handle everything else.",
@@ -942,7 +935,6 @@ export default function Home() {
                 },
                 {
                   name: "Mr. Rajesh Kumar",
-                  age: "Public Speaking Coach",
                   location: "Pune",
                   course: "Senior Instructor",
                   quote: "Best decision I made was joining Playfit! I reach students across India and earn more than my previous teaching job.",
@@ -952,7 +944,6 @@ export default function Home() {
                 },
                 {
                   name: "Ms. Kavita Singh",
-                  age: "Abacus Expert",
                   location: "Hyderabad",
                   course: "Top Performer",
                   quote: "The platform makes online teaching so easy! Live classes, progress tracking, and payment system all work flawlessly.",
@@ -962,7 +953,6 @@ export default function Home() {
                 },
                 {
                   name: "Prof. Amit Verma",
-                  age: "Computer Science Teacher",
                   location: "Kolkata",
                   course: "Tech Instructor",
                   quote: "Teaching coding to kids has never been more fun! Playfit gives me all the tools I need to deliver engaging online classes.",
@@ -991,7 +981,7 @@ export default function Home() {
                     </div>
                     <div className="flex-1 min-w-0">
                       <h4 className="font-bold text-gray-900 text-base truncate">{testimonial.name}</h4>
-                      <p className="text-sm text-gray-600">{testimonial.age} • {testimonial.location}</p>
+                      <p className="text-sm text-gray-600">{testimonial.location}</p>
                       <p className={`text-sm font-semibold bg-gradient-to-r ${testimonial.gradient} bg-clip-text text-transparent`}>
                         {testimonial.course}
                       </p>
