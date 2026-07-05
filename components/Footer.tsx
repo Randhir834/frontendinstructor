@@ -36,7 +36,7 @@ export default function Footer() {
           <div className="mb-10">
             <div className="mb-4">
               <img
-                src="/images/playfit-logo.jpg"
+                src="/logo.jpg"
                 alt="PlayFit"
                 className="h-10 sm:h-12 w-auto object-contain"
               />
@@ -166,9 +166,9 @@ export default function Footer() {
                   </a>
                 </li>
                 <li>
-                  <a href="tel:+1234567890" className="text-gray-400 hover:text-white transition-colors text-sm flex items-start gap-3 group">
+                  <a href="tel:+918910484299" className="text-gray-400 hover:text-white transition-colors text-sm flex items-start gap-3 group">
                     <Phone className="w-5 h-5 text-purple-500 group-hover:text-pink-500 transition-colors flex-shrink-0 mt-0.5" />
-                    <span>+1 (234) 567-890</span>
+                    <span>+91 891 048 4299</span>
                   </a>
                 </li>
                 <li>

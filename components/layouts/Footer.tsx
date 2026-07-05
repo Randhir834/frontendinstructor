@@ -29,7 +29,7 @@ export default function Footer({ handleSmoothScroll }: FooterProps) {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-16 mb-12">
           <div className="space-y-4">
             <Link href="/" className="inline-block">
-              <img src="/images/playfit-logo.jpg" alt="Playfit" className="h-8 w-auto" />
+              <img src="/logo.jpg" alt="Playfit" className="h-8 w-auto" />
             </Link>
             <h3 className="text-base font-semibold text-white pt-2">Your Teaching Platform</h3>
             <p className="text-sm text-gray-400 leading-relaxed">

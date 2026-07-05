@@ -22,11 +22,11 @@ export const metadata: Metadata = {
   },
   icons: {
     icon: [
-      { url: '/favicon.png', sizes: '1254x1254', type: 'image/png' },
-      { url: '/images/playfit-logo.jpg', sizes: '1254x1254', type: 'image/png' }
+      { url: '/logo.jpg', sizes: '1254x1254', type: 'image/jpeg' },
+      { url: '/logo.jpg', sizes: '1254x1254', type: 'image/jpeg' }
     ],
-    shortcut: '/favicon.png',
-    apple: '/favicon.png',
+    shortcut: '/logo.jpg',
+    apple: '/logo.jpg',
   },
 };
 

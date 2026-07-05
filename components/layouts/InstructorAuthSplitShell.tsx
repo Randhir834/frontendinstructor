@@ -13,7 +13,7 @@ export default function InstructorAuthSplitShell({ leftTitle, leftSubtitle, cent
       {/* Mobile-only branding */}
       <div className="md:hidden bg-primary-500 px-6 py-6 text-center flex-shrink-0">
         <img
-          src="/images/playfit-logo.jpg"
+          src="/logo.jpg"
           alt="PlayFit"
           className="h-10 w-auto mx-auto mb-2"
         />
