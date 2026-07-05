@@ -167,11 +167,19 @@ export default function Home() {
                 <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-purple-600 to-pink-600 group-hover:w-full transition-all"></span>
               </a>
               <a 
-                href="#benefits" 
-                onClick={(e) => scrollToSection(e, 'benefits')}
+                href="#about" 
+                onClick={(e) => scrollToSection(e, 'about')}
                 className="text-xs lg:text-sm xl:text-base font-bold text-gray-700 hover:text-purple-600 transition-all hover:scale-105 whitespace-nowrap relative group px-1 lg:px-2 cursor-pointer"
               >
-                Benefits
+                About
+                <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-purple-600 to-pink-600 group-hover:w-full transition-all"></span>
+              </a>
+              <a 
+                href="#contact" 
+                onClick={(e) => scrollToSection(e, 'contact')}
+                className="text-xs lg:text-sm xl:text-base font-bold text-gray-700 hover:text-purple-600 transition-all hover:scale-105 whitespace-nowrap relative group px-1 lg:px-2 cursor-pointer"
+              >
+                Contact
                 <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-purple-600 to-pink-600 group-hover:w-full transition-all"></span>
               </a>
               <a 
@@ -209,11 +217,18 @@ export default function Home() {
                 Features
               </a>
               <a 
-                href="#benefits" 
-                onClick={(e) => scrollToSection(e, 'benefits')}
+                href="#about" 
+                onClick={(e) => scrollToSection(e, 'about')}
                 className="block py-3 px-4 text-sm font-bold text-gray-700 hover:text-purple-600 hover:bg-purple-50 rounded-lg transition-all touch-target active:scale-95 cursor-pointer"
               >
-                Benefits
+                About
+              </a>
+              <a 
+                href="#contact" 
+                onClick={(e) => scrollToSection(e, 'contact')}
+                className="block py-3 px-4 text-sm font-bold text-gray-700 hover:text-purple-600 hover:bg-purple-50 rounded-lg transition-all touch-target active:scale-95 cursor-pointer"
+              >
+                Contact
               </a>
               <a 
                 href="#register" 
@@ -230,136 +245,128 @@ export default function Home() {
         )}
       </header>
 
-      {/* Hero Section - Premium Clean Colorful Design */}
-      <section className="relative bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50 overflow-x-hidden min-h-screen flex items-center">
+      {/* Hero Section - Consistent with Site Design */}
+      <section className="relative bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50 overflow-hidden py-12 sm:py-16 md:py-20 border-b border-gray-200">
         {/* Vibrant Background Elements */}
         <div className="absolute inset-0 overflow-hidden">
           <div className="absolute top-0 right-0 w-64 h-64 sm:w-80 sm:h-80 md:w-96 md:h-96 bg-gradient-to-br from-blue-400/20 to-purple-400/20 rounded-full blur-3xl animate-pulse"></div>
           <div className="absolute bottom-0 left-0 w-64 h-64 sm:w-80 sm:h-80 md:w-96 md:h-96 bg-gradient-to-br from-pink-400/20 to-orange-400/20 rounded-full blur-3xl animate-pulse animation-delay-2000"></div>
         </div>
 
-        <div className="relative w-full max-w-[1800px] mx-auto px-3 xs:px-4 sm:px-6 lg:px-8 xl:px-10 2xl:px-12 py-12 xs:py-16 sm:py-20 md:py-24 lg:py-28 xl:py-32">
-          <div className="grid lg:grid-cols-2 gap-8 sm:gap-10 md:gap-12 lg:gap-8 xl:gap-12 2xl:gap-16 items-center max-w-full">
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid lg:grid-cols-2 gap-8 sm:gap-10 md:gap-12 items-center">
             {/* Left Content */}
-            <div className="space-y-5 xs:space-y-6 sm:space-y-7 md:space-y-8 max-w-2xl lg:max-w-none">
+            <div className="space-y-6 sm:space-y-8">
               {/* Trust Badge */}
-              <div className="inline-flex items-center gap-2 px-3 xs:px-4 py-1.5 xs:py-2 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full shadow-lg shadow-blue-500/25">
-                <Star className="w-3 xs:w-4 h-3 xs:h-4 text-yellow-300 fill-yellow-300" />
-                <span className="text-xs xs:text-sm font-bold text-white">✨ Trusted by 500+ Instructors</span>
+              <div className="inline-flex items-center gap-2 px-3 sm:px-4 py-1.5 sm:py-2 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full shadow-lg shadow-blue-500/25">
+                <Star className="w-3 sm:w-4 h-3 sm:h-4 text-yellow-300 fill-yellow-300" />
+                <span className="text-xs sm:text-sm font-bold text-white">Trusted by 500+ Instructors</span>
               </div>
 
               {/* Main Headline */}
-              <h1 className="text-3xl xs:text-4xl sm:text-5xl md:text-6xl lg:text-6xl xl:text-7xl font-extrabold leading-tight tracking-tight">
-                <span className="block text-gray-900">Transform Your</span>
-                <span className="block text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600">
+              <h1 className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-bold text-gray-900 leading-tight">
+                Transform Your{' '}
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600">
                   Teaching Career
                 </span>
               </h1>
 
               {/* Description */}
-              <p className="text-base xs:text-lg sm:text-xl md:text-xl text-gray-700 leading-relaxed max-w-xl font-medium">
-                Join Playfit as an <span className="text-blue-600 font-bold">instructor</span> and teach live online classes in Art, Chess, Piano, Public Speaking, and more. Share your <span className="text-purple-600 font-bold">expertise</span>.
+              <p className="text-base sm:text-lg lg:text-xl text-gray-700 leading-relaxed font-medium">
+                Join Playfit as an <span className="text-blue-600 font-semibold">instructor</span> and teach live online classes in Art, Chess, Piano, Public Speaking, and more. Share your <span className="text-purple-600 font-semibold">expertise</span>.
               </p>
 
               {/* CTA Buttons */}
-              <div className="flex flex-col xs:flex-row gap-3 xs:gap-4 pt-2">
+              <div className="flex flex-col sm:flex-row gap-4 pt-2">
                 <Link 
                   href="#features"
-                  className="group inline-flex items-center justify-center gap-2 px-6 xs:px-7 sm:px-8 py-3 xs:py-3.5 sm:py-4 bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 text-white text-sm xs:text-base font-bold rounded-xl shadow-lg shadow-purple-500/30 hover:shadow-xl hover:shadow-purple-500/40 transition-all hover:scale-[1.02] touch-target active:scale-95"
+                  className="group inline-flex items-center justify-center gap-2 px-6 sm:px-8 py-3 sm:py-4 bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 text-white text-sm sm:text-base font-semibold rounded-md hover:shadow-xl hover:shadow-purple-500/40 transition-all hover:scale-105"
                 >
                   Explore Benefits
-                  <ArrowRight className="w-4 xs:w-5 h-4 xs:h-5 group-hover:translate-x-1 transition-transform" />
+                  <ArrowRight className="w-4 sm:w-5 h-4 sm:h-5 group-hover:translate-x-1 transition-transform" />
                 </Link>
                 <Link 
                   href="#register"
-                  className="inline-flex items-center justify-center gap-2 px-6 xs:px-7 sm:px-8 py-3 xs:py-3.5 sm:py-4 bg-gradient-to-r from-amber-400 to-orange-500 text-white text-sm xs:text-base font-bold rounded-xl shadow-lg shadow-orange-500/30 hover:shadow-xl hover:shadow-orange-500/40 transition-all hover:scale-[1.02] touch-target active:scale-95"
+                  className="inline-flex items-center justify-center gap-2 px-6 sm:px-8 py-3 sm:py-4 bg-gradient-to-r from-amber-400 to-orange-500 text-white text-sm sm:text-base font-semibold rounded-md hover:shadow-xl hover:shadow-orange-500/40 transition-all hover:scale-105"
                 >
                   Apply Now
                 </Link>
               </div>
 
               {/* Trust Indicators */}
-              <div className="flex items-center gap-3 xs:gap-4 sm:gap-5 md:gap-6 pt-4 flex-wrap">
-                <div className="bg-white/80 backdrop-blur-sm rounded-lg xs:rounded-xl px-3 xs:px-4 py-2 xs:py-3 shadow-md border border-blue-100">
-                  <div className="text-xl xs:text-2xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">500+</div>
-                  <div className="text-xs xs:text-sm text-gray-700 font-medium">Active Instructors</div>
+              <div className="flex items-center gap-4 sm:gap-6 pt-4 flex-wrap">
+                <div className="bg-white/80 backdrop-blur-sm rounded-lg px-4 py-3 shadow-md border border-blue-100">
+                  <div className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">500+</div>
+                  <div className="text-sm text-gray-700 font-medium">Active Instructors</div>
                 </div>
-                <div className="bg-white/80 backdrop-blur-sm rounded-lg xs:rounded-xl px-3 xs:px-4 py-2 xs:py-3 shadow-md border border-purple-100">
-                  <div className="text-xl xs:text-2xl font-bold bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">10K+</div>
-                  <div className="text-xs xs:text-sm text-gray-700 font-medium">Students Taught</div>
+                <div className="bg-white/80 backdrop-blur-sm rounded-lg px-4 py-3 shadow-md border border-purple-100">
+                  <div className="text-2xl font-bold bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">10K+</div>
+                  <div className="text-sm text-gray-700 font-medium">Students Taught</div>
                 </div>
-                <div className="bg-white/80 backdrop-blur-sm rounded-lg xs:rounded-xl px-3 xs:px-4 py-2 xs:py-3 shadow-md border border-orange-100">
+                <div className="bg-white/80 backdrop-blur-sm rounded-lg px-4 py-3 shadow-md border border-orange-100">
                   <div className="flex items-center gap-1 mb-1">
-                    <Star className="w-4 xs:w-5 h-4 xs:h-5 text-yellow-500 fill-yellow-500" />
-                    <span className="text-xl xs:text-2xl font-bold bg-gradient-to-r from-orange-600 to-pink-600 bg-clip-text text-transparent">4.9</span>
+                    <Star className="w-4 sm:w-5 h-4 sm:h-5 text-yellow-500 fill-yellow-500" />
+                    <span className="text-2xl font-bold bg-gradient-to-r from-orange-600 to-pink-600 bg-clip-text text-transparent">4.9</span>
                   </div>
-                  <div className="text-xs xs:text-sm text-gray-700 font-medium">Parent Rating</div>
+                  <div className="text-sm text-gray-700 font-medium">Parent Rating</div>
                 </div>
               </div>
             </div>
 
             {/* Right Content - Feature Cards Grid */}
-            <div className="w-full max-w-3xl mx-auto lg:mx-0 lg:max-w-none">
-              <div className="grid grid-cols-2 gap-3 xs:gap-4 sm:gap-5 md:gap-5 lg:gap-4 xl:gap-5 2xl:gap-6 auto-rows-fr">
+            <div className="w-full">
+              <div className="grid grid-cols-2 gap-4 sm:gap-6">
                 {/* Feature Card 1 - Live Classes */}
-                <div className="group bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl sm:rounded-2xl p-4 xs:p-5 sm:p-6 md:p-6 lg:p-5 xl:p-6 2xl:p-7 shadow-xl shadow-blue-500/25 hover:shadow-2xl hover:shadow-blue-500/40 transition-all duration-300 hover:scale-[1.02] flex flex-col h-full min-h-[180px] sm:min-h-[200px] md:min-h-[220px] lg:min-h-[200px] xl:min-h-[220px]">
-                <div className="w-10 h-10 xs:w-12 xs:h-12 sm:w-14 sm:h-14 bg-white/20 backdrop-blur-sm rounded-lg xs:rounded-xl flex items-center justify-center mb-3 xs:mb-4 group-hover:bg-white/30 group-hover:scale-110 transition-all">
-                  <Users className="w-5 h-5 xs:w-6 xs:h-6 sm:w-7 sm:h-7 text-white" />
-                </div>
-                <h3 className="text-base xs:text-lg sm:text-xl font-bold text-white mb-1.5 xs:mb-2">Live Classes</h3>
-                <p className="text-xs xs:text-sm text-blue-100 mb-3 xs:mb-4 flex-grow">Interactive sessions with expert instructors</p>
-                <div className="flex">
-                  <div className="inline-flex items-center gap-1 xs:gap-1.5 px-2 xs:px-3 py-1 xs:py-1.5 bg-white/20 backdrop-blur-sm rounded-full border border-white/30">
-                    <div className="w-1.5 xs:w-2 h-1.5 xs:h-2 bg-white rounded-full animate-pulse"></div>
-                    <span className="text-[10px] xs:text-xs font-bold text-white whitespace-nowrap">Live Now</span>
+                <div className="group bg-gradient-to-br from-blue-500 to-blue-600 rounded-lg sm:rounded-xl p-4 sm:p-6 shadow-xl shadow-blue-500/25 hover:shadow-2xl hover:shadow-blue-500/40 transition-all duration-300 hover:scale-105 flex flex-col h-full">
+                  <div className="w-10 h-10 sm:w-12 sm:h-12 bg-white/20 backdrop-blur-sm rounded-lg flex items-center justify-center mb-3 sm:mb-4 group-hover:bg-white/30 group-hover:scale-110 transition-all">
+                    <Users className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
+                  </div>
+                  <h3 className="text-base sm:text-lg lg:text-xl font-semibold text-white mb-2">Live Classes</h3>
+                  <p className="text-sm text-blue-100 mb-4 flex-grow leading-relaxed">Interactive sessions with expert instructors</p>
+                  <div className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-white/20 backdrop-blur-sm rounded-full border border-white/30 self-start">
+                    <div className="w-2 h-2 bg-white rounded-full animate-pulse"></div>
+                    <span className="text-xs font-semibold text-white">Live Now</span>
                   </div>
                 </div>
-              </div>
 
-              {/* Feature Card 2 - AI Learning */}
-              <div className="group bg-gradient-to-br from-purple-500 to-purple-600 rounded-xl sm:rounded-2xl p-4 xs:p-5 sm:p-6 md:p-6 lg:p-5 xl:p-6 2xl:p-7 shadow-xl shadow-purple-500/25 hover:shadow-2xl hover:shadow-purple-500/40 transition-all duration-300 hover:scale-[1.02] flex flex-col h-full min-h-[180px] sm:min-h-[200px] md:min-h-[220px] lg:min-h-[200px] xl:min-h-[220px]">
-                <div className="w-10 h-10 xs:w-12 xs:h-12 sm:w-14 sm:h-14 bg-white/20 backdrop-blur-sm rounded-lg xs:rounded-xl flex items-center justify-center mb-3 xs:mb-4 group-hover:bg-white/30 group-hover:scale-110 transition-all">
-                  <Sparkles className="w-5 h-5 xs:w-6 xs:h-6 sm:w-7 sm:h-7 text-white" />
-                </div>
-                <h3 className="text-base xs:text-lg sm:text-xl font-bold text-white mb-1.5 xs:mb-2">AI Learning</h3>
-                <p className="text-xs xs:text-sm text-purple-100 mb-3 xs:mb-4 flex-grow">Personalized recommendations for every student</p>
-                <div className="flex">
-                  <div className="inline-flex items-center gap-1 xs:gap-1.5 px-2 xs:px-3 py-1 xs:py-1.5 bg-white/20 backdrop-blur-sm rounded-full border border-white/30">
-                    <Sparkles className="w-2.5 xs:w-3 h-2.5 xs:h-3 text-white" />
-                    <span className="text-[10px] xs:text-xs font-bold text-white whitespace-nowrap">Smart</span>
+                {/* Feature Card 2 - AI Learning */}
+                <div className="group bg-gradient-to-br from-purple-500 to-purple-600 rounded-lg sm:rounded-xl p-4 sm:p-6 shadow-xl shadow-purple-500/25 hover:shadow-2xl hover:shadow-purple-500/40 transition-all duration-300 hover:scale-105 flex flex-col h-full">
+                  <div className="w-10 h-10 sm:w-12 sm:h-12 bg-white/20 backdrop-blur-sm rounded-lg flex items-center justify-center mb-3 sm:mb-4 group-hover:bg-white/30 group-hover:scale-110 transition-all">
+                    <Sparkles className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
+                  </div>
+                  <h3 className="text-base sm:text-lg lg:text-xl font-semibold text-white mb-2">AI Learning</h3>
+                  <p className="text-sm text-purple-100 mb-4 flex-grow leading-relaxed">Personalized recommendations for every student</p>
+                  <div className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-white/20 backdrop-blur-sm rounded-full border border-white/30 self-start">
+                    <Sparkles className="w-3 h-3 text-white" />
+                    <span className="text-xs font-semibold text-white">Smart</span>
                   </div>
                 </div>
-              </div>
 
-              {/* Feature Card 3 - Practice Tests */}
-              <div className="group bg-gradient-to-br from-pink-500 to-pink-600 rounded-xl sm:rounded-2xl p-4 xs:p-5 sm:p-6 md:p-6 lg:p-5 xl:p-6 2xl:p-7 shadow-xl shadow-pink-500/25 hover:shadow-2xl hover:shadow-pink-500/40 transition-all duration-300 hover:scale-[1.02] flex flex-col h-full min-h-[180px] sm:min-h-[200px] md:min-h-[220px] lg:min-h-[200px] xl:min-h-[220px]">
-                <div className="w-10 h-10 xs:w-12 xs:h-12 sm:w-14 sm:h-14 bg-white/20 backdrop-blur-sm rounded-lg xs:rounded-xl flex items-center justify-center mb-3 xs:mb-4 group-hover:bg-white/30 group-hover:scale-110 transition-all">
-                  <BookOpen className="w-5 h-5 xs:w-6 xs:h-6 sm:w-7 sm:h-7 text-white" />
-                </div>
-                <h3 className="text-base xs:text-lg sm:text-xl font-bold text-white mb-1.5 xs:mb-2">Practice Tests</h3>
-                <p className="text-xs xs:text-sm text-pink-100 mb-3 xs:mb-4 flex-grow">Master skills with interactive exercises</p>
-                <div className="flex">
-                  <div className="inline-flex items-center gap-1 xs:gap-1.5 px-2 xs:px-3 py-1 xs:py-1.5 bg-white/20 backdrop-blur-sm rounded-full border border-white/30">
-                    <Target className="w-2.5 xs:w-3 h-2.5 xs:h-3 text-white" />
-                    <span className="text-[10px] xs:text-xs font-bold text-white whitespace-nowrap">Interactive</span>
+                {/* Feature Card 3 - Practice Tests */}
+                <div className="group bg-gradient-to-br from-pink-500 to-pink-600 rounded-lg sm:rounded-xl p-4 sm:p-6 shadow-xl shadow-pink-500/25 hover:shadow-2xl hover:shadow-pink-500/40 transition-all duration-300 hover:scale-105 flex flex-col h-full">
+                  <div className="w-10 h-10 sm:w-12 sm:h-12 bg-white/20 backdrop-blur-sm rounded-lg flex items-center justify-center mb-3 sm:mb-4 group-hover:bg-white/30 group-hover:scale-110 transition-all">
+                    <BookOpen className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
+                  </div>
+                  <h3 className="text-base sm:text-lg lg:text-xl font-semibold text-white mb-2">Practice Tests</h3>
+                  <p className="text-sm text-pink-100 mb-4 flex-grow leading-relaxed">Master skills with interactive exercises</p>
+                  <div className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-white/20 backdrop-blur-sm rounded-full border border-white/30 self-start">
+                    <Target className="w-3 h-3 text-white" />
+                    <span className="text-xs font-semibold text-white">Interactive</span>
                   </div>
                 </div>
-              </div>
 
-              {/* Feature Card 4 - Progress Tracker */}
-              <div className="group bg-gradient-to-br from-orange-500 to-orange-600 rounded-xl sm:rounded-2xl p-4 xs:p-5 sm:p-6 md:p-6 lg:p-5 xl:p-6 2xl:p-7 shadow-xl shadow-orange-500/25 hover:shadow-2xl hover:shadow-orange-500/40 transition-all duration-300 hover:scale-[1.02] flex flex-col h-full min-h-[180px] sm:min-h-[200px] md:min-h-[220px] lg:min-h-[200px] xl:min-h-[220px]">
-                <div className="w-10 h-10 xs:w-12 xs:h-12 sm:w-14 sm:h-14 bg-white/20 backdrop-blur-sm rounded-lg xs:rounded-xl flex items-center justify-center mb-3 xs:mb-4 group-hover:bg-white/30 group-hover:scale-110 transition-all">
-                  <TrendingUp className="w-5 h-5 xs:w-6 xs:h-6 sm:w-7 sm:h-7 text-white" />
-                </div>
-                <h3 className="text-base xs:text-lg sm:text-xl font-bold text-white mb-1.5 xs:mb-2">Progress Tracker</h3>
-                <p className="text-xs xs:text-sm text-orange-100 mb-3 xs:mb-4 flex-grow">Monitor growth with detailed analytics</p>
-                <div className="flex">
-                  <div className="inline-flex items-center gap-1 xs:gap-1.5 px-2 xs:px-3 py-1 xs:py-1.5 bg-white/20 backdrop-blur-sm rounded-full border border-white/30">
-                    <Trophy className="w-2.5 xs:w-3 h-2.5 xs:h-3 text-white" />
-                    <span className="text-[10px] xs:text-xs font-bold text-white whitespace-nowrap">Track Growth</span>
+                {/* Feature Card 4 - Progress Tracker */}
+                <div className="group bg-gradient-to-br from-orange-500 to-orange-600 rounded-lg sm:rounded-xl p-4 sm:p-6 shadow-xl shadow-orange-500/25 hover:shadow-2xl hover:shadow-orange-500/40 transition-all duration-300 hover:scale-105 flex flex-col h-full">
+                  <div className="w-10 h-10 sm:w-12 sm:h-12 bg-white/20 backdrop-blur-sm rounded-lg flex items-center justify-center mb-3 sm:mb-4 group-hover:bg-white/30 group-hover:scale-110 transition-all">
+                    <TrendingUp className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
+                  </div>
+                  <h3 className="text-base sm:text-lg lg:text-xl font-semibold text-white mb-2">Progress Tracker</h3>
+                  <p className="text-sm text-orange-100 mb-4 flex-grow leading-relaxed">Monitor growth with detailed analytics</p>
+                  <div className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-white/20 backdrop-blur-sm rounded-full border border-white/30 self-start">
+                    <Trophy className="w-3 h-3 text-white" />
+                    <span className="text-xs font-semibold text-white">Track Growth</span>
                   </div>
                 </div>
-              </div>
               </div>
             </div>
           </div>
@@ -1010,7 +1017,91 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Why Parents Trust Us - Benefits Section */}
+      {/* About Playfit & Founders Section */}
+      <section id="about" className="py-16 sm:py-20 md:py-24 bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50 scroll-mt-16 relative overflow-hidden">
+        {/* Background Decoration */}
+        <div className="absolute inset-0">
+          <div className="absolute top-0 right-0 w-96 h-96 bg-gradient-to-br from-blue-400/10 to-purple-400/10 rounded-full blur-3xl"></div>
+          <div className="absolute bottom-0 left-0 w-96 h-96 bg-gradient-to-br from-pink-400/10 to-orange-400/10 rounded-full blur-3xl"></div>
+        </div>
+
+        <div className="relative w-full px-3 sm:px-4 md:px-6 lg:px-8">
+          <div className="max-w-7xl mx-auto">
+            {/* About Playfit Header */}
+            <div className="text-center mb-12 md:mb-16">
+              <div className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-blue-100 to-purple-100 rounded-full mb-6">
+                <Sparkles className="w-5 h-5 text-purple-600" />
+                <span className="text-sm font-semibold text-purple-900">About Playfit</span>
+              </div>
+              <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent mb-6 pb-2 leading-tight">
+                Joyful Learning for Young Minds
+              </h2>
+            </div>
+
+            {/* Mission Statement */}
+            <div className="bg-white/80 backdrop-blur-sm rounded-3xl p-8 md:p-12 shadow-xl mb-12 border-2 border-white">
+              <p className="text-lg md:text-xl text-gray-700 leading-relaxed text-center mb-6">
+                <strong className="text-purple-600">Playfit</strong> is a fun and engaging learning platform designed to help young children build <strong>confidence</strong>, <strong>communication skills</strong>, <strong>reading habits</strong>, <strong>grammar understanding</strong>, and <strong>creative thinking</strong>. Our programs are carefully created for early learners with age-appropriate lessons, interactive activities, games, stories, worksheets, and practice sessions.
+              </p>
+              <p className="text-lg md:text-xl text-gray-700 leading-relaxed text-center mb-6">
+                At Playfit, we believe that <strong className="text-pink-600">learning should be joyful, active, and meaningful</strong>. Each session is designed to make children participate, speak, think, read, and express themselves with confidence. Our child-friendly approach helps learners enjoy every class while developing strong foundational skills for school and life.
+              </p>
+              <p className="text-xl md:text-2xl font-bold text-center bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent">
+                Playfit aims to make every child a confident learner, active thinker, and happy communicator.
+              </p>
+            </div>
+
+            {/* Meet the Founders Section */}
+            <div className="mb-16">
+              <h3 className="text-2xl sm:text-3xl md:text-4xl font-bold text-center text-gray-900 mb-12">
+                Meet the Founders
+              </h3>
+              
+              <div className="grid md:grid-cols-2 gap-8 md:gap-12">
+                {/* Founder 1 - Puja Agarwal */}
+                <div className="bg-white rounded-3xl p-8 md:p-10 shadow-xl hover:shadow-2xl transition-all duration-300 border-2 border-white hover:border-purple-200">
+                  <div className="flex items-center gap-4 mb-6">
+                    <div className="w-20 h-20 bg-gradient-to-br from-purple-500 to-pink-500 rounded-2xl flex items-center justify-center text-4xl shadow-lg">
+                      👩‍🏫
+                    </div>
+                    <div>
+                      <h4 className="text-2xl font-bold text-gray-900">Puja Agarwal</h4>
+                      <p className="text-purple-600 font-semibold">Co-Founder & Lead Educator</p>
+                    </div>
+                  </div>
+                  <p className="text-gray-700 leading-relaxed mb-4">
+                    Puja Agarwal is an experienced educator with <strong>over 15 years of teaching experience</strong> in both online and offline learning environments globally. She is a graduate and holds a <strong>Phonics Teacher's Degree</strong>, with strong expertise in early reading, phonics, language development, and child-friendly teaching methods.
+                  </p>
+                  <p className="text-gray-700 leading-relaxed">
+                    With her passion for education, Puja Agarwal has helped young learners build confidence, improve communication, and develop strong foundational skills through engaging lessons, stories, activities, and interactive learning. Her vision behind Playfit is to create a joyful and meaningful learning space where every child feels encouraged to read, speak, think, and express with confidence.
+                  </p>
+                </div>
+
+                {/* Founder 2 - Sonika Goel */}
+                <div className="bg-white rounded-3xl p-8 md:p-10 shadow-xl hover:shadow-2xl transition-all duration-300 border-2 border-white hover:border-blue-200">
+                  <div className="flex items-center gap-4 mb-6">
+                    <div className="w-20 h-20 bg-gradient-to-br from-blue-500 to-cyan-500 rounded-2xl flex items-center justify-center text-4xl shadow-lg">
+                      👩‍💼
+                    </div>
+                    <div>
+                      <h4 className="text-2xl font-bold text-gray-900">Sonika Goel</h4>
+                      <p className="text-blue-600 font-semibold">Co-Founder & Marketing Lead</p>
+                    </div>
+                  </div>
+                  <p className="text-gray-700 leading-relaxed mb-4">
+                    Sonika Goel is a marketing professional with a <strong>postgraduate degree in Marketing</strong> and <strong>over 10 years of industry experience</strong>. She also holds certifications in Public Speaking and a diploma in French, reflecting her strong communication skills and interest in continuous learning.
+                  </p>
+                  <p className="text-gray-700 leading-relaxed">
+                    With her experience in marketing, communication, and brand development, Sonika brings a creative and strategic vision to Playfit. She is passionate about building engaging learning experiences that are meaningful, accessible, and enjoyable for children. Through Playfit, her vision is to create a trusted learning platform that supports children in becoming confident speakers, curious learners, and independent thinkers.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Why Instructors Choose Us - Benefits Section */}
       <section id="benefits" className="py-16 sm:py-20 md:py-24 bg-white scroll-mt-16">
         <div className="w-full px-3 sm:px-4 md:px-6 lg:px-8">
           <div className="max-w-7xl mx-auto">
@@ -1076,6 +1167,98 @@ export default function Home() {
             </div>
 
 
+          </div>
+        </div>
+      </section>
+
+      {/* Contact Us Section - Contact Info Only */}
+      <section id="contact" className="py-16 sm:py-20 md:py-24 bg-gradient-to-br from-gray-900 via-slate-900 to-gray-900 text-white relative overflow-hidden scroll-mt-16">
+        {/* Background Elements */}
+        <div className="absolute inset-0">
+          <div className="absolute top-0 right-0 w-96 h-96 bg-blue-600/20 rounded-full blur-3xl"></div>
+          <div className="absolute bottom-0 left-0 w-96 h-96 bg-purple-600/20 rounded-full blur-3xl"></div>
+        </div>
+
+        <div className="relative w-full px-3 sm:px-4 md:px-6 lg:px-8">
+          <div className="max-w-7xl mx-auto">
+            {/* Header */}
+            <div className="text-center mb-12 md:mb-16">
+              <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/10 backdrop-blur-sm rounded-full mb-6">
+                <Mail className="w-5 h-5 text-blue-400" />
+                <span className="text-sm font-semibold">Get in Touch</span>
+              </div>
+              <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4">
+                We'd Love to Hear From You!
+              </h2>
+              <p className="text-lg md:text-xl text-gray-300 max-w-3xl mx-auto">
+                Have questions about teaching with Playfit? Need help with your application? Our team is always happy to help.
+              </p>
+            </div>
+
+            {/* Contact Info Grid */}
+            <div className="grid md:grid-cols-3 gap-8 mb-12">
+              {/* Phone */}
+              <div className="bg-white/5 backdrop-blur-sm rounded-3xl p-8 border border-white/10 hover:border-white/20 transition-all hover:bg-white/10">
+                <div className="w-16 h-16 bg-gradient-to-br from-green-500 to-emerald-500 rounded-2xl flex items-center justify-center mb-6 shadow-lg">
+                  <Phone className="w-8 h-8 text-white" />
+                </div>
+                <h3 className="text-xl font-bold mb-3">Phone</h3>
+                <a href="tel:+918910484299" className="text-gray-300 hover:text-green-400 transition-colors text-lg">
+                  +91 8910484299
+                </a>
+              </div>
+
+              {/* Email */}
+              <div className="bg-white/5 backdrop-blur-sm rounded-3xl p-8 border border-white/10 hover:border-white/20 transition-all hover:bg-white/10">
+                <div className="w-16 h-16 bg-gradient-to-br from-blue-500 to-cyan-500 rounded-2xl flex items-center justify-center mb-6 shadow-lg">
+                  <Mail className="w-8 h-8 text-white" />
+                </div>
+                <h3 className="text-xl font-bold mb-3">Email</h3>
+                <a href="mailto:cplayfit@gmail.com" className="text-gray-300 hover:text-blue-400 transition-colors text-lg break-all">
+                  cplayfit@gmail.com
+                </a>
+              </div>
+
+              {/* Visit Us */}
+              <div className="bg-white/5 backdrop-blur-sm rounded-3xl p-8 border border-white/10 hover:border-white/20 transition-all hover:bg-white/10">
+                <div className="w-16 h-16 bg-gradient-to-br from-purple-500 to-pink-500 rounded-2xl flex items-center justify-center mb-6 shadow-lg">
+                  <Target className="w-8 h-8 text-white" />
+                </div>
+                <h3 className="text-xl font-bold mb-3">Visit Us</h3>
+                <p className="text-gray-300 text-base leading-relaxed">
+                  18, Rabindra Sarani, Terita Bazar<br />
+                  Poddar Court, 4th floor, Tiretti<br />
+                  Kolkata, West Bengal 700012
+                </p>
+              </div>
+            </div>
+
+            {/* CTA to Application Form */}
+            <div className="bg-gradient-to-r from-blue-500/10 to-purple-500/10 backdrop-blur-sm rounded-3xl p-8 md:p-12 border border-white/10 text-center">
+              <h3 className="text-2xl md:text-3xl font-bold mb-4">Ready to Join Our Teaching Team?</h3>
+              <p className="text-gray-300 mb-8 max-w-2xl mx-auto">
+                Apply now to become an instructor at Playfit. Share your expertise and inspire students worldwide. Fill out the application form below.
+              </p>
+              <a 
+                href="#register"
+                className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 text-white text-lg font-bold rounded-2xl hover:shadow-2xl hover:shadow-purple-500/50 transition-all hover:scale-105 shadow-xl"
+              >
+                <Sparkles className="w-5 h-5" />
+                Apply to Teach
+                <ArrowRight className="w-5 h-5" />
+              </a>
+            </div>
+
+            {/* Stay Connected */}
+            <div className="mt-16 text-center">
+              <h3 className="text-2xl font-bold mb-4">Join Our Teaching Community</h3>
+              <p className="text-gray-300 mb-8 max-w-2xl mx-auto">
+                Connect with us for teaching opportunities, course updates, training resources, and exciting announcements.
+              </p>
+              <p className="text-lg text-gray-400">
+                At Playfit, we are committed to empowering educators and making online teaching joyful, interactive, and rewarding.
+              </p>
+            </div>
           </div>
         </div>
       </section>
@@ -1300,10 +1483,10 @@ export default function Home() {
                 </h4>
                 <ul className="space-y-1.5 sm:space-y-2">
                   <li><Link href="#features" className="text-xs sm:text-sm text-gray-300 hover:text-purple-400 transition-colors block py-1 hover:translate-x-1 transition-transform">Features</Link></li>
-                  <li><Link href="#benefits" className="text-xs sm:text-sm text-gray-300 hover:text-blue-400 transition-colors block py-1 hover:translate-x-1 transition-transform">Benefits</Link></li>
-                  <li><Link href="#register" className="text-xs sm:text-sm text-gray-300 hover:text-pink-400 transition-colors block py-1 hover:translate-x-1 transition-transform">Apply Now</Link></li>
-                  <li><Link href="/login" className="text-xs sm:text-sm text-gray-300 hover:text-green-400 transition-colors block py-1 hover:translate-x-1 transition-transform">Instructor Login</Link></li>
-                  <li><a href="#register" className="text-xs sm:text-sm text-gray-300 hover:text-amber-400 transition-colors block py-1 hover:translate-x-1 transition-transform">Become an Instructor</a></li>
+                  <li><Link href="#about" className="text-xs sm:text-sm text-gray-300 hover:text-blue-400 transition-colors block py-1 hover:translate-x-1 transition-transform">About Us</Link></li>
+                  <li><Link href="#contact" className="text-xs sm:text-sm text-gray-300 hover:text-pink-400 transition-colors block py-1 hover:translate-x-1 transition-transform">Contact</Link></li>
+                  <li><Link href="#register" className="text-xs sm:text-sm text-gray-300 hover:text-green-400 transition-colors block py-1 hover:translate-x-1 transition-transform">Apply Now</Link></li>
+                  <li><Link href="/login" className="text-xs sm:text-sm text-gray-300 hover:text-amber-400 transition-colors block py-1 hover:translate-x-1 transition-transform">Instructor Login</Link></li>
                 </ul>
               </div>
 
@@ -1316,19 +1499,19 @@ export default function Home() {
                 <ul className="space-y-2 sm:space-y-3">
                   <li className="flex items-start gap-2 text-xs sm:text-sm text-gray-300 group">
                     <Mail className="w-4 h-4 flex-shrink-0 mt-0.5 group-hover:text-blue-400 transition-colors" />
-                    <span className="break-all group-hover:text-blue-400 transition-colors">instructors@playfit.com</span>
+                    <a href="mailto:cplayfit@gmail.com" className="break-all group-hover:text-blue-400 transition-colors">cplayfit@gmail.com</a>
                   </li>
                   <li className="flex items-center gap-2 text-xs sm:text-sm text-gray-300 group">
                     <Phone className="w-4 h-4 flex-shrink-0 group-hover:text-green-400 transition-colors" />
-                    <span className="group-hover:text-green-400 transition-colors">+91 891 048 4299</span>
+                    <a href="tel:+918910484299" className="group-hover:text-green-400 transition-colors">+91 8910484299</a>
                   </li>
                 </ul>
                 
                 {/* CTA Button */}
                 <div className="mt-6">
-                  <Link href="#register" className="inline-flex items-center justify-center gap-2 px-4 py-2.5 bg-gradient-to-r from-blue-500 to-purple-500 hover:from-blue-600 hover:to-purple-600 text-white text-sm font-semibold rounded-full transition-all hover:scale-105 shadow-lg">
-                    <Sparkles className="w-4 h-4" />
-                    Apply to Teach
+                  <Link href="#contact" className="inline-flex items-center justify-center gap-2 px-4 py-2.5 bg-gradient-to-r from-blue-500 to-purple-500 hover:from-blue-600 hover:to-purple-600 text-white text-sm font-semibold rounded-full transition-all hover:scale-105 shadow-lg">
+                    <Mail className="w-4 h-4" />
+                    Contact Us
                   </Link>
                 </div>
               </div>
