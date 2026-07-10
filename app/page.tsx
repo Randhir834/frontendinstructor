@@ -1061,8 +1061,12 @@ export default function Home() {
                 {/* Founder 1 - Puja Agarwal */}
                 <div className="bg-white rounded-3xl p-8 md:p-10 shadow-xl hover:shadow-2xl transition-all duration-300 border-2 border-white hover:border-purple-200">
                   <div className="flex items-center gap-4 mb-6">
-                    <div className="w-20 h-20 bg-gradient-to-br from-purple-500 to-pink-500 rounded-2xl flex items-center justify-center text-4xl shadow-lg">
-                      👩‍🏫
+                    <div className="w-20 h-20 rounded-2xl overflow-hidden shadow-lg ring-4 ring-purple-100">
+                      <img
+                        src="/images/puja.jpg"
+                        alt="Puja Agarwal"
+                        className="w-full h-full object-cover"
+                      />
                     </div>
                     <div>
                       <h4 className="text-2xl font-bold text-gray-900">Puja Agarwal</h4>
@@ -1080,8 +1084,12 @@ export default function Home() {
                 {/* Founder 2 - Sonika Goel */}
                 <div className="bg-white rounded-3xl p-8 md:p-10 shadow-xl hover:shadow-2xl transition-all duration-300 border-2 border-white hover:border-blue-200">
                   <div className="flex items-center gap-4 mb-6">
-                    <div className="w-20 h-20 bg-gradient-to-br from-blue-500 to-cyan-500 rounded-2xl flex items-center justify-center text-4xl shadow-lg">
-                      👩‍💼
+                    <div className="w-20 h-20 rounded-2xl overflow-hidden shadow-lg ring-4 ring-blue-100">
+                      <img
+                        src="/images/sonika.jpg"
+                        alt="Sonika Goel"
+                        className="w-full h-full object-cover"
+                      />
                     </div>
                     <div>
                       <h4 className="text-2xl font-bold text-gray-900">Sonika Goel</h4>
