@@ -9,7 +9,15 @@ export interface InstructorRegistrationData {
 
 export const instructorRegistrationService = {
   registerInstructor: async (data: InstructorRegistrationData) => {
-    const response = await api.post('/instructor-registrations', data);
+    // Map frontend field names to backend field names
+    const backendData = {
+      fullName: data.name,
+      qualification: data.qualification,
+      subjectExpertise: data.subject,
+      phoneNumber: data.phone,
+      role: 'instructor'
+    };
+    const response = await api.post('/instructor-registrations', backendData);
     return response.data;
   },
 };
