@@ -960,7 +960,7 @@ export default function Home() {
                 },
                 {
                   name: "Prof. Amit Verma",
-                  location: "Kolkata",
+                  location: "India",
                   course: "Tech Instructor",
                   quote: "Teaching coding to kids has never been more fun! Playfit gives me all the tools I need to deliver engaging online classes.",
                   gradient: "from-teal-500 to-cyan-600",
