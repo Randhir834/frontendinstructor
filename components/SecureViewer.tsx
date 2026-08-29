@@ -134,6 +134,8 @@ export default function SecureViewer({
     const isImage = mimeType.startsWith('image/');
     const isPdf = mimeType === 'application/pdf';
     const isVideo = mimeType.startsWith('video/');
+    const isDoc = mimeType.includes('word') || mimeType.includes('document');
+    const isPpt = mimeType.includes('powerpoint') || mimeType.includes('presentation');
 
     if (isImage) {
       return (
@@ -206,6 +208,40 @@ export default function SecureViewer({
               userSelect: 'none',
               WebkitUserSelect: 'none'
             }}
+            onContextMenu={(e) => e.preventDefault()}
+          />
+        </div>
+      );
+    }
+
+    // For DOC/DOCX/PPT/PPTX - Use Google Docs Viewer (no download/print buttons)
+    if (isDoc || isPpt) {
+      const encodedUrl = encodeURIComponent(secureUrl);
+      
+      // Google Docs Viewer - Most secure option, no download/print by default
+      const viewerUrl = `https://docs.google.com/gview?url=${encodedUrl}&embedded=true`;
+      
+      return (
+        <div className="relative w-full h-full">
+          {/* Invisible overlay to prevent interactions with iframe controls */}
+          <div 
+            className="absolute inset-0 z-10 pointer-events-none"
+            style={{ 
+              userSelect: 'none',
+              WebkitUserSelect: 'none',
+              WebkitTouchCallout: 'none'
+            }}
+          />
+          
+          <iframe
+            src={viewerUrl}
+            className="w-full h-full border-0"
+            style={{ 
+              userSelect: 'none',
+              pointerEvents: 'auto'
+            }}
+            title={materialTitle}
+            sandbox="allow-same-origin allow-scripts"
             onContextMenu={(e) => e.preventDefault()}
           />
         </div>

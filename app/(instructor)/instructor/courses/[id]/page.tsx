@@ -170,21 +170,25 @@ export default function InstructorCourseDetailPage({ params }: { params: Promise
 
   const handleViewMaterial = async (material: CourseMaterial) => {
     try {
-      const tokenResponse = await courseMaterialService.getViewingToken(material.id);
-      const urlResponse = await courseMaterialService.getSecureUrl(tokenResponse.token);
+      // Check if it's a DOC/DOCX/PPT/PPTX file
+      const isDocument = ['doc', 'docx', 'document'].some(type => 
+        material.file_type.includes(type) || material.mime_type?.includes('word') || material.mime_type?.includes('document')
+      );
+      const isPresentation = ['ppt', 'pptx', 'presentation'].some(type => 
+        material.file_type.includes(type) || material.mime_type?.includes('powerpoint') || material.mime_type?.includes('presentation')
+      );
       
-      // For DOC/DOCX/PPT/PPTX files, use online viewer
-      if (['ppt', 'document'].includes(material.file_type)) {
-        const fileUrl = encodeURIComponent(urlResponse.secureUrl);
-        
-        // Use Microsoft Office Online Viewer for better compatibility
-        // This works for both PPT and DOC files
-        const viewerUrl = `https://view.officeapps.live.com/op/view.aspx?src=${fileUrl}`;
+      // Use secure viewer for DOC/PPT files - OPEN IN NEW TAB
+      if (isDocument || isPresentation) {
+        // Build URL with query parameters for the secure viewer page
+        const viewerUrl = `/secure-viewer?materialId=${material.id}&title=${encodeURIComponent(material.title)}&fileType=${encodeURIComponent(material.file_type)}&mimeType=${encodeURIComponent(material.mime_type || '')}`;
         
         // Open in new tab
-        window.open(viewerUrl, '_blank');
+        window.open(viewerUrl, '_blank', 'noopener,noreferrer');
       } else {
-        // For PDF and other files, open directly
+        // For PDF and other files, use the old method (will open in new tab)
+        const tokenResponse = await courseMaterialService.getViewingToken(material.id);
+        const urlResponse = await courseMaterialService.getSecureUrl(tokenResponse.token);
         window.open(urlResponse.secureUrl, '_blank');
       }
     } catch (error) {
