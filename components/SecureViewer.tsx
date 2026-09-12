@@ -1,15 +1,31 @@
 'use client';
 
 import { useEffect, useState, useCallback, useRef } from 'react';
-import { X, Loader2, RefreshCw, AlertCircle } from 'lucide-react';
+import { X, Loader2, RefreshCw, AlertCircle, Edit3, Trash2, Download } from 'lucide-react';
 import Button from './ui/Button';
 import { courseMaterialService } from '@/services/courseMaterialService';
+import dynamic from 'next/dynamic';
+
+// Dynamically import PDF viewer to avoid SSR issues
+const PDFViewer = dynamic(() => import('./PDFViewer'), { ssr: false });
 
 interface SecureViewerProps {
   materialId: number;
   materialTitle: string;
   mimeType: string;
   onClose: () => void;
+}
+
+export interface Annotation {
+  id: string;
+  pageNumber: number;
+  x: number;
+  y: number;
+  width: number;
+  height: number;
+  text: string;
+  color: string;
+  createdAt: Date;
 }
 
 export default function SecureViewer({ 
@@ -22,8 +38,26 @@ export default function SecureViewer({
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [tokenExpiry, setTokenExpiry] = useState<Date | null>(null);
+  const [annotations, setAnnotations] = useState<Annotation[]>([]);
+  const [isAnnotating, setIsAnnotating] = useState(false);
+  const [selectedAnnotation, setSelectedAnnotation] = useState<string | null>(null);
+  const [userName, setUserName] = useState<string>('');
   const contentRef = useRef<HTMLDivElement>(null);
   const refreshTimerRef = useRef<NodeJS.Timeout | null>(null);
+
+  // Get user info for watermark
+  useEffect(() => {
+    const token = localStorage.getItem('token');
+    if (token) {
+      try {
+        const payload = JSON.parse(atob(token.split('.')[1]));
+        setUserName(payload.name || payload.email || 'Instructor');
+      } catch (error) {
+        console.error('Failed to parse token:', error);
+        setUserName('Instructor');
+      }
+    }
+  }, []);
 
   // Disable context menu, copy, and other interactions
   useEffect(() => {
@@ -38,15 +72,27 @@ export default function SecureViewer({
     };
 
     const preventKeyboard = (e: KeyboardEvent) => {
-      // Prevent Ctrl+C, Cmd+C, Ctrl+S, Cmd+S, Print Screen
+      // Prevent Ctrl+C, Cmd+C, Ctrl+S, Cmd+S, Ctrl+P, Cmd+P, Print Screen
       if (
         (e.ctrlKey || e.metaKey) && (e.key === 'c' || e.key === 's' || e.key === 'p') ||
         e.key === 'PrintScreen'
       ) {
         e.preventDefault();
         if (e.key === 'PrintScreen') {
+          alert('Screenshots are not allowed for this material.');
           courseMaterialService.reportScreenshotAttempt(materialId);
         }
+        if (e.key === 'p') {
+          alert('Printing is not allowed for this material.');
+        }
+      }
+    };
+
+    // Detect when window loses focus (possible screenshot attempt)
+    const handleVisibilityChange = () => {
+      if (document.hidden) {
+        // Log potential screenshot attempt
+        console.warn('Window lost focus - possible screenshot attempt');
       }
     };
 
@@ -55,6 +101,7 @@ export default function SecureViewer({
     document.addEventListener('copy', preventCopy);
     document.addEventListener('cut', preventCopy);
     document.addEventListener('keydown', preventKeyboard);
+    document.addEventListener('visibilitychange', handleVisibilityChange);
 
     // Add drag prevention
     const preventDrag = (e: DragEvent) => {
@@ -62,12 +109,28 @@ export default function SecureViewer({
     };
     document.addEventListener('dragstart', preventDrag);
 
+    // Disable developer tools detection (basic)
+    const detectDevTools = (e: KeyboardEvent) => {
+      // F12, Ctrl+Shift+I, Cmd+Option+I
+      if (
+        e.key === 'F12' ||
+        (e.ctrlKey && e.shiftKey && e.key === 'I') ||
+        (e.metaKey && e.altKey && e.key === 'I')
+      ) {
+        e.preventDefault();
+        alert('Developer tools are disabled for security.');
+      }
+    };
+    document.addEventListener('keydown', detectDevTools);
+
     return () => {
       document.removeEventListener('contextmenu', preventDefaults);
       document.removeEventListener('copy', preventCopy);
       document.removeEventListener('cut', preventCopy);
       document.removeEventListener('keydown', preventKeyboard);
+      document.removeEventListener('visibilitychange', handleVisibilityChange);
       document.removeEventListener('dragstart', preventDrag);
+      document.removeEventListener('keydown', detectDevTools);
     };
   }, [materialId]);
 
@@ -128,6 +191,34 @@ export default function SecureViewer({
     fetchSecureUrl();
   };
 
+  // Annotation handlers
+  const addAnnotation = (annotation: Omit<Annotation, 'id' | 'createdAt'>) => {
+    const newAnnotation: Annotation = {
+      ...annotation,
+      id: `ann-${Date.now()}-${Math.random()}`,
+      createdAt: new Date(),
+    };
+    setAnnotations(prev => [...prev, newAnnotation]);
+  };
+
+  const updateAnnotation = (id: string, text: string) => {
+    setAnnotations(prev => prev.map(ann => 
+      ann.id === id ? { ...ann, text } : ann
+    ));
+  };
+
+  const deleteAnnotation = (id: string) => {
+    setAnnotations(prev => prev.filter(ann => ann.id !== id));
+    if (selectedAnnotation === id) {
+      setSelectedAnnotation(null);
+    }
+  };
+
+  const toggleAnnotationMode = () => {
+    setIsAnnotating(!isAnnotating);
+    setSelectedAnnotation(null);
+  };
+
   const renderContent = () => {
     if (!secureUrl) return null;
 
@@ -136,6 +227,20 @@ export default function SecureViewer({
     const isVideo = mimeType.startsWith('video/');
     const isDoc = mimeType.includes('word') || mimeType.includes('document');
     const isPpt = mimeType.includes('powerpoint') || mimeType.includes('presentation');
+
+    // Use custom PDF viewer with annotation support
+    if (isPdf) {
+      return (
+        <PDFViewer
+          url={secureUrl}
+          annotations={annotations}
+          isAnnotating={isAnnotating}
+          selectedAnnotation={selectedAnnotation}
+          onAddAnnotation={addAnnotation}
+          onSelectAnnotation={setSelectedAnnotation}
+        />
+      );
+    }
 
     if (isImage) {
       return (
@@ -168,40 +273,13 @@ export default function SecureViewer({
       );
     }
 
-    if (isPdf) {
-      return (
-        <div className="relative w-full h-full">
-          {/* Protection overlay */}
-          <div 
-            className="absolute inset-0 z-10" 
-            style={{ 
-              pointerEvents: 'auto',
-              userSelect: 'none',
-              WebkitUserSelect: 'none',
-              WebkitTouchCallout: 'none'
-            }}
-            onContextMenu={(e) => e.preventDefault()}
-          />
-          <iframe
-            src={`${secureUrl}#toolbar=0&navpanes=0&scrollbar=1`}
-            className="w-full h-full border-0"
-            style={{ 
-              pointerEvents: 'auto',
-              userSelect: 'none'
-            }}
-            title={materialTitle}
-          />
-        </div>
-      );
-    }
-
     if (isVideo) {
       return (
         <div className="relative w-full h-full flex items-center justify-center bg-[#1E293B]">
           <video
             src={secureUrl}
             controls
-            controlsList="nodownload nofullscreen"
+            controlsList="nodownload nofullscreen noremoteplayback"
             disablePictureInPicture
             className="max-w-full max-h-full"
             style={{ 
@@ -289,6 +367,21 @@ export default function SecureViewer({
           )}
         </div>
         <div className="flex items-center gap-2 ml-4">
+          {mimeType === 'application/pdf' && (
+            <Button
+              variant={isAnnotating ? "gradient" : "outline"}
+              size="sm"
+              onClick={toggleAnnotationMode}
+              className={`flex items-center gap-2 ${
+                isAnnotating 
+                  ? 'bg-gradient-to-r from-blue-500 to-cyan-500 text-white border-none' 
+                  : 'bg-[#334155] text-white border-[#475569] hover:bg-[#475569]'
+              }`}
+            >
+              <Edit3 className="size-4" />
+              {isAnnotating ? 'Exit Annotate' : 'Annotate'}
+            </Button>
+          )}
           <Button
             variant="outline"
             size="sm"
@@ -313,6 +406,34 @@ export default function SecureViewer({
 
       {/* Content Area */}
       <div className="flex-1 relative overflow-hidden" ref={contentRef}>
+        {/* Watermark Overlay */}
+        <div className="absolute inset-0 pointer-events-none z-30 overflow-hidden">
+          <div className="absolute inset-0" style={{
+            backgroundImage: `repeating-linear-gradient(
+              45deg,
+              transparent,
+              transparent 200px,
+              rgba(255, 255, 255, 0.03) 200px,
+              rgba(255, 255, 255, 0.03) 400px
+            )`,
+          }}>
+            {[...Array(20)].map((_, i) => (
+              <div
+                key={i}
+                className="absolute text-white/10 text-xs font-bold select-none"
+                style={{
+                  top: `${(i * 100) % 800}px`,
+                  left: `${(i * 150) % 1200}px`,
+                  transform: 'rotate(-45deg)',
+                  whiteSpace: 'nowrap',
+                }}
+              >
+                {userName} • {new Date().toLocaleString()} • {materialTitle.slice(0, 20)}
+              </div>
+            ))}
+          </div>
+        </div>
+
         {loading && (
           <div className="absolute inset-0 flex items-center justify-center bg-[#1E293B]">
             <div className="text-center">
@@ -337,17 +458,75 @@ export default function SecureViewer({
         )}
 
         {!loading && !error && renderContent()}
+
+        {/* Annotation Sidebar */}
+        {mimeType === 'application/pdf' && annotations.length > 0 && (
+          <div className="absolute right-0 top-0 bottom-0 w-80 bg-[#1E293B] border-l border-[#334155] overflow-y-auto">
+            <div className="p-4">
+              <h3 className="text-white font-semibold mb-4 flex items-center gap-2">
+                <Edit3 className="size-4" />
+                Annotations ({annotations.length})
+              </h3>
+              <div className="space-y-3">
+                {annotations.map(annotation => (
+                  <div
+                    key={annotation.id}
+                    className={`p-3 rounded-lg border cursor-pointer transition-all ${
+                      selectedAnnotation === annotation.id
+                        ? 'bg-blue-900/30 border-blue-500'
+                        : 'bg-[#334155] border-[#475569] hover:border-blue-400'
+                    }`}
+                    onClick={() => setSelectedAnnotation(annotation.id)}
+                  >
+                    <div className="flex items-start justify-between gap-2 mb-2">
+                      <span className="text-xs text-[#94A3B8]">Page {annotation.pageNumber}</span>
+                      <button
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          if (confirm('Delete this annotation?')) {
+                            deleteAnnotation(annotation.id);
+                          }
+                        }}
+                        className="text-red-400 hover:text-red-300"
+                      >
+                        <Trash2 className="size-3" />
+                      </button>
+                    </div>
+                    <textarea
+                      value={annotation.text}
+                      onChange={(e) => updateAnnotation(annotation.id, e.target.value)}
+                      onClick={(e) => e.stopPropagation()}
+                      className="w-full bg-[#1E293B] text-white text-sm p-2 rounded border border-[#475569] focus:border-blue-500 focus:outline-none resize-none"
+                      rows={3}
+                      placeholder="Add your notes..."
+                    />
+                    <p className="text-xs text-[#94A3B8] mt-2">
+                      {annotation.createdAt.toLocaleString()}
+                    </p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        )}
       </div>
 
       {/* Footer - Protection Notice */}
       <div className="bg-[#1E293B] px-4 py-2 border-t border-[#334155]">
-        <p className="text-xs text-[#94A3B8] text-center">
-          🔒 This material is protected. Download, copy, and sharing are disabled.
-        </p>
+        <div className="flex items-center justify-between">
+          <p className="text-xs text-[#94A3B8]">
+            🔒 This material is protected. Download, copy, and sharing are disabled.
+          </p>
+          {mimeType === 'application/pdf' && isAnnotating && (
+            <p className="text-xs text-blue-400 font-medium">
+              Click anywhere on the PDF to add annotations
+            </p>
+          )}
+        </div>
       </div>
 
       {/* CSS for additional protection */}
-      <style jsx>{`
+      <style jsx global>{`
         * {
           user-select: none !important;
           -webkit-user-select: none !important;
@@ -358,6 +537,21 @@ export default function SecureViewer({
         img {
           pointer-events: none !important;
           -webkit-user-drag: none !important;
+        }
+        canvas {
+          -webkit-user-drag: none !important;
+          user-select: none !important;
+        }
+        /* Disable print */
+        @media print {
+          body {
+            display: none !important;
+          }
+        }
+        /* Hide print button in PDF viewers */
+        embed[type="application/pdf"],
+        object[type="application/pdf"] {
+          pointer-events: none !important;
         }
       `}</style>
     </div>
