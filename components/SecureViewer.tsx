@@ -228,17 +228,25 @@ export default function SecureViewer({
     const isDoc = mimeType.includes('word') || mimeType.includes('document');
     const isPpt = mimeType.includes('powerpoint') || mimeType.includes('presentation');
 
-    // Use custom PDF viewer with annotation support
+    // Use Google Docs Viewer for PDFs (same as PPT) - no download/print buttons
     if (isPdf) {
+      const encodedUrl = encodeURIComponent(secureUrl);
+      const viewerUrl = `https://docs.google.com/gview?url=${encodedUrl}&embedded=true`;
+      
       return (
-        <PDFViewer
-          url={secureUrl}
-          annotations={annotations}
-          isAnnotating={isAnnotating}
-          selectedAnnotation={selectedAnnotation}
-          onAddAnnotation={addAnnotation}
-          onSelectAnnotation={setSelectedAnnotation}
-        />
+        <div className="relative w-full h-full">
+          <iframe
+            src={viewerUrl}
+            className="w-full h-full border-0"
+            style={{ 
+              userSelect: 'none',
+              pointerEvents: 'auto'
+            }}
+            title={materialTitle}
+            sandbox="allow-same-origin allow-scripts"
+            onContextMenu={(e) => e.preventDefault()}
+          />
+        </div>
       );
     }
 
