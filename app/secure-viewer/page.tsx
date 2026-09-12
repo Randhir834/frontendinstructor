@@ -2,14 +2,6 @@
 
 import { useEffect, useState, useCallback, useRef, Suspense } from 'react';
 import { useSearchParams, useRouter } from 'next/navigation';
-import { Loader2, AlertCircle } from 'lucide-react';
-import { courseMaterialService } from '@/services/courseMaterialService';
-import SecureViewer from '@/components/SecureViewer';
-
-'use client';
-
-import { useEffect, useState, useCallback, useRef, Suspense } from 'react';
-import { useSearchParams, useRouter } from 'next/navigation';
 import { Loader2, AlertCircle, ZoomIn, ZoomOut, Pen, Eraser, Undo, Redo, Trash2 } from 'lucide-react';
 import { courseMaterialService } from '@/services/courseMaterialService';
 
