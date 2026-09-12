@@ -170,7 +170,8 @@ export default function InstructorCourseDetailPage({ params }: { params: Promise
 
   const handleViewMaterial = async (material: CourseMaterial) => {
     try {
-      // Check if it's a DOC/DOCX/PPT/PPTX file
+      // Check file type
+      const isPdf = material.file_type.toLowerCase().includes('pdf') || material.mime_type?.includes('pdf');
       const isDocument = ['doc', 'docx', 'document'].some(type => 
         material.file_type.includes(type) || material.mime_type?.includes('word') || material.mime_type?.includes('document')
       );
@@ -178,15 +179,15 @@ export default function InstructorCourseDetailPage({ params }: { params: Promise
         material.file_type.includes(type) || material.mime_type?.includes('powerpoint') || material.mime_type?.includes('presentation')
       );
       
-      // Use secure viewer for DOC/PPT files - OPEN IN NEW TAB
-      if (isDocument || isPresentation) {
+      // Use secure viewer for PDF/DOC/PPT files - OPEN IN NEW TAB
+      if (isPdf || isDocument || isPresentation) {
         // Build URL with query parameters for the secure viewer page
         const viewerUrl = `/secure-viewer?materialId=${material.id}&title=${encodeURIComponent(material.title)}&fileType=${encodeURIComponent(material.file_type)}&mimeType=${encodeURIComponent(material.mime_type || '')}`;
         
         // Open in new tab
         window.open(viewerUrl, '_blank', 'noopener,noreferrer');
       } else {
-        // For PDF and other files, use the old method (will open in new tab)
+        // For other files (images, videos), use direct URL (still secure)
         const tokenResponse = await courseMaterialService.getViewingToken(material.id);
         const urlResponse = await courseMaterialService.getSecureUrl(tokenResponse.token);
         window.open(urlResponse.secureUrl, '_blank');
