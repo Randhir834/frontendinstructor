@@ -4,6 +4,7 @@ import { useEffect, useState, use } from 'react';
 import { Calendar, BookOpen, User, Mail, Phone, GraduationCap, Video, Loader2, Clock, Plus, X, Minus, CheckCircle } from 'lucide-react';
 import { enrollmentService } from '@/services/enrollmentService';
 import { liveClassService } from '@/services/liveClassService';
+import { lessonCompletionService } from '@/services/lessonCompletionService';
 import type { StudentEnrolledCourse } from '@/types';
 
 interface StudentInfo {
@@ -63,26 +64,46 @@ export default function StudentDetailPage({ params }: { params: Promise<{ id: st
   };
 
   const handleUpdateProgress = async (enrollmentId: number, currentCompleted: number, increment: boolean, totalLessons: number) => {
-    const newCompleted = increment ? currentCompleted + 1 : currentCompleted - 1;
-    
-    // Validate bounds
-    if (newCompleted < 0 || newCompleted > totalLessons) {
-      return;
-    }
-
     try {
       setUpdatingProgress(enrollmentId);
       
-      await enrollmentService.updateCompletedLessons(enrollmentId, newCompleted);
-      
-      // Update local state
-      setCourses(prevCourses => 
-        prevCourses.map(course => 
-          course.enrollment_id === enrollmentId 
-            ? { ...course, completed_lessons: newCompleted }
-            : course
-        )
-      );
+      if (increment) {
+        // Mark the next uncompleted lesson as complete
+        const nextLessonNumber = currentCompleted + 1;
+        if (nextLessonNumber > totalLessons) {
+          alert('All lessons are already completed!');
+          return;
+        }
+        
+        await lessonCompletionService.markComplete(enrollmentId, nextLessonNumber);
+        
+        // Update local state
+        setCourses(prevCourses => 
+          prevCourses.map(course => 
+            course.enrollment_id === enrollmentId 
+              ? { ...course, completed_lessons: currentCompleted + 1 }
+              : course
+          )
+        );
+      } else {
+        // Unmark the last completed lesson
+        if (currentCompleted === 0) {
+          alert('No lessons to unmark!');
+          return;
+        }
+        
+        const lastLessonNumber = currentCompleted;
+        await lessonCompletionService.unmarkComplete(enrollmentId, lastLessonNumber);
+        
+        // Update local state
+        setCourses(prevCourses => 
+          prevCourses.map(course => 
+            course.enrollment_id === enrollmentId 
+              ? { ...course, completed_lessons: currentCompleted - 1 }
+              : course
+          )
+        );
+      }
     } catch (error: any) {
       console.error('Error updating progress:', error);
       alert(error.response?.data?.error || 'Failed to update lesson progress');
