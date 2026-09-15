@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { Calendar, Search, SlidersHorizontal, Loader2, CalendarX, AlertCircle } from 'lucide-react';
+import { Calendar, Search, Loader2, CalendarX, AlertCircle } from 'lucide-react';
 import { scheduledClassService } from '@/services/scheduledClassService';
 import { ScheduledClass } from '@/types';
 import ScheduledClassCard from '@/components/ui/ScheduledClassCard';
@@ -17,7 +17,6 @@ export default function ScheduledClassesPage() {
   // Filter states
   const [searchTerm, setSearchTerm] = useState('');
   const [statusFilter, setStatusFilter] = useState<'all' | 'upcoming' | 'live' | 'completed'>('all');
-  const [showFilters, setShowFilters] = useState(false);
 
   // Fetch scheduled classes
   const fetchScheduledClasses = async () => {
@@ -185,82 +184,65 @@ export default function ScheduledClassesPage() {
         </div>
       </div>
 
-      {/* Filters */}
+      {/* Search and Filters */}
       <div className="bg-white rounded-xl shadow-md border border-gray-200 p-4 sm:p-5">
-        <div className="flex flex-col sm:flex-row gap-3">
-          {/* Search */}
-          <div className="flex-1">
-            <div className="relative">
-              <Search className="absolute left-3 top-1/2 -translate-y-1/2 size-5 text-gray-400" />
-              <Input
-                type="text"
-                placeholder="Search by class or course name..."
-                value={searchTerm}
-                onChange={(e) => setSearchTerm(e.target.value)}
-                className="pl-10 w-full"
-              />
-            </div>
+        {/* Search */}
+        <div className="mb-4">
+          <div className="relative">
+            <Search className="absolute left-3 top-1/2 -translate-y-1/2 size-5 text-gray-400" />
+            <Input
+              type="text"
+              placeholder="Search by class or course name..."
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+              className="pl-10 w-full"
+            />
           </div>
-
-          {/* Toggle Filters Button */}
-          <Button
-            variant="outline"
-            size="md"
-            onClick={() => setShowFilters(!showFilters)}
-            className="w-full sm:w-auto sm:min-w-[120px]"
-          >
-            <SlidersHorizontal className="size-4 mr-2" />
-            Filters
-          </Button>
         </div>
 
-        {/* Advanced Filters */}
-        {showFilters && (
-          <div className="mt-4 pt-4 border-t border-gray-200">
-            <div className="grid grid-cols-1 xs:grid-cols-2 sm:grid-cols-4 gap-3">
-              <button
-                onClick={() => setStatusFilter('all')}
-                className={`px-4 py-2.5 rounded-lg font-medium text-sm transition-all ${
-                  statusFilter === 'all'
-                    ? 'bg-gradient-to-r from-purple-500 to-blue-500 text-white shadow-lg'
-                    : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
-                }`}
-              >
-                All Classes
-              </button>
-              <button
-                onClick={() => setStatusFilter('upcoming')}
-                className={`px-4 py-2.5 rounded-lg font-medium text-sm transition-all ${
-                  statusFilter === 'upcoming'
-                    ? 'bg-gradient-to-r from-purple-500 to-indigo-500 text-white shadow-lg'
-                    : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
-                }`}
-              >
-                Upcoming
-              </button>
-              <button
-                onClick={() => setStatusFilter('live')}
-                className={`px-4 py-2.5 rounded-lg font-medium text-sm transition-all ${
-                  statusFilter === 'live'
-                    ? 'bg-gradient-to-r from-red-500 to-pink-500 text-white shadow-lg'
-                    : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
-                }`}
-              >
-                Live Now
-              </button>
-              <button
-                onClick={() => setStatusFilter('completed')}
-                className={`px-4 py-2.5 rounded-lg font-medium text-sm transition-all ${
-                  statusFilter === 'completed'
-                    ? 'bg-gradient-to-r from-gray-500 to-gray-600 text-white shadow-lg'
-                    : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
-                }`}
-              >
-                Completed
-              </button>
-            </div>
-          </div>
-        )}
+        {/* Status Filter Buttons - Always Visible */}
+        <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+          <button
+            onClick={() => setStatusFilter('all')}
+            className={`px-4 py-2.5 rounded-lg font-medium text-sm transition-all ${
+              statusFilter === 'all'
+                ? 'bg-gradient-to-r from-purple-500 to-blue-500 text-white shadow-lg'
+                : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+            }`}
+          >
+            All Classes
+          </button>
+          <button
+            onClick={() => setStatusFilter('upcoming')}
+            className={`px-4 py-2.5 rounded-lg font-medium text-sm transition-all ${
+              statusFilter === 'upcoming'
+                ? 'bg-gradient-to-r from-purple-500 to-indigo-500 text-white shadow-lg'
+                : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+            }`}
+          >
+            Upcoming
+          </button>
+          <button
+            onClick={() => setStatusFilter('live')}
+            className={`px-4 py-2.5 rounded-lg font-medium text-sm transition-all ${
+              statusFilter === 'live'
+                ? 'bg-gradient-to-r from-red-500 to-pink-500 text-white shadow-lg'
+                : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+            }`}
+          >
+            Live Now
+          </button>
+          <button
+            onClick={() => setStatusFilter('completed')}
+            className={`px-4 py-2.5 rounded-lg font-medium text-sm transition-all ${
+              statusFilter === 'completed'
+                ? 'bg-gradient-to-r from-gray-500 to-gray-600 text-white shadow-lg'
+                : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+            }`}
+          >
+            Completed
+          </button>
+        </div>
       </div>
 
       {/* Classes Grid */}
