@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { Calendar, Search, SlidersHorizontal, Loader2, CalendarX, AlertCircle, RefreshCw } from 'lucide-react';
+import { Calendar, Search, SlidersHorizontal, Loader2, CalendarX, AlertCircle } from 'lucide-react';
 import { scheduledClassService } from '@/services/scheduledClassService';
 import { ScheduledClass } from '@/types';
 import ScheduledClassCard from '@/components/ui/ScheduledClassCard';
@@ -132,7 +132,6 @@ export default function ScheduledClassesPage() {
           <h3 className="text-xl font-bold text-gray-800 mb-2">Failed to Load Classes</h3>
           <p className="text-gray-600 mb-6">{error}</p>
           <Button variant="primary" onClick={fetchScheduledClasses}>
-            <RefreshCw className="size-4 mr-2" />
             Try Again
           </Button>
         </div>
@@ -149,30 +148,18 @@ export default function ScheduledClassesPage() {
           <div className="absolute inset-0 bg-gradient-to-r from-purple-500 via-blue-500 to-cyan-500 opacity-10"></div>
           
           <div className="relative p-6 sm:p-8">
-            <div className="flex items-center justify-between flex-wrap gap-4">
-              <div className="flex items-center gap-4">
-                <div className="p-3 sm:p-4 bg-gradient-to-br from-purple-500 to-blue-500 rounded-2xl shadow-lg">
-                  <Calendar className="w-6 h-6 sm:w-8 sm:h-8 text-white" />
-                </div>
-                <div>
-                  <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold bg-gradient-to-r from-purple-600 via-blue-600 to-cyan-600 bg-clip-text text-transparent">
-                    Scheduled Classes
-                  </h1>
-                  <p className="text-sm sm:text-base text-gray-600 mt-1">
-                    Manage all your upcoming and past live sessions
-                  </p>
-                </div>
+            <div className="flex items-center gap-4">
+              <div className="p-3 sm:p-4 bg-gradient-to-br from-purple-500 to-blue-500 rounded-2xl shadow-lg">
+                <Calendar className="w-6 h-6 sm:w-8 sm:h-8 text-white" />
               </div>
-
-              <Button
-                variant="outline"
-                size="md"
-                onClick={fetchScheduledClasses}
-                className="hover:bg-gradient-to-r hover:from-purple-50 hover:to-blue-50"
-              >
-                <RefreshCw className="size-4 mr-2" />
-                Refresh
-              </Button>
+              <div>
+                <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold bg-gradient-to-r from-purple-600 via-blue-600 to-cyan-600 bg-clip-text text-transparent">
+                  Scheduled Classes
+                </h1>
+                <p className="text-sm sm:text-base text-gray-600 mt-1">
+                  Manage all your upcoming and past live sessions
+                </p>
+              </div>
             </div>
 
             {/* Stats */}
@@ -200,7 +187,7 @@ export default function ScheduledClassesPage() {
 
       {/* Filters */}
       <div className="bg-white rounded-xl shadow-md border border-gray-200 p-4 sm:p-5">
-        <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
+        <div className="flex flex-col sm:flex-row gap-3">
           {/* Search */}
           <div className="flex-1">
             <div className="relative">
@@ -220,7 +207,7 @@ export default function ScheduledClassesPage() {
             variant="outline"
             size="md"
             onClick={() => setShowFilters(!showFilters)}
-            className="sm:w-auto"
+            className="w-full sm:w-auto sm:min-w-[120px]"
           >
             <SlidersHorizontal className="size-4 mr-2" />
             Filters
