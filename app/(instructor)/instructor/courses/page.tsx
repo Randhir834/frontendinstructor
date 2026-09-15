@@ -8,6 +8,7 @@ import CourseCard from '@/components/ui/CourseCard';
 import { courseService } from '@/services/courseService';
 import { categoryService } from '@/services/categoryService';
 import type { Course, Category } from '@/types';
+import { PageLoading } from '@/components/ui/LoadingSpinner';
 
 function InstructorCoursesContent() {
   const searchParams = useSearchParams();
@@ -150,7 +151,7 @@ function InstructorCoursesContent() {
 
 export default function InstructorCoursesPage() {
   return (
-    <Suspense fallback={null}>
+    <Suspense fallback={<PageLoading message="Loading courses..." />}>
       <InstructorCoursesContent />
     </Suspense>
   );
