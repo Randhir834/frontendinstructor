@@ -6,7 +6,7 @@ import { usePathname, useRouter } from 'next/navigation';
 import {
   BookOpen,
   User,
-  Menu, X, GraduationCap, LogOut, Sparkles
+  Menu, X, GraduationCap, LogOut, Sparkles, Calendar
 } from 'lucide-react';
 import { userService, UserProfile } from '@/services/userService';
 import GlobalSearch from '@/components/GlobalSearch';
@@ -15,6 +15,7 @@ import PageTransition from '@/components/PageTransition';
 
 const menuItems = [
   { icon: BookOpen, label: 'My Courses', href: '/instructor/courses', gradient: 'from-blue-500 to-cyan-500' },
+  { icon: Calendar, label: 'Scheduled Classes', href: '/instructor/scheduled-classes', gradient: 'from-purple-500 to-indigo-500' },
   { icon: GraduationCap, label: 'Students', href: '/instructor/students', gradient: 'from-pink-500 to-rose-500' },
   { icon: User, label: 'My Profile', href: '/instructor/profile', gradient: 'from-teal-500 to-cyan-500' },
 ];

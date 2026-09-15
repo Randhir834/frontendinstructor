@@ -166,3 +166,20 @@ export interface StudentEnrolledCourse {
   total_lessons: number;
   completed_lessons: number;
 }
+
+export interface ScheduledClass {
+  id: number;
+  course_id: number;
+  course_title: string;
+  title: string;
+  description?: string;
+  meet_link: string;
+  scheduled_at: string;
+  duration_minutes: number;
+  status: 'scheduled' | 'completed' | 'cancelled';
+  created_by: number;
+  created_by_name: string;
+  created_at: string;
+  updated_at: string;
+  thumbnail_url?: string;
+}
