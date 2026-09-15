@@ -6,6 +6,7 @@ import { enrollmentService } from '@/services/enrollmentService';
 import { liveClassService } from '@/services/liveClassService';
 import { lessonCompletionService } from '@/services/lessonCompletionService';
 import type { StudentEnrolledCourse } from '@/types';
+import { PageLoading } from '@/components/ui/LoadingSpinner';
 
 interface StudentInfo {
   student_id: number;
@@ -156,16 +157,7 @@ export default function StudentDetailPage({ params }: { params: Promise<{ id: st
   };
 
   if (loading) {
-    return (
-      <div className="p-4 sm:p-6 md:p-8 max-w-[1400px] mx-auto">
-        <div className="flex items-center justify-center py-16">
-          <div className="text-center">
-            <Loader2 className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#1E88E5] mx-auto mb-4" />
-            <p className="text-[#78909C]">Loading student details...</p>
-          </div>
-        </div>
-      </div>
-    );
+    return <PageLoading message="Loading student details..." />;
   }
 
   if (!student) {

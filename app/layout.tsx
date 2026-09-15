@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import GoogleAnalytics from "@/components/GoogleAnalytics";
+import TopLoadingBar from "@/components/TopLoadingBar";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -52,6 +53,7 @@ export default function RootLayout({
     >
       <body className="min-h-full flex flex-col">
         <GoogleAnalytics />
+        <TopLoadingBar />
         {children}
       </body>
     </html>
