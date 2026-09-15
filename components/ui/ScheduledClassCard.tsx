@@ -1,9 +1,8 @@
 'use client';
 
-import { Calendar, Clock, Video, User, CheckCircle2, AlertCircle, PlayCircle, ExternalLink } from 'lucide-react';
+import { Calendar, Clock, Video, User, CheckCircle2, PlayCircle } from 'lucide-react';
 import { ScheduledClass } from '@/types';
 import Card, { CardContent } from './Card';
-import Button from './Button';
 
 interface ScheduledClassCardProps {
   scheduledClass: ScheduledClass;
@@ -26,7 +25,6 @@ export default function ScheduledClassCard({ scheduledClass }: ScheduledClassCar
         label: 'Live Now',
         color: 'bg-gradient-to-r from-red-100 to-pink-100 text-red-700 border-red-200',
         icon: <PlayCircle className="size-3.5 animate-pulse" />,
-        showJoinButton: true,
       };
     }
     if (isCompleted) {
@@ -34,7 +32,6 @@ export default function ScheduledClassCard({ scheduledClass }: ScheduledClassCar
         label: 'Completed',
         color: 'bg-gradient-to-r from-gray-100 to-gray-200 text-gray-600 border-gray-300',
         icon: <CheckCircle2 className="size-3.5" />,
-        showJoinButton: false,
       };
     }
     // Upcoming
@@ -42,7 +39,6 @@ export default function ScheduledClassCard({ scheduledClass }: ScheduledClassCar
       label: 'Upcoming',
       color: 'bg-gradient-to-r from-blue-100 to-cyan-100 text-blue-700 border-blue-200',
       icon: <Clock className="size-3.5" />,
-      showJoinButton: false,
     };
   };
 
@@ -64,12 +60,6 @@ export default function ScheduledClassCard({ scheduledClass }: ScheduledClassCar
       minute: '2-digit',
       hour12: true,
     });
-  };
-
-  const handleJoinClass = () => {
-    if (scheduledClass.meet_link) {
-      window.open(scheduledClass.meet_link, '_blank', 'noopener,noreferrer');
-    }
   };
 
   return (
@@ -154,31 +144,13 @@ export default function ScheduledClassCard({ scheduledClass }: ScheduledClassCar
             </div>
           </div>
 
-          {/* Join Button or Meet Link */}
-          {statusConfig.showJoinButton ? (
-            <Button
-              variant="gradient"
-              size="lg"
-              onClick={handleJoinClass}
-              className="w-full flex items-center justify-center gap-2 animate-pulse"
-            >
-              <ExternalLink className="size-5" />
-              Join Class Now
-            </Button>
-          ) : (
+          {/* Meet Link Display Only */}
+          {scheduledClass.meet_link && (
             <div className="flex items-center gap-2 text-xs text-gray-500 bg-gray-50 px-3 py-2.5 rounded-lg">
               <Video className="size-3.5" />
               <span className="truncate flex-1">
-                {scheduledClass.meet_link || 'Meet link will be available'}
+                {scheduledClass.meet_link}
               </span>
-              {scheduledClass.meet_link && (
-                <button
-                  onClick={handleJoinClass}
-                  className="text-blue-600 hover:text-blue-700 font-medium"
-                >
-                  Open
-                </button>
-              )}
             </div>
           )}
         </div>
