@@ -131,6 +131,11 @@ export default function InstructorStudentsPage() {
                   <span className="text-sm font-medium text-gray-700">
                     {student.total_courses_enrolled} {student.total_courses_enrolled === 1 ? 'Course' : 'Courses'}
                   </span>
+                  {student.directly_assigned_courses && student.directly_assigned_courses > 0 && (
+                    <span className="text-xs bg-purple-100 text-purple-700 px-2 py-0.5 rounded-full font-medium">
+                      {student.directly_assigned_courses} Assigned
+                    </span>
+                  )}
                 </div>
                 <div className="space-y-2">
                   {student.courses.map((course) => (
@@ -138,7 +143,7 @@ export default function InstructorStudentsPage() {
                       key={course.enrollment_id}
                       className="bg-gray-50 rounded-lg px-3 py-2"
                     >
-                      <div className="flex items-center justify-between gap-2">
+                      <div className="flex items-center justify-between gap-2 mb-1">
                         <span className="text-sm text-gray-800 truncate flex-1">
                           {course.course_title}
                         </span>
@@ -152,6 +157,12 @@ export default function InstructorStudentsPage() {
                           {course.enrollment_status}
                         </span>
                       </div>
+                      {course.is_directly_assigned && (
+                        <div className="flex items-center gap-1 mt-1">
+                          <div className="w-1.5 h-1.5 bg-purple-500 rounded-full"></div>
+                          <span className="text-xs text-purple-600 font-medium">Directly assigned to you</span>
+                        </div>
+                      )}
                     </div>
                   ))}
                 </div>

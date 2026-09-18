@@ -69,6 +69,7 @@ export interface InstructorStudent {
   school?: string;
   avatar_url?: string;
   total_courses_enrolled: number;
+  directly_assigned_courses?: number;
   courses: {
     course_id: number;
     course_title: string;
@@ -76,6 +77,7 @@ export interface InstructorStudent {
     enrollment_status: string;
     enrolled_at: string;
     completed_at?: string;
+    is_directly_assigned?: boolean;
   }[];
 }
 
@@ -165,6 +167,8 @@ export interface StudentEnrolledCourse {
   enrolled_at: string;
   total_lessons: number;
   completed_lessons: number;
+  assigned_instructor_id?: number;
+  is_directly_assigned?: boolean;
 }
 
 export interface ScheduledClass {

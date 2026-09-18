@@ -245,7 +245,15 @@ export default function StudentDetailPage({ params }: { params: Promise<{ id: st
                   <div className="bg-gradient-to-r from-[#FAFAFA] to-[#F5F5F5] px-6 py-4 border-b border-[#E0E0E0]">
                     <div className="flex items-start justify-between gap-4">
                       <div className="flex-1">
-                        <h3 className="text-xl font-bold text-[#1E3A5F] mb-1">{course.course_title}</h3>
+                        <div className="flex items-center gap-2 mb-1">
+                          <h3 className="text-xl font-bold text-[#1E3A5F]">{course.course_title}</h3>
+                          {course.is_directly_assigned && (
+                            <span className="inline-flex items-center gap-1 px-2 py-1 bg-purple-100 text-purple-700 rounded-full text-xs font-medium">
+                              <User className="w-3 h-3" />
+                              Assigned
+                            </span>
+                          )}
+                        </div>
                         {course.course_description && (
                           <p className="text-sm text-[#78909C] line-clamp-2">{course.course_description}</p>
                         )}
