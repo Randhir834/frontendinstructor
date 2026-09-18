@@ -76,12 +76,21 @@ export default function Footer({ handleSmoothScroll }: FooterProps) {
         </div>
         <div className="pt-8 border-t border-gray-800">
           <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
-            <p className="text-xs text-gray-500">© {currentYear} Playfit - All rights reserved</p>
+            <p className="text-xs text-gray-500">
+              © 2026 PlayFit Classes. Built by{' '}
+              <a 
+                href="https://devcastle.in" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="text-gray-400 hover:text-white transition-colors underline"
+              >
+                DevCastle.in
+              </a>
+            </p>
             <div className="flex items-center gap-2 text-xs text-gray-500">
               <span>Built with</span>
               <Heart className="w-3.5 h-3.5 fill-blue-500 text-blue-500" />
-              <span>by</span>
-              <a href="https://playfit.com/team" className="text-gray-400 hover:text-white transition-colors">Playfit Team</a>
+              <span>for passionate educators</span>
             </div>
           </div>
         </div>

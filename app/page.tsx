@@ -1268,7 +1268,15 @@ export default function Home() {
             <div className="border-t border-gray-700 pt-6 sm:pt-8">
               <div className="flex flex-col sm:flex-row justify-between items-center gap-4">
                 <p className="text-xs sm:text-sm text-gray-400 text-center sm:text-left">
-                  © {new Date().getFullYear()} Playfit. All rights reserved. Made with <Heart className="inline w-4 h-4 text-red-500 fill-red-500" /> for passionate educators.
+                  © 2026 PlayFit Classes. Built by{' '}
+                  <a 
+                    href="https://devcastle.in" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="text-blue-400 hover:text-blue-300 transition-colors underline"
+                  >
+                    DevCastle.in
+                  </a>
                 </p>
                 <div className="flex gap-4">
                   <a href="#" className="text-gray-400 hover:text-blue-400 transition-colors text-xs sm:text-sm">Privacy</a>
