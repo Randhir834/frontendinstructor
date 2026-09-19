@@ -109,14 +109,14 @@ export default function CourseCard({
             <span className="truncate font-medium">{instructorNames}</span>
           </div>
 
-          {/* Course Stats */}
-          {course.duration_value && course.duration_unit && (
+          {/* Course Stats - Hidden for instructors */}
+          {userRole !== 'instructor' && course.duration_value && course.duration_unit && (
             <div className="flex items-center gap-4 text-xs text-gray-500">
               <div className="flex items-center gap-1.5">
                 <Clock className="size-3.5" />
                 <span>{formatDuration(course.duration_value, course.duration_unit)}</span>
               </div>
-              {userRole !== 'instructor' && course.enrollment_count !== undefined && (
+              {course.enrollment_count !== undefined && (
                 <div className="flex items-center gap-1.5">
                   <Users className="size-3.5" />
                   <span>{course.enrollment_count} enrolled</span>
