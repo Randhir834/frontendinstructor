@@ -54,16 +54,16 @@ export default function CourseCard({
 
   const cardContent = (
     <>
-      <div className="relative overflow-hidden">
+      <div className="relative overflow-hidden flex-shrink-0">
         {course.thumbnail_url ? (
           <img
             src={course.thumbnail_url}
             alt={course.title}
-            className="w-full h-40 sm:h-44 md:h-48 object-cover transition-transform duration-300 group-hover:scale-105"
+            className="w-full h-32 sm:h-36 lg:h-40 xl:h-44 object-cover transition-transform duration-300 group-hover:scale-105"
           />
         ) : (
-          <div className="w-full h-40 sm:h-44 md:h-48 bg-gradient-to-br from-blue-100 via-purple-100 to-pink-100 flex items-center justify-center transition-all duration-300 group-hover:from-blue-200 group-hover:via-purple-200 group-hover:to-pink-200">
-            <BookOpen className="w-10 h-10 sm:w-12 sm:h-12 text-purple-400 animate-float" />
+          <div className="w-full h-32 sm:h-36 lg:h-40 xl:h-44 bg-gradient-to-br from-blue-100 via-purple-100 to-pink-100 flex items-center justify-center transition-all duration-300 group-hover:from-blue-200 group-hover:via-purple-200 group-hover:to-pink-200">
+            <BookOpen className="w-8 h-8 sm:w-10 sm:h-10 lg:w-12 lg:h-12 text-purple-400" />
           </div>
         )}
         {/* Gradient Overlay on Hover */}
@@ -71,23 +71,23 @@ export default function CourseCard({
 
         {/* Price Badge - Hidden for instructors */}
         {userRole !== 'instructor' && (
-          <div className="absolute top-3 right-3">
-            <span className="px-3 py-1.5 text-xs font-bold bg-white/95 backdrop-blur-sm text-gray-800 rounded-full shadow-lg">
+          <div className="absolute top-2 sm:top-3 right-2 sm:right-3">
+            <span className="px-2 sm:px-3 py-1 sm:py-1.5 text-[10px] sm:text-xs font-bold bg-white/95 backdrop-blur-sm text-gray-800 rounded-full shadow-lg">
               {formatPrice(course.price)}
             </span>
           </div>
         )}
       </div>
 
-      <CardContent className="p-4 sm:p-5">
-        <div className="space-y-3">
+      <CardContent className="p-3 sm:p-4 lg:p-5 flex-1 flex flex-col">
+        <div className="space-y-2 sm:space-y-3 flex-1 flex flex-col">
           {/* Title and Level */}
-          <div className="space-y-2">
+          <div className="space-y-1.5 sm:space-y-2 flex-shrink-0">
             <div className="flex items-start justify-between gap-2">
-              <h3 className="font-bold text-sm sm:text-base text-gray-800 line-clamp-2 group-hover:bg-gradient-to-r group-hover:from-purple-600 group-hover:to-pink-600 group-hover:bg-clip-text group-hover:text-transparent transition-all leading-tight">
+              <h3 className="font-bold text-sm sm:text-base lg:text-lg text-gray-800 line-clamp-2 group-hover:bg-gradient-to-r group-hover:from-purple-600 group-hover:to-pink-600 group-hover:bg-clip-text group-hover:text-transparent transition-all leading-tight flex-1 min-w-0">
                 {course.title}
               </h3>
-              <span className={`px-2 sm:px-2.5 py-1 text-xs font-semibold rounded-full whitespace-nowrap flex-shrink-0 shadow-sm ${
+              <span className={`px-2 sm:px-2.5 py-0.5 sm:py-1 text-[10px] sm:text-xs font-semibold rounded-full whitespace-nowrap flex-shrink-0 shadow-sm ${
                 course.level ? levelColors[course.level] || defaultLevelColor : defaultLevelColor
               }`}>
                 {course.level ? course.level.charAt(0).toUpperCase() + course.level.slice(1) : 'N/A'}
@@ -95,30 +95,30 @@ export default function CourseCard({
             </div>
             
             {course.description && (
-              <p className="text-xs sm:text-sm text-gray-600 line-clamp-2 leading-relaxed">
+              <p className="text-[10px] sm:text-xs lg:text-sm text-gray-600 line-clamp-2 leading-relaxed">
                 {course.description}
               </p>
             )}
           </div>
 
           {/* Instructor */}
-          <div className="flex items-center gap-2 text-sm text-gray-600">
-            <div className="p-1.5 bg-gradient-to-br from-purple-100 to-pink-100 rounded-lg">
-              <Users className="size-3.5 text-purple-600" />
+          <div className="flex items-center gap-1.5 sm:gap-2 text-xs sm:text-sm text-gray-600 flex-shrink-0">
+            <div className="p-1 sm:p-1.5 bg-gradient-to-br from-purple-100 to-pink-100 rounded-lg flex-shrink-0">
+              <Users className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-purple-600" />
             </div>
-            <span className="truncate font-medium">{instructorNames}</span>
+            <span className="truncate font-medium flex-1 min-w-0">{instructorNames}</span>
           </div>
 
           {/* Course Stats - Hidden for instructors */}
           {userRole !== 'instructor' && course.duration_value && course.duration_unit && (
-            <div className="flex items-center gap-4 text-xs text-gray-500">
-              <div className="flex items-center gap-1.5">
-                <Clock className="size-3.5" />
+            <div className="flex items-center gap-3 sm:gap-4 text-[10px] sm:text-xs text-gray-500 flex-shrink-0">
+              <div className="flex items-center gap-1 sm:gap-1.5">
+                <Clock className="w-3 h-3 sm:w-3.5 sm:h-3.5 flex-shrink-0" />
                 <span>{formatDuration(course.duration_value, course.duration_unit)}</span>
               </div>
               {course.enrollment_count !== undefined && (
-                <div className="flex items-center gap-1.5">
-                  <Users className="size-3.5" />
+                <div className="flex items-center gap-1 sm:gap-1.5">
+                  <Users className="w-3 h-3 sm:w-3.5 sm:h-3.5 flex-shrink-0" />
                   <span>{course.enrollment_count} enrolled</span>
                 </div>
               )}
@@ -127,15 +127,15 @@ export default function CourseCard({
 
           {/* Enrollment Status for Students */}
           {userRole === 'student' && course.is_enrolled && (
-            <div className="flex items-center gap-2 text-sm text-blue-700 bg-gradient-to-r from-blue-50 to-cyan-50 px-3 py-2 rounded-xl border border-blue-200">
-              <CheckCircle2 className="size-4" />
+            <div className="flex items-center gap-1.5 sm:gap-2 text-xs sm:text-sm text-blue-700 bg-gradient-to-r from-blue-50 to-cyan-50 px-2 sm:px-3 py-1.5 sm:py-2 rounded-xl border border-blue-200 flex-shrink-0">
+              <CheckCircle2 className="w-3.5 h-3.5 sm:w-4 sm:h-4 flex-shrink-0" />
               <span className="font-semibold">Enrolled</span>
             </div>
           )}
 
           {/* Actions - Only show for non-instructor roles */}
           {showActions && userRole !== 'instructor' && (
-            <div className="flex items-center gap-2 pt-3 border-t border-gray-100">
+            <div className="flex items-center gap-2 pt-2 sm:pt-3 border-t border-gray-100 flex-shrink-0 mt-auto">
               {/* Show large View button for students and admin */}
               <Button 
                 variant="gradient" 
@@ -144,24 +144,24 @@ export default function CourseCard({
                   e.stopPropagation();
                   window.location.href = getViewLink();
                 }}
-                className="flex-1 flex items-center justify-center gap-2"
+                className="flex-1 flex items-center justify-center gap-1.5 sm:gap-2 text-xs sm:text-sm py-2 sm:py-2.5 touch-manipulation"
               >
                 {userRole === 'student' ? (
                   course.is_enrolled ? (
                     <>
-                      <Play className="size-4" />
-                      Continue
+                      <Play className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
+                      <span>Continue</span>
                     </>
                   ) : (
                     <>
-                      <Eye className="size-4" />
-                      View Details
+                      <Eye className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
+                      <span>View</span>
                     </>
                   )
                 ) : (
                   <>
-                    <Eye className="size-4" />
-                    View
+                    <Eye className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
+                    <span>View</span>
                   </>
                 )}
               </Button>
@@ -172,9 +172,9 @@ export default function CourseCard({
                   variant="outline"
                   size="sm"
                   onClick={() => onEdit(course.id)}
-                  className="px-3 hover:bg-blue-50 hover:border-blue-300"
+                  className="px-2.5 sm:px-3 hover:bg-blue-50 hover:border-blue-300 touch-manipulation"
                 >
-                  <Edit className="size-4" />
+                  <Edit className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
                 </Button>
               )}
 
@@ -184,9 +184,9 @@ export default function CourseCard({
                   size="sm"
                   onClick={() => onDelete(course.id)}
                   disabled={deleting}
-                  className="px-3 text-red-600 hover:text-red-700 hover:bg-red-50 hover:border-red-300"
+                  className="px-2.5 sm:px-3 text-red-600 hover:text-red-700 hover:bg-red-50 hover:border-red-300 touch-manipulation"
                 >
-                  <Trash2 className="size-4" />
+                  <Trash2 className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
                 </Button>
               )}
             </div>

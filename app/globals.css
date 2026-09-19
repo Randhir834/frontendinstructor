@@ -297,6 +297,46 @@
     -webkit-backface-visibility: hidden;
     backface-visibility: hidden;
   }
+
+  /* Prevent card content overflow */
+  .line-clamp-1,
+  .line-clamp-2,
+  .line-clamp-3 {
+    word-break: break-word;
+    overflow-wrap: break-word;
+  }
+
+  /* Better truncation on mobile */
+  .truncate {
+    min-width: 0;
+  }
+}
+
+/* Responsive improvements for tablets */
+@media (min-width: 641px) and (max-width: 1024px) {
+  /* Optimize touch targets for tablets */
+  button, a, [role="button"] {
+    min-height: 40px;
+  }
+
+  /* Prevent layout shifts */
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+}
+
+/* Desktop optimizations */
+@media (min-width: 1025px) {
+  /* Smooth scrolling for desktop */
+  html {
+    scroll-behavior: smooth;
+  }
+
+  /* Better hover states */
+  button:hover, a:hover {
+    transition: all 0.2s ease;
+  }
 }
 
 /* Responsive viewport optimization for common laptop screen sizes */
@@ -321,11 +361,46 @@
   }
 }
 
-@media (min-width: 1537px) {
-  /* Extra large displays (1920px+) */
+@media (min-width: 1537px) and (max-width: 1920px) {
+  /* Extra large displays (1920px) */
   .hero-grid {
     grid-template-columns: 1fr 1fr;
     max-width: 1800px;
+  }
+
+  /* Prevent excessive stretching on large screens */
+  main {
+    max-width: 1920px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+@media (min-width: 1921px) {
+  /* Very large displays (TV, ultra-wide monitors) */
+  .hero-grid {
+    grid-template-columns: 1fr 1fr;
+    max-width: 2000px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  /* Cap content width for readability */
+  main {
+    max-width: 2400px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  /* Increase base font size for better readability */
+  html {
+    font-size: 18px;
+  }
+
+  /* Optimize spacing for large screens */
+  .container {
+    padding-left: 3rem;
+    padding-right: 3rem;
   }
 }
 
@@ -337,6 +412,11 @@
   
   section {
     overflow-x: clip;
+  }
+
+  /* Better card layouts on large screens */
+  .grid {
+    gap: clamp(1rem, 2vw, 2rem);
   }
 }
 

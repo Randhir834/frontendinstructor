@@ -104,16 +104,16 @@ export default function InstructorDashboardLayout({ children }: InstructorDashbo
 
       {/* Left Sidebar — Modernized */}
       <aside
-        className={`bg-white/90 backdrop-blur-xl border-r border-gray-200 flex flex-col z-50 shadow-xl
+        className={`bg-white/95 backdrop-blur-xl border-r border-gray-200 flex flex-col z-50 shadow-2xl
           fixed inset-y-0 left-0 transform transition-transform duration-300 ease-in-out
           ${mobileOpen ? 'translate-x-0' : '-translate-x-full'}
           lg:translate-x-0 lg:flex
-          w-72 lg:w-64
+          w-[280px] sm:w-[300px] lg:w-64 xl:w-72
         `}
       >
         {/* Logo with gradient background */}
-        <div className="relative border-b border-gray-200 lg:border-none flex items-center justify-center px-4 py-6 shrink-0 bg-gradient-to-r from-blue-600 to-purple-600 lg:bg-none">
-          <div className="relative flex items-center justify-center shrink-0 transition-all duration-300 w-full h-14 sm:h-16 lg:h-20">
+        <div className="relative border-b border-gray-200 lg:border-none flex items-center justify-center px-4 py-4 sm:py-5 lg:py-6 shrink-0 bg-gradient-to-r from-blue-600 to-purple-600 lg:bg-none">
+          <div className="relative flex items-center justify-center shrink-0 transition-all duration-300 w-full h-12 sm:h-14 lg:h-16 xl:h-20">
             <img
               src="/logo.jpg"
               alt="PlayFit"
@@ -122,23 +122,24 @@ export default function InstructorDashboardLayout({ children }: InstructorDashbo
           </div>
           <button
             onClick={() => setMobileOpen(false)}
-            className="absolute right-4 top-4 lg:hidden p-2 rounded-lg hover:bg-white/20 text-white transition-colors"
+            className="absolute right-3 top-3 lg:hidden p-2 rounded-lg hover:bg-white/20 text-white transition-colors touch-manipulation"
+            aria-label="Close menu"
           >
             <X size={20} />
           </button>
         </div>
 
-        <div className="flex-1 min-h-0 overflow-y-auto no-scrollbar px-3 py-4">
+        <div className="flex-1 min-h-0 overflow-y-auto no-scrollbar px-3 py-3 sm:py-4">
           {/* Welcome Badge */}
-          <div className="mb-4 px-3 py-3 bg-gradient-to-r from-blue-50 to-purple-50 rounded-xl border border-blue-100">
-            <div className="flex items-center gap-2 text-sm font-medium text-blue-700">
-              <Sparkles className="w-4 h-4" />
-              <span>Welcome Instructor!</span>
+          <div className="mb-3 sm:mb-4 px-3 py-2.5 sm:py-3 bg-gradient-to-r from-blue-50 to-purple-50 rounded-xl border border-blue-100">
+            <div className="flex items-center gap-2 text-xs sm:text-sm font-medium text-blue-700">
+              <Sparkles className="w-3.5 h-3.5 sm:w-4 sm:h-4 flex-shrink-0" />
+              <span className="truncate">Welcome Instructor!</span>
             </div>
           </div>
 
           {/* Navigation */}
-          <nav className="space-y-1.5">
+          <nav className="space-y-1">
             {menuItems.map((item, index) => {
               const isActive = item.href === '/instructor'
                 ? pathname === '/instructor'
@@ -148,21 +149,21 @@ export default function InstructorDashboardLayout({ children }: InstructorDashbo
                   key={index}
                   href={item.href}
                   onClick={() => setMobileOpen(false)}
-                  className={`group relative w-full flex items-center gap-3 px-4 py-3.5 rounded-xl text-sm font-medium transition-all duration-200 ${
+                  className={`group relative w-full flex items-center gap-3 px-3 sm:px-4 py-3 sm:py-3.5 rounded-xl text-sm font-medium transition-all duration-200 touch-manipulation ${
                     isActive
                       ? 'bg-gradient-to-r text-white shadow-lg'
-                      : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900'
+                      : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900 active:bg-gray-100'
                   } ${isActive ? item.gradient : ''}`}
                 >
                   {isActive && (
                     <div className="absolute inset-0 bg-gradient-to-r from-white/20 to-transparent rounded-xl"></div>
                   )}
-                  <div className={`relative ${isActive ? 'scale-110' : 'group-hover:scale-110'} transition-transform`}>
-                    <item.icon size={20} className="shrink-0" />
+                  <div className={`relative ${isActive ? 'scale-110' : 'group-hover:scale-110'} transition-transform flex-shrink-0`}>
+                    <item.icon size={18} className="sm:w-5 sm:h-5" />
                   </div>
-                  <span className="relative truncate">{item.label}</span>
+                  <span className="relative truncate flex-1">{item.label}</span>
                   {isActive && (
-                    <div className="absolute right-2 w-2 h-2 bg-white rounded-full shadow-lg animate-pulse"></div>
+                    <div className="absolute right-2 w-2 h-2 bg-white rounded-full shadow-lg animate-pulse flex-shrink-0"></div>
                   )}
                 </Link>
               );
@@ -170,7 +171,7 @@ export default function InstructorDashboardLayout({ children }: InstructorDashbo
           </nav>
 
           {/* Bottom Image Section */}
-          <div className="mt-6 px-2">
+          <div className="mt-4 sm:mt-6 px-2">
             <div className="relative rounded-2xl overflow-hidden shadow-lg group hover:shadow-xl transition-shadow">
               <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent group-hover:from-black/30 transition-colors"></div>
               <img
@@ -184,62 +185,64 @@ export default function InstructorDashboardLayout({ children }: InstructorDashbo
       </aside>
 
       {/* Main Content Area */}
-      <div className="flex-1 flex flex-col min-w-0 lg:ml-64 lg:h-screen lg:overflow-y-auto no-scrollbar">
+      <div className="flex-1 flex flex-col min-w-0 lg:ml-64 xl:ml-72">
         {/* Top Header - Modernized */}
-        <header className="bg-white/80 backdrop-blur-xl border-b border-gray-200 px-4 sm:px-6 lg:px-8 py-3 sticky top-0 z-20 shadow-sm">
-          <div className="flex items-center justify-between gap-4">
-            <div className="flex-1 flex items-center gap-3">
+        <header className="bg-white/90 backdrop-blur-xl border-b border-gray-200 px-3 sm:px-4 lg:px-6 xl:px-8 py-3 sm:py-3.5 sticky top-0 z-20 shadow-sm">
+          <div className="flex items-center justify-between gap-2 sm:gap-4">
+            <div className="flex-1 flex items-center gap-2 sm:gap-3 min-w-0">
               {/* Mobile hamburger */}
               <button
                 onClick={() => setMobileOpen(true)}
-                className="lg:hidden p-2.5 rounded-xl hover:bg-gradient-to-r hover:from-blue-50 hover:to-purple-50 text-gray-600 hover:text-blue-600 transition-all"
+                className="lg:hidden p-2 sm:p-2.5 rounded-xl hover:bg-gradient-to-r hover:from-blue-50 hover:to-purple-50 text-gray-600 hover:text-blue-600 transition-all flex-shrink-0 touch-manipulation"
                 aria-label="Open menu"
               >
-                <Menu size={22} />
+                <Menu size={20} className="sm:w-6 sm:h-6" />
               </button>
-              <div className="hidden lg:block w-4" />
+              <div className="hidden lg:block w-2 xl:w-4 flex-shrink-0" />
               {/* Global Search */}
-              <GlobalSearch className="flex-1 max-w-4xl" />
+              <div className="flex-1 min-w-0">
+                <GlobalSearch className="w-full max-w-4xl" />
+              </div>
             </div>
 
-            <div className="flex items-center gap-3 shrink-0">
+            <div className="flex items-center gap-2 sm:gap-3 shrink-0">
               {/* Profile Display */}
-              <div className="flex items-center gap-3 pl-4 border-l border-gray-200">
+              <div className="flex items-center gap-2 sm:gap-3 pl-2 sm:pl-4 border-l border-gray-200">
                 {userLoading ? (
-                  <div className="w-10 h-10 rounded-full bg-gradient-to-r from-blue-400 to-purple-400 animate-pulse"></div>
+                  <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-gradient-to-r from-blue-400 to-purple-400 animate-pulse flex-shrink-0"></div>
                 ) : (
-                  <div className="relative group">
+                  <div className="relative group flex-shrink-0">
                     <div className="absolute -inset-0.5 bg-gradient-to-r from-blue-600 to-purple-600 rounded-full opacity-75 group-hover:opacity-100 blur transition-opacity"></div>
                     <img
                       key={user?.avatar_url || 'default'}
                       src={avatarUrl}
                       alt={displayName}
-                      className="relative w-10 h-10 rounded-full object-cover ring-2 ring-white"
+                      className="relative w-8 h-8 sm:w-10 sm:h-10 rounded-full object-cover ring-2 ring-white"
                     />
                   </div>
                 )}
-                <div className="hidden sm:block text-right">
-                  <p className="text-sm font-semibold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">{displayName}</p>
-                  <p className="text-xs text-gray-500">Instructor</p>
+                <div className="hidden sm:block text-right min-w-0">
+                  <p className="text-xs sm:text-sm font-semibold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent truncate max-w-[120px] md:max-w-[150px] lg:max-w-[200px]">{displayName}</p>
+                  <p className="text-[10px] sm:text-xs text-gray-500">Instructor</p>
                 </div>
 
                 <button
                   type="button"
                   onClick={handleLogout}
-                  className="sm:hidden p-2.5 rounded-xl border border-red-200 bg-white text-red-500 hover:text-red-600 hover:bg-red-50 transition-all"
+                  className="sm:hidden p-2 rounded-xl border border-red-200 bg-white text-red-500 hover:text-red-600 hover:bg-red-50 transition-all flex-shrink-0 touch-manipulation"
                   aria-label="Logout"
                 >
-                  <LogOut size={18} />
+                  <LogOut size={16} />
                 </button>
 
                 <button
                   type="button"
                   onClick={handleLogout}
-                  className="hidden sm:inline-flex items-center gap-2 px-4 py-2 rounded-xl border border-red-200 bg-white text-red-500 text-sm font-semibold hover:bg-red-50 hover:border-red-300 transition-all hover:scale-105"
+                  className="hidden sm:inline-flex items-center gap-1.5 sm:gap-2 px-3 sm:px-4 py-1.5 sm:py-2 rounded-xl border border-red-200 bg-white text-red-500 text-xs sm:text-sm font-semibold hover:bg-red-50 hover:border-red-300 transition-all hover:scale-105 flex-shrink-0"
                   aria-label="Logout"
                 >
-                  <LogOut size={16} />
-                  Logout
+                  <LogOut size={14} className="sm:w-4 sm:h-4" />
+                  <span className="hidden md:inline">Logout</span>
                 </button>
               </div>
             </div>
@@ -247,7 +250,7 @@ export default function InstructorDashboardLayout({ children }: InstructorDashbo
         </header>
 
         {/* Page Content with Transition */}
-        <main className="flex-1 relative">
+        <main className="flex-1 relative overflow-x-hidden">
           <PageTransition>
             {children}
           </PageTransition>

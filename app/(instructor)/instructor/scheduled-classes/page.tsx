@@ -111,10 +111,13 @@ export default function ScheduledClassesPage() {
   // Loading state
   if (loading) {
     return (
-      <div className="min-h-screen flex items-center justify-center">
+      <div className="min-h-[calc(100vh-200px)] flex items-center justify-center p-4 sm:p-6">
         <div className="text-center">
-          <Loader2 className="w-12 h-12 animate-spin text-blue-600 mx-auto mb-4" />
-          <p className="text-gray-600 text-lg">Loading your scheduled classes...</p>
+          <div className="relative inline-block mb-4 sm:mb-6">
+            <Loader2 className="w-12 h-12 sm:w-14 sm:h-14 animate-spin text-blue-600 mx-auto" />
+            <div className="w-12 h-12 sm:w-14 sm:h-14 absolute inset-0 rounded-full bg-blue-100 opacity-20 animate-pulse" />
+          </div>
+          <p className="text-sm sm:text-base text-gray-600 font-medium">Loading your scheduled classes...</p>
         </div>
       </div>
     );
@@ -123,14 +126,14 @@ export default function ScheduledClassesPage() {
   // Error state
   if (error) {
     return (
-      <div className="min-h-screen flex items-center justify-center p-6">
-        <div className="max-w-md w-full bg-white rounded-2xl shadow-lg border border-red-200 p-8 text-center">
-          <div className="w-16 h-16 bg-gradient-to-br from-red-100 to-pink-100 rounded-full flex items-center justify-center mx-auto mb-4">
-            <AlertCircle className="w-8 h-8 text-red-600" />
+      <div className="min-h-[calc(100vh-200px)] flex items-center justify-center p-4 sm:p-6">
+        <div className="max-w-md w-full bg-white rounded-2xl shadow-lg border border-red-200 p-6 sm:p-8 text-center">
+          <div className="w-14 h-14 sm:w-16 sm:h-16 bg-gradient-to-br from-red-100 to-pink-100 rounded-full flex items-center justify-center mx-auto mb-4">
+            <AlertCircle className="w-7 h-7 sm:w-8 sm:h-8 text-red-600" />
           </div>
-          <h3 className="text-xl font-bold text-gray-800 mb-2">Failed to Load Classes</h3>
-          <p className="text-gray-600 mb-6">{error}</p>
-          <Button variant="primary" onClick={fetchScheduledClasses}>
+          <h3 className="text-lg sm:text-xl font-bold text-gray-800 mb-2">Failed to Load Classes</h3>
+          <p className="text-sm sm:text-base text-gray-600 mb-4 sm:mb-6">{error}</p>
+          <Button variant="primary" onClick={fetchScheduledClasses} className="touch-manipulation">
             Try Again
           </Button>
         </div>
@@ -139,45 +142,45 @@ export default function ScheduledClassesPage() {
   }
 
   return (
-    <div className="space-y-6 p-4 sm:p-6 lg:p-8">
+    <div className="space-y-4 sm:space-y-6 p-3 sm:p-4 lg:p-6 xl:p-8 max-w-[1600px] mx-auto">
       {/* Header */}
       <div className="relative">
-        <div className="relative bg-white rounded-2xl shadow-lg border border-gray-200 overflow-hidden">
+        <div className="relative bg-white rounded-xl sm:rounded-2xl shadow-lg border border-gray-200 overflow-hidden">
           {/* Gradient Background */}
           <div className="absolute inset-0 bg-gradient-to-r from-purple-500 via-blue-500 to-cyan-500 opacity-10"></div>
           
-          <div className="relative p-6 sm:p-8">
-            <div className="flex items-center gap-4">
-              <div className="p-3 sm:p-4 bg-gradient-to-br from-purple-500 to-blue-500 rounded-2xl shadow-lg">
-                <Calendar className="w-6 h-6 sm:w-8 sm:h-8 text-white" />
+          <div className="relative p-4 sm:p-6 lg:p-8">
+            <div className="flex flex-col sm:flex-row items-start sm:items-center gap-3 sm:gap-4 mb-4 sm:mb-6">
+              <div className="p-2.5 sm:p-3 lg:p-4 bg-gradient-to-br from-purple-500 to-blue-500 rounded-xl sm:rounded-2xl shadow-lg flex-shrink-0">
+                <Calendar className="w-5 h-5 sm:w-6 sm:h-6 lg:w-8 lg:h-8 text-white" />
               </div>
-              <div>
-                <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold bg-gradient-to-r from-purple-600 via-blue-600 to-cyan-600 bg-clip-text text-transparent">
+              <div className="flex-1 min-w-0">
+                <h1 className="text-xl sm:text-2xl lg:text-3xl xl:text-4xl font-bold bg-gradient-to-r from-purple-600 via-blue-600 to-cyan-600 bg-clip-text text-transparent leading-tight mb-1">
                   Scheduled Classes
                 </h1>
-                <p className="text-sm sm:text-base text-gray-600 mt-1">
+                <p className="text-xs sm:text-sm lg:text-base text-gray-600">
                   Manage all your upcoming and past live sessions
                 </p>
               </div>
             </div>
 
             {/* Stats */}
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4 mt-6">
-              <div className="bg-gradient-to-br from-blue-50 to-cyan-50 rounded-xl p-4 border border-blue-100">
-                <p className="text-xs sm:text-sm text-gray-600 mb-1">Total Classes</p>
-                <p className="text-2xl sm:text-3xl font-bold text-blue-600">{counts.total}</p>
+            <div className="grid grid-cols-2 lg:grid-cols-4 gap-2 sm:gap-3 lg:gap-4">
+              <div className="bg-gradient-to-br from-blue-50 to-cyan-50 rounded-lg sm:rounded-xl p-3 sm:p-4 border border-blue-100">
+                <p className="text-[10px] sm:text-xs lg:text-sm text-gray-600 mb-0.5 sm:mb-1">Total Classes</p>
+                <p className="text-xl sm:text-2xl lg:text-3xl font-bold text-blue-600">{counts.total}</p>
               </div>
-              <div className="bg-gradient-to-br from-purple-50 to-indigo-50 rounded-xl p-4 border border-purple-100">
-                <p className="text-xs sm:text-sm text-gray-600 mb-1">Upcoming</p>
-                <p className="text-2xl sm:text-3xl font-bold text-purple-600">{counts.upcoming}</p>
+              <div className="bg-gradient-to-br from-purple-50 to-indigo-50 rounded-lg sm:rounded-xl p-3 sm:p-4 border border-purple-100">
+                <p className="text-[10px] sm:text-xs lg:text-sm text-gray-600 mb-0.5 sm:mb-1">Upcoming</p>
+                <p className="text-xl sm:text-2xl lg:text-3xl font-bold text-purple-600">{counts.upcoming}</p>
               </div>
-              <div className="bg-gradient-to-br from-red-50 to-pink-50 rounded-xl p-4 border border-red-100">
-                <p className="text-xs sm:text-sm text-gray-600 mb-1">Live Now</p>
-                <p className="text-2xl sm:text-3xl font-bold text-red-600">{counts.live}</p>
+              <div className="bg-gradient-to-br from-red-50 to-pink-50 rounded-lg sm:rounded-xl p-3 sm:p-4 border border-red-100">
+                <p className="text-[10px] sm:text-xs lg:text-sm text-gray-600 mb-0.5 sm:mb-1">Live Now</p>
+                <p className="text-xl sm:text-2xl lg:text-3xl font-bold text-red-600">{counts.live}</p>
               </div>
-              <div className="bg-gradient-to-br from-gray-50 to-gray-100 rounded-xl p-4 border border-gray-200">
-                <p className="text-xs sm:text-sm text-gray-600 mb-1">Completed</p>
-                <p className="text-2xl sm:text-3xl font-bold text-gray-600">{counts.completed}</p>
+              <div className="bg-gradient-to-br from-gray-50 to-gray-100 rounded-lg sm:rounded-xl p-3 sm:p-4 border border-gray-200">
+                <p className="text-[10px] sm:text-xs lg:text-sm text-gray-600 mb-0.5 sm:mb-1">Completed</p>
+                <p className="text-xl sm:text-2xl lg:text-3xl font-bold text-gray-600">{counts.completed}</p>
               </div>
             </div>
           </div>
@@ -185,59 +188,59 @@ export default function ScheduledClassesPage() {
       </div>
 
       {/* Search and Filters */}
-      <div className="bg-white rounded-xl shadow-md border border-gray-200 p-4 sm:p-5">
+      <div className="bg-white rounded-xl sm:rounded-xl shadow-md border border-gray-200 p-3 sm:p-4 lg:p-5">
         {/* Search */}
-        <div className="mb-4">
+        <div className="mb-3 sm:mb-4">
           <div className="relative">
-            <Search className="absolute left-3 top-1/2 -translate-y-1/2 size-5 text-gray-400" />
+            <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 sm:w-5 sm:h-5 text-gray-400 pointer-events-none" />
             <Input
               type="text"
               placeholder="Search by class or course name..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              className="pl-10 w-full"
+              className="pl-9 sm:pl-10 w-full text-sm sm:text-base py-2.5 sm:py-3"
             />
           </div>
         </div>
 
         {/* Status Filter Buttons - Always Visible */}
-        <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-2 sm:gap-3">
           <button
             onClick={() => setStatusFilter('all')}
-            className={`px-4 py-2.5 rounded-lg font-medium text-sm transition-all ${
+            className={`px-3 sm:px-4 py-2 sm:py-2.5 rounded-lg font-medium text-xs sm:text-sm transition-all touch-manipulation ${
               statusFilter === 'all'
                 ? 'bg-gradient-to-r from-purple-500 to-blue-500 text-white shadow-lg'
-                : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                : 'bg-gray-100 text-gray-700 hover:bg-gray-200 active:bg-gray-300'
             }`}
           >
             All Classes
           </button>
           <button
             onClick={() => setStatusFilter('upcoming')}
-            className={`px-4 py-2.5 rounded-lg font-medium text-sm transition-all ${
+            className={`px-3 sm:px-4 py-2 sm:py-2.5 rounded-lg font-medium text-xs sm:text-sm transition-all touch-manipulation ${
               statusFilter === 'upcoming'
                 ? 'bg-gradient-to-r from-purple-500 to-indigo-500 text-white shadow-lg'
-                : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                : 'bg-gray-100 text-gray-700 hover:bg-gray-200 active:bg-gray-300'
             }`}
           >
             Upcoming
           </button>
           <button
             onClick={() => setStatusFilter('live')}
-            className={`px-4 py-2.5 rounded-lg font-medium text-sm transition-all ${
+            className={`px-3 sm:px-4 py-2 sm:py-2.5 rounded-lg font-medium text-xs sm:text-sm transition-all touch-manipulation ${
               statusFilter === 'live'
                 ? 'bg-gradient-to-r from-red-500 to-pink-500 text-white shadow-lg'
-                : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                : 'bg-gray-100 text-gray-700 hover:bg-gray-200 active:bg-gray-300'
             }`}
           >
             Live Now
           </button>
           <button
             onClick={() => setStatusFilter('completed')}
-            className={`px-4 py-2.5 rounded-lg font-medium text-sm transition-all ${
+            className={`px-3 sm:px-4 py-2 sm:py-2.5 rounded-lg font-medium text-xs sm:text-sm transition-all touch-manipulation ${
               statusFilter === 'completed'
                 ? 'bg-gradient-to-r from-gray-500 to-gray-600 text-white shadow-lg'
-                : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                : 'bg-gray-100 text-gray-700 hover:bg-gray-200 active:bg-gray-300'
             }`}
           >
             Completed
@@ -247,14 +250,14 @@ export default function ScheduledClassesPage() {
 
       {/* Classes Grid */}
       {filteredClasses.length === 0 ? (
-        <div className="bg-white rounded-2xl shadow-md border border-gray-200 p-12 text-center">
-          <div className="w-20 h-20 bg-gradient-to-br from-purple-100 to-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
-            <CalendarX className="w-10 h-10 text-purple-400" />
+        <div className="bg-white rounded-xl sm:rounded-2xl shadow-md border border-gray-200 p-8 sm:p-10 lg:p-12 text-center">
+          <div className="w-16 h-16 sm:w-20 sm:h-20 bg-gradient-to-br from-purple-100 to-blue-100 rounded-full flex items-center justify-center mx-auto mb-3 sm:mb-4">
+            <CalendarX className="w-8 h-8 sm:w-10 sm:h-10 text-purple-400" />
           </div>
-          <h3 className="text-xl font-bold text-gray-800 mb-2">
+          <h3 className="text-lg sm:text-xl font-bold text-gray-800 mb-2">
             {searchTerm || statusFilter !== 'all' ? 'No classes found' : 'No scheduled classes yet'}
           </h3>
-          <p className="text-gray-600 max-w-md mx-auto">
+          <p className="text-sm sm:text-base text-gray-600 max-w-md mx-auto mb-4 sm:mb-6">
             {searchTerm || statusFilter !== 'all'
               ? 'Try adjusting your filters or search terms'
               : 'Your scheduled live classes will appear here. Create classes from your course pages.'}
@@ -267,14 +270,14 @@ export default function ScheduledClassesPage() {
                 setSearchTerm('');
                 setStatusFilter('all');
               }}
-              className="mt-6"
+              className="mt-4 sm:mt-6 touch-manipulation"
             >
               Clear Filters
             </Button>
           )}
         </div>
       ) : (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 gap-4 sm:gap-5 lg:gap-6">
           {filteredClasses.map((scheduledClass) => (
             <ScheduledClassCard key={scheduledClass.id} scheduledClass={scheduledClass} />
           ))}

@@ -1265,24 +1265,19 @@ export default function Home() {
               </div>
             </div>
 
-            <div className="border-t border-gray-700 pt-6 sm:pt-8">
-              <div className="flex flex-col sm:flex-row justify-between items-center gap-4">
-                <p className="text-xs sm:text-sm text-gray-400 text-center sm:text-left">
-                  © 2026 PlayFit Classes. Built by{' '}
+            <div className="border-t border-gray-700 pt-6">
+              <div className="flex justify-center items-center">
+                <p className="text-sm text-gray-400 text-center">
+                  © 2026 Playfit Classes. Built by{' '}
                   <a 
-                    href="https://devcastle.in" 
+                    href="https://devkettle.in" 
                     target="_blank" 
                     rel="noopener noreferrer"
-                    className="text-blue-400 hover:text-blue-300 transition-colors underline"
+                    className="text-gray-400 hover:text-white transition-colors underline"
                   >
-                    DevCastle.in
+                    DevKettle.in
                   </a>
                 </p>
-                <div className="flex gap-4">
-                  <a href="#" className="text-gray-400 hover:text-blue-400 transition-colors text-xs sm:text-sm">Privacy</a>
-                  <a href="#" className="text-gray-400 hover:text-purple-400 transition-colors text-xs sm:text-sm">Terms</a>
-                  <a href="#" className="text-gray-400 hover:text-pink-400 transition-colors text-xs sm:text-sm">Cookie Policy</a>
-                </div>
               </div>
             </div>
           </div>

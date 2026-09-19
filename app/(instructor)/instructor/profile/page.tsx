@@ -154,10 +154,13 @@ export default function InstructorProfilePage() {
 
   if (loading) {
     return (
-      <div className="flex-1 flex items-center justify-center min-h-[calc(100vh-73px)]">
+      <div className="flex-1 flex items-center justify-center min-h-[calc(100vh-200px)] p-4">
         <div className="text-center">
-          <Loader2 className="size-8 animate-spin text-[#1E88E5] mx-auto mb-4" />
-          <p className="text-[#78909C]">Loading profile...</p>
+          <div className="relative inline-block mb-4 sm:mb-6">
+            <Loader2 className="w-10 h-10 sm:w-12 sm:h-12 animate-spin text-[#1E88E5] mx-auto" />
+            <div className="w-10 h-10 sm:w-12 sm:h-12 absolute inset-0 rounded-full bg-[#E3F2FD] opacity-20 animate-pulse" />
+          </div>
+          <p className="text-sm sm:text-base text-[#78909C]">Loading profile...</p>
         </div>
       </div>
     );
@@ -175,19 +178,19 @@ export default function InstructorProfilePage() {
     : 'N/A';
 
   return (
-    <div className="p-4 md:p-6 lg:p-8 max-w-[1400px] mx-auto">
+    <div className="p-3 sm:p-4 lg:p-6 xl:p-8 max-w-[1400px] mx-auto">
       {message && (
-        <div className={`mb-6 p-4 rounded-xl text-sm font-medium ${message.includes('successfully') ? 'bg-[#E8F5E9] text-[#2E7D32]' : 'bg-[#FFEBEE] text-[#C62828]'} animate-in fade-in slide-in-from-top-4 shadow-sm`}>
+        <div className={`mb-4 sm:mb-6 p-3 sm:p-4 rounded-xl text-xs sm:text-sm font-medium ${message.includes('successfully') ? 'bg-[#E8F5E9] text-[#2E7D32]' : 'bg-[#FFEBEE] text-[#C62828]'} animate-in fade-in slide-in-from-top-4 shadow-sm`}>
           {message}
         </div>
       )}
 
-      <div className="space-y-6">
+      <div className="space-y-4 sm:space-y-6">
         {/* Profile Header Card */}
-        <div className="bg-white rounded-2xl border border-[#E0E0E0] shadow-sm p-6 md:p-8">
-          <div className="flex flex-col md:flex-row items-center md:items-start gap-6 md:gap-8">
+        <div className="bg-white rounded-xl sm:rounded-2xl border border-[#E0E0E0] shadow-sm p-4 sm:p-6 lg:p-8">
+          <div className="flex flex-col md:flex-row items-center md:items-start gap-4 sm:gap-6 lg:gap-8">
             <div className="relative shrink-0">
-              <div className="w-28 h-28 md:w-36 md:h-36 rounded-full overflow-hidden border-4 border-[#E3F2FD] shadow-md">
+              <div className="w-24 h-24 sm:w-28 sm:h-28 lg:w-36 lg:h-36 rounded-full overflow-hidden border-4 border-[#E3F2FD] shadow-md">
                 <img 
                   src={getAvatarUrl(user?.avatar_url, displayName)} 
                   alt={displayName}
@@ -205,35 +208,37 @@ export default function InstructorProfilePage() {
               <button 
                 onClick={() => document.getElementById('photo-upload')?.click()}
                 disabled={uploadingPhoto}
-                className="absolute bottom-0 right-0 w-10 h-10 bg-[#1E88E5] border-2 border-white rounded-full flex items-center justify-center text-white hover:bg-[#1565C0] shadow-lg transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                className="absolute bottom-0 right-0 w-8 h-8 sm:w-10 sm:h-10 bg-[#1E88E5] border-2 border-white rounded-full flex items-center justify-center text-white hover:bg-[#1565C0] shadow-lg transition-colors disabled:opacity-50 disabled:cursor-not-allowed touch-manipulation"
                 title="Upload photo"
+                aria-label="Upload photo"
               >
-                {uploadingPhoto ? <Loader2 size={18} className="animate-spin" /> : <Camera size={18} />}
+                {uploadingPhoto ? <Loader2 size={16} className="sm:w-5 sm:h-5 animate-spin" /> : <Camera size={16} className="sm:w-5 sm:h-5" />}
               </button>
               {user?.avatar_url && (
                 <button
                   onClick={handleDeletePhoto}
                   disabled={uploadingPhoto}
-                  className="absolute top-0 right-0 w-8 h-8 bg-[#EC407A] border-2 border-white rounded-full flex items-center justify-center text-white hover:bg-[#D81B60] shadow-lg transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                  className="absolute top-0 right-0 w-7 h-7 sm:w-8 sm:h-8 bg-[#EC407A] border-2 border-white rounded-full flex items-center justify-center text-white hover:bg-[#D81B60] shadow-lg transition-colors disabled:opacity-50 disabled:cursor-not-allowed touch-manipulation"
                   title="Remove photo"
+                  aria-label="Remove photo"
                 >
-                  <Trash2 size={14} />
+                  <Trash2 size={12} className="sm:w-3.5 sm:h-3.5" />
                 </button>
               )}
             </div>
 
             <div className="flex-1 w-full">
-              <div className="flex flex-col md:flex-row items-center justify-between mb-6 gap-4">
-                <div className="flex flex-col md:flex-row items-center gap-3 w-full md:w-auto">
+              <div className="flex flex-col md:flex-row items-center justify-between mb-4 sm:mb-6 gap-3 sm:gap-4">
+                <div className="flex flex-col md:flex-row items-center gap-2 sm:gap-3 w-full md:w-auto">
                   <input 
                     type="text"
                     value={formData.name}
                     onChange={(e) => setFormData({...formData, name: e.target.value})}
                     disabled={saving}
-                    className="text-2xl md:text-3xl font-bold text-[#1E3A5F] bg-transparent border-b-2 border-transparent hover:border-[#E0E0E0] focus:border-[#1E88E5] focus:outline-none px-2 py-1 w-full md:w-auto text-center md:text-left transition-colors disabled:cursor-not-allowed"
+                    className="text-xl sm:text-2xl lg:text-3xl font-bold text-[#1E3A5F] bg-transparent border-b-2 border-transparent hover:border-[#E0E0E0] focus:border-[#1E88E5] focus:outline-none px-2 py-1 w-full md:w-auto text-center md:text-left transition-colors disabled:cursor-not-allowed"
                     placeholder="Your Name"
                   />
-                  <span className="px-3 py-1 bg-gradient-to-r from-[#1E88E5] to-[#1565C0] text-white text-xs font-semibold rounded-full capitalize shadow-sm">
+                  <span className="px-2.5 sm:px-3 py-1 bg-gradient-to-r from-[#1E88E5] to-[#1565C0] text-white text-[10px] sm:text-xs font-semibold rounded-full capitalize shadow-sm">
                     {role}
                   </span>
                 </div>
@@ -241,31 +246,31 @@ export default function InstructorProfilePage() {
                   <button 
                     onClick={handleUpdateProfile}
                     disabled={saving || !formData.name.trim()}
-                    className="w-full md:w-auto px-6 py-2.5 bg-[#1E88E5] text-white text-sm font-medium rounded-lg hover:bg-[#1565C0] transition-all flex items-center justify-center gap-2 shadow-md hover:shadow-lg disabled:opacity-50 disabled:cursor-not-allowed"
+                    className="w-full md:w-auto px-4 sm:px-6 py-2 sm:py-2.5 bg-[#1E88E5] text-white text-xs sm:text-sm font-medium rounded-lg hover:bg-[#1565C0] transition-all flex items-center justify-center gap-2 shadow-md hover:shadow-lg disabled:opacity-50 disabled:cursor-not-allowed touch-manipulation"
                   >
-                    {saving ? <Loader2 size={16} className="animate-spin" /> : <Save size={16} />}
-                    Save Changes
+                    {saving ? <Loader2 size={14} className="sm:w-4 sm:h-4 animate-spin" /> : <Save size={14} className="sm:w-4 sm:h-4" />}
+                    <span>Save Changes</span>
                   </button>
                 )}
               </div>
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-6">
-                <div className="flex items-center gap-3 p-3 bg-[#FAFAFA] rounded-xl">
-                  <div className="w-10 h-10 bg-white rounded-lg flex items-center justify-center shrink-0 shadow-sm">
-                    <Mail size={18} className="text-[#1E88E5]" />
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 lg:gap-6">
+                <div className="flex items-center gap-2 sm:gap-3 p-2.5 sm:p-3 bg-[#FAFAFA] rounded-xl">
+                  <div className="w-8 h-8 sm:w-10 sm:h-10 bg-white rounded-lg flex items-center justify-center shrink-0 shadow-sm">
+                    <Mail size={16} className="sm:w-[18px] sm:h-[18px] text-[#1E88E5]" />
                   </div>
-                  <div className="min-w-0">
-                    <p className="text-xs text-[#78909C] mb-0.5">Email Address</p>
-                    <p className="text-sm font-semibold text-[#1E3A5F] truncate">{email}</p>
+                  <div className="min-w-0 flex-1">
+                    <p className="text-[10px] sm:text-xs text-[#78909C] mb-0.5">Email Address</p>
+                    <p className="text-xs sm:text-sm font-semibold text-[#1E3A5F] truncate">{email}</p>
                   </div>
                 </div>
-                <div className="flex items-center gap-3 p-3 bg-[#FAFAFA] rounded-xl">
-                  <div className="w-10 h-10 bg-white rounded-lg flex items-center justify-center shrink-0 shadow-sm">
-                    <Calendar size={18} className="text-[#1E88E5]" />
+                <div className="flex items-center gap-2 sm:gap-3 p-2.5 sm:p-3 bg-[#FAFAFA] rounded-xl">
+                  <div className="w-8 h-8 sm:w-10 sm:h-10 bg-white rounded-lg flex items-center justify-center shrink-0 shadow-sm">
+                    <Calendar size={16} className="sm:w-[18px] sm:h-[18px] text-[#1E88E5]" />
                   </div>
-                  <div className="min-w-0">
-                    <p className="text-xs text-[#78909C] mb-0.5">Member Since</p>
-                    <p className="text-sm font-semibold text-[#1E3A5F] truncate">{joinDate}</p>
+                  <div className="min-w-0 flex-1">
+                    <p className="text-[10px] sm:text-xs text-[#78909C] mb-0.5">Member Since</p>
+                    <p className="text-xs sm:text-sm font-semibold text-[#1E3A5F] truncate">{joinDate}</p>
                   </div>
                 </div>
               </div>

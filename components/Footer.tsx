@@ -206,27 +206,17 @@ export default function Footer() {
 
         {/* Bottom Bar */}
         <div className="border-t border-white/10 py-6">
-          <div className="flex flex-col sm:flex-row justify-between items-center gap-4">
-            <p className="text-gray-400 text-sm text-center sm:text-left">
-              © {currentYear} PlayFit. All rights reserved.
-            </p>
-            
-            <div className="flex items-center gap-4">
-              <Link href="/privacy" className="text-gray-400 hover:text-white transition-colors text-sm">
-                Privacy Policy
-              </Link>
-              <span className="text-gray-600">•</span>
-              <Link href="/terms" className="text-gray-400 hover:text-white transition-colors text-sm">
-                Terms of Service
-              </Link>
-              <span className="text-gray-600">•</span>
-              <Link href="/cookies" className="text-gray-400 hover:text-white transition-colors text-sm">
-                Cookie Policy
-              </Link>
-            </div>
-
-            <p className="text-gray-400 text-sm flex items-center gap-1">
-              Made with <Heart className="w-4 h-4 text-red-500 fill-red-500" /> for educators
+          <div className="flex justify-center items-center">
+            <p className="text-sm text-gray-400 text-center">
+              © 2026 Playfit Classes. Built by{' '}
+              <a 
+                href="https://devkettle.in" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="text-gray-400 hover:text-white transition-colors underline"
+              >
+                DevKettle.in
+              </a>
             </p>
           </div>
         </div>
