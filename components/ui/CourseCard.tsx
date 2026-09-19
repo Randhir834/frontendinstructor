@@ -116,7 +116,7 @@ export default function CourseCard({
                 <Clock className="size-3.5" />
                 <span>{formatDuration(course.duration_value, course.duration_unit)}</span>
               </div>
-              {course.enrollment_count !== undefined && (
+              {userRole !== 'instructor' && course.enrollment_count !== undefined && (
                 <div className="flex items-center gap-1.5">
                   <Users className="size-3.5" />
                   <span>{course.enrollment_count} enrolled</span>
