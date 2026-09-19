@@ -56,8 +56,6 @@ export default function Footer({ handleSmoothScroll }: FooterProps) {
             <ul className="space-y-3">
               <li><Link href="#contact" className="text-sm text-gray-400 hover:text-white transition-colors">Contact</Link></li>
               <li><Link href="#roadmap" className="text-sm text-gray-400 hover:text-white transition-colors">Roadmap</Link></li>
-              <li><Link href="#privacy" className="text-sm text-gray-400 hover:text-white transition-colors">Privacy policy</Link></li>
-              <li><Link href="#terms" className="text-sm text-gray-400 hover:text-white transition-colors">Terms of service</Link></li>
               <li><Link href="#support" className="text-sm text-gray-400 hover:text-white transition-colors">Customer portal</Link></li>
             </ul>
           </div>
