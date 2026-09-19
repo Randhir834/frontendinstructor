@@ -222,7 +222,7 @@ export default function InstructorDashboardLayout({ children }: InstructorDashbo
                   </div>
                 )}
                 <div className="hidden sm:block text-right min-w-0">
-                  <p className="text-xs sm:text-sm font-semibold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent truncate max-w-[120px] md:max-w-[150px] lg:max-w-[200px]">{displayName}</p>
+                  <p className="text-xs sm:text-sm font-semibold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent truncate max-w-[120px] md:max-w-[150px] lg:max-w-[200px] pb-0.5">{displayName}</p>
                   <p className="text-[10px] sm:text-xs text-gray-500">Instructor</p>
                 </div>
 

@@ -84,7 +84,7 @@ export default function CourseCard({
           {/* Title and Level */}
           <div className="space-y-1.5 sm:space-y-2 flex-shrink-0">
             <div className="flex items-start justify-between gap-2">
-              <h3 className="font-bold text-sm sm:text-base lg:text-lg text-gray-800 line-clamp-2 group-hover:bg-gradient-to-r group-hover:from-purple-600 group-hover:to-pink-600 group-hover:bg-clip-text group-hover:text-transparent transition-all leading-tight flex-1 min-w-0">
+              <h3 className="font-bold text-sm sm:text-base lg:text-lg text-gray-800 line-clamp-2 group-hover:bg-gradient-to-r group-hover:from-purple-600 group-hover:to-pink-600 group-hover:bg-clip-text group-hover:text-transparent transition-all leading-tight flex-1 min-w-0 pb-0.5">
                 {course.title}
               </h3>
               <span className={`px-2 sm:px-2.5 py-0.5 sm:py-1 text-[10px] sm:text-xs font-semibold rounded-full whitespace-nowrap flex-shrink-0 shadow-sm ${

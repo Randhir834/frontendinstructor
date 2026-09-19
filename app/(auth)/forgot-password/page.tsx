@@ -49,7 +49,7 @@ export default function ForgotPasswordPage() {
       leftSubtitle="We will send reset steps to your email so you can get back to teaching safely."
     >
       <div className="text-center mb-8">
-        <h2 className="text-2xl sm:text-3xl font-bold bg-gradient-to-r from-cyan-600 via-blue-600 to-cyan-600 bg-clip-text text-transparent mb-2">
+        <h2 className="text-2xl sm:text-3xl font-bold bg-gradient-to-r from-cyan-600 via-blue-600 to-cyan-600 bg-clip-text text-transparent mb-2 pb-1 leading-tight">
           Forgot Password
         </h2>
         <p className="text-sm text-gray-600">

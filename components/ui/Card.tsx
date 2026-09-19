@@ -34,7 +34,7 @@ export function CardHeader({ children, className }: CardProps) {
 export function CardTitle({ children, className }: CardProps) {
   return (
     <h3 className={cn(
-      'text-base sm:text-lg font-bold bg-gradient-to-r from-gray-800 to-gray-600 bg-clip-text text-transparent',
+      'text-base sm:text-lg font-bold bg-gradient-to-r from-gray-800 to-gray-600 bg-clip-text text-transparent pb-0.5',
       className
     )}>
       {children}

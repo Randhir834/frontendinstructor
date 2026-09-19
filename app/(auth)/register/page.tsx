@@ -53,7 +53,7 @@ export default function RegisterPage() {
       leftSubtitle="Create courses, engage learners, and grow your impact—all from one instructor hub."
     >
       <div className="text-center mb-6">
-        <h2 className="text-xl sm:text-2xl font-bold bg-gradient-to-r from-purple-600 via-pink-600 to-blue-600 bg-clip-text text-transparent mb-2">
+        <h2 className="text-xl sm:text-2xl font-bold bg-gradient-to-r from-purple-600 via-pink-600 to-blue-600 bg-clip-text text-transparent mb-2 pb-1 leading-tight">
           Instructor Sign Up
         </h2>
         <p className="text-sm text-gray-600">Create your instructor account</p>

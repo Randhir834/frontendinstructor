@@ -84,7 +84,7 @@ export default function LoginPage() {
       leftSubtitle="Login to continue teaching and inspiring the next generation of learners."
     >
       <div className="text-center mb-8">
-        <h2 className="text-2xl sm:text-3xl font-bold bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent mb-2">
+        <h2 className="text-2xl sm:text-3xl font-bold bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent mb-2 pb-1 leading-tight">
           Instructor Login
         </h2>
         <p className="text-sm text-gray-600">Enter your details to access your account</p>
@@ -183,27 +183,6 @@ export default function LoginPage() {
               Create new account
             </Link>
           </p>
-
-          <div className="mt-8 pt-6 border-t border-gray-200 flex items-center justify-center gap-6 sm:gap-8">
-            <div className="flex items-center gap-2">
-              <div className="w-10 h-10 bg-gradient-to-br from-blue-100 to-cyan-100 rounded-xl flex items-center justify-center shadow-sm">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#1E88E5" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-              </div>
-              <span className="text-[10px] text-gray-600 leading-tight font-medium">Secure<br/>Platform</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <div className="w-10 h-10 bg-gradient-to-br from-green-100 to-emerald-100 rounded-xl flex items-center justify-center shadow-sm">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#10B981" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>
-              </div>
-              <span className="text-[10px] text-gray-600 leading-tight font-medium">Trusted by<br/>Educators</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <div className="w-10 h-10 bg-gradient-to-br from-purple-100 to-pink-100 rounded-xl flex items-center justify-center shadow-sm">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#A855F7" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
-              </div>
-              <span className="text-[10px] text-gray-600 leading-tight font-medium">Professional<br/>Tools</span>
-            </div>
-          </div>
     </InstructorAuthSplitShell>
   );
 }

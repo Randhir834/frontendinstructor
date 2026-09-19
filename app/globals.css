@@ -569,6 +569,40 @@ body {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+  padding-bottom: 0.125rem; /* 2px - Prevents clipping of descenders */
+  display: inline-block; /* Ensures padding works correctly */
+}
+
+/* Global fix for bg-clip-text to prevent descender clipping */
+.bg-clip-text {
+  -webkit-background-clip: text;
+  background-clip: text;
+  padding-bottom: 0.125rem !important; /* 2px - Critical for g, y, p, q, j */
+  display: inline-block;
+  line-height: 1.2 !important; /* Ensures proper spacing */
+}
+
+/* Fix for text-transparent with gradients */
+.text-transparent {
+  -webkit-text-fill-color: transparent;
+}
+
+/* Ensure all headings have proper line-height to prevent clipping */
+h1, h2, h3, h4, h5, h6 {
+  line-height: 1.25;
+  padding-bottom: 0.125rem; /* Prevent descender clipping */
+}
+
+/* Specifically fix gradient text in headings */
+h1 .bg-clip-text,
+h2 .bg-clip-text,
+h3 .bg-clip-text,
+h4 .bg-clip-text,
+h5 .bg-clip-text,
+h6 .bg-clip-text {
+  padding-bottom: 0.25rem !important; /* 4px for larger text */
+  line-height: 1.2 !important;
+  display: inline-block !important;
 }
 
 /* Premium Button Styles */

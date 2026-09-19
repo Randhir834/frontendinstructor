@@ -224,7 +224,7 @@ export default function InstructorCourseDetailPage({ params }: { params: Promise
         <Card className="hover:shadow-md transition-shadow" gradient>
           <CardContent className="p-6">
             <div className="text-center">
-              <div className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-blue-600 to-cyan-600 bg-clip-text text-transparent">{enrollmentCount}</div>
+              <div className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-blue-600 to-cyan-600 bg-clip-text text-transparent pb-2 leading-tight">{enrollmentCount}</div>
               <div className="text-sm md:text-base text-gray-600 mt-3 font-medium">Students Enrolled</div>
             </div>
           </CardContent>
@@ -232,7 +232,7 @@ export default function InstructorCourseDetailPage({ params }: { params: Promise
         <Card className="hover:shadow-md transition-shadow" gradient>
           <CardContent className="p-6">
             <div className="text-center">
-              <div className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-orange-500 to-amber-500 bg-clip-text text-transparent">{course.total_lessons || 0}</div>
+              <div className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-orange-500 to-amber-500 bg-clip-text text-transparent pb-2 leading-tight">{course.total_lessons || 0}</div>
               <div className="text-sm md:text-base text-gray-600 mt-3 font-medium">Total Lessons</div>
             </div>
           </CardContent>

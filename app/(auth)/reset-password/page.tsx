@@ -48,7 +48,7 @@ function ResetPasswordForm() {
   return (
     <>
       <div className="text-center mb-8">
-        <h2 className="text-2xl sm:text-3xl font-bold bg-gradient-to-r from-green-600 via-emerald-600 to-cyan-600 bg-clip-text text-transparent mb-2">
+        <h2 className="text-2xl sm:text-3xl font-bold bg-gradient-to-r from-green-600 via-emerald-600 to-cyan-600 bg-clip-text text-transparent mb-2 pb-1 leading-tight">
           Set a New Password
         </h2>
         <p className="text-sm text-gray-600">

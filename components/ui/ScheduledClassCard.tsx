@@ -102,7 +102,7 @@ export default function ScheduledClassCard({ scheduledClass }: ScheduledClassCar
         <div className="space-y-2 sm:space-y-3 flex-1 flex flex-col">
           {/* Class Title */}
           <div className="flex-shrink-0">
-            <h3 className="font-bold text-sm sm:text-base lg:text-lg text-gray-800 line-clamp-2 group-hover:bg-gradient-to-r group-hover:from-purple-600 group-hover:to-blue-600 group-hover:bg-clip-text group-hover:text-transparent transition-all leading-tight mb-1">
+            <h3 className="font-bold text-sm sm:text-base lg:text-lg text-gray-800 line-clamp-2 group-hover:bg-gradient-to-r group-hover:from-purple-600 group-hover:to-blue-600 group-hover:bg-clip-text group-hover:text-transparent transition-all leading-tight mb-1 pb-0.5">
               {scheduledClass.title}
             </h3>
             {scheduledClass.description && (
