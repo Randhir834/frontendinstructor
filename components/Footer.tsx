@@ -210,12 +210,12 @@ export default function Footer() {
             <p className="text-sm text-gray-400 text-center">
               © 2026 Playfit Classes. Built by{' '}
               <a 
-                href="https://devkettle.in" 
+                href="https://devcastle.in" 
                 target="_blank" 
                 rel="noopener noreferrer"
                 className="text-gray-400 hover:text-white transition-colors underline"
               >
-                DevKettle.in
+                DevCastle.in
               </a>
             </p>
           </div>
