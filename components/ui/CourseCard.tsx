@@ -69,8 +69,8 @@ export default function CourseCard({
         {/* Gradient Overlay on Hover */}
         <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
 
-        {/* Price Badge - Hidden for instructors */}
-        {userRole !== 'instructor' && (
+        {/* Price Badge - Only show for admin */}
+        {userRole === 'admin' && (
           <div className="absolute top-2 sm:top-3 right-2 sm:right-3">
             <span className="px-2 sm:px-3 py-1 sm:py-1.5 text-[10px] sm:text-xs font-bold bg-white/95 backdrop-blur-sm text-gray-800 rounded-full shadow-lg">
               {formatPrice(course.price)}
@@ -109,8 +109,8 @@ export default function CourseCard({
             <span className="truncate font-medium flex-1 min-w-0">{instructorNames}</span>
           </div>
 
-          {/* Course Stats - Hidden for instructors */}
-          {userRole !== 'instructor' && course.duration_value && course.duration_unit && (
+          {/* Course Stats - Only show for admin */}
+          {userRole === 'admin' && course.duration_value && course.duration_unit && (
             <div className="flex items-center gap-3 sm:gap-4 text-[10px] sm:text-xs text-gray-500 flex-shrink-0">
               <div className="flex items-center gap-1 sm:gap-1.5">
                 <Clock className="w-3 h-3 sm:w-3.5 sm:h-3.5 flex-shrink-0" />
@@ -133,38 +133,40 @@ export default function CourseCard({
             </div>
           )}
 
-          {/* Actions - Only show for non-instructor roles */}
-          {showActions && userRole !== 'instructor' && (
+          {/* Actions - Show for all roles except student viewing available courses */}
+          {showActions && (userRole === 'admin' || userRole === 'instructor' || (userRole === 'student' && course.is_enrolled)) && (
             <div className="flex items-center gap-2 pt-2 sm:pt-3 border-t border-gray-100 flex-shrink-0 mt-auto">
               {/* Show large View button for students and admin */}
-              <Button 
-                variant="gradient" 
-                size="sm" 
-                onClick={(e) => {
-                  e.stopPropagation();
-                  window.location.href = getViewLink();
-                }}
-                className="flex-1 flex items-center justify-center gap-1.5 sm:gap-2 text-xs sm:text-sm py-2 sm:py-2.5 touch-manipulation"
-              >
-                {userRole === 'student' ? (
-                  course.is_enrolled ? (
-                    <>
-                      <Play className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
-                      <span>Continue</span>
-                    </>
+              {userRole !== 'instructor' && (
+                <Button 
+                  variant="gradient" 
+                  size="sm" 
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    window.location.href = getViewLink();
+                  }}
+                  className="flex-1 flex items-center justify-center gap-1.5 sm:gap-2 text-xs sm:text-sm py-2 sm:py-2.5 touch-manipulation"
+                >
+                  {userRole === 'student' ? (
+                    course.is_enrolled ? (
+                      <>
+                        <Play className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
+                        <span>Continue</span>
+                      </>
+                    ) : (
+                      <>
+                        <Eye className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
+                        <span>Contact Admin</span>
+                      </>
+                    )
                   ) : (
                     <>
                       <Eye className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
                       <span>View</span>
                     </>
-                  )
-                ) : (
-                  <>
-                    <Eye className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
-                    <span>View</span>
-                  </>
-                )}
-              </Button>
+                  )}
+                </Button>
+              )}
 
               {/* Only show Edit button for admin users */}
               {userRole === 'admin' && onEdit && (
